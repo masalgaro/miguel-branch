@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
+use App\Models\Phone;
  
 class PhoneController extends Controller
 {
@@ -11,8 +12,8 @@ class PhoneController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData["products"] = ProductController::$products;
-        return view('product.index')->with("viewData", $viewData);
+        $viewData["phones"] = Phone::all();
+        return view('phone.index')->with("viewData", $viewData);
     }
 
     // public function show(string $id) : View
