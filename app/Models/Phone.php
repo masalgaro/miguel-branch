@@ -8,111 +8,108 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Phone extends Model
 {
     /**
+     * PHONE ATTRIBUTES
 
-    * PHONE ATTRIBUTES
+     * $this->attributes['id'] - int - contains the phone primary key (id)
 
-    * $this->attributes['id'] - int - contains the phone primary key (id)
+     * $this->attributes['name'] - string - contains the phone name
 
-    * $this->attributes['name'] - string - contains the phone name
+     * $this->attributes['memory'] - string - contains the phone memory. It also includes the unit of measure. For example kb, mb, gb, etc.
 
-    * $this->attributes['memory'] - string - contains the phone memory. It also includes the unit of measure. For example kb, mb, gb, etc. 
+     * $this->attributes['ram'] - string - contains the phone ram. It also includes the unit of measure. For example kb, mb, gb, etc.
 
-    * $this->attributes['ram'] - string - contains the phone ram. It also includes the unit of measure. For example kb, mb, gb, etc. 
+     * $this->attributes['battery'] - string - contains the phone battery. It also includes the unit of measure. For example mAh, etc.
 
-    * $this->attributes['battery'] - string - contains the phone battery. It also includes the unit of measure. For example mAh, etc. 
+     * $this->attributes['brand'] - string - contains the phone brand. For example Samsumg, Apple, Xiaomi, etc.
 
-    * $this->attributes['brand'] - string - contains the phone brand. For example Samsumg, Apple, Xiaomi, etc. 
+     * $this->attributes['quantity'] - integer - contains the number of phones in that store.
+     */
+    protected $fillable = ['name', 'memory', 'ram', 'battery', 'brand', 'quantity'];
 
-    * $this->attributes['quantity'] - integer - contains the number of phones in that store.
-    
-
-    */ 
-    protected $fillable = ['name','memory','ram','battery','brand','quantity'];
-
-    # Id 
+    // Id
 
     public function getId(): int
     {
         return $this->attributes['id'];
     }
 
-    public function setId(int $id) : void
+    public function setId(int $id): void
     {
         $this->attributes['id'] = $id;
     }
-    
-    # Name
+
+    // Name
 
     public function getName(): string
     {
         return $this->attributes['name'];
     }
 
-    public function setName(string $name) : void
+    public function setName(string $name): void
     {
         $this->attributes['name'] = $name;
     }
 
-    # Memory 
+    // Memory
 
     public function getMemory(): string
     {
         return $this->attributes['memory'];
     }
 
-    public function setMemory(string $memory) : void
+    public function setMemory(string $memory): void
     {
         $this->attributes['memory'] = $memory;
     }
-    
-    # Ram 
+
+    // Ram
 
     public function getRam(): string
     {
         return $this->attributes['ram'];
     }
 
-    public function setRam(string $ram) : void
+    public function setRam(string $ram): void
     {
         $this->attributes['ram'] = $ram;
     }
 
-    # Battery 
+    // Battery
 
     public function getBattery(): string
     {
         return $this->attributes['battery'];
     }
 
-    public function setBattery(string $battery) : void
+    public function setBattery(string $battery): void
     {
         $this->attributes['battery'] = $battery;
     }
 
-    # Brand 
+    // Brand
 
     public function getBrand(): string
     {
         return $this->attributes['brand'];
     }
 
-    public function setBrand(string $brand) : void
+    public function setBrand(string $brand): void
     {
         $this->attributes['brand'] = $brand;
     }
 
-    # Quantity
+    // Quantity
 
     public function getQuantity(): int
     {
         return $this->attributes['quantity'];
     }
 
-    public function setQuantity(int $quantity) : void
+    public function setQuantity(int $quantity): void
     {
         $this->attributes['quantity'] = $quantity;
     }
-    
+
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);

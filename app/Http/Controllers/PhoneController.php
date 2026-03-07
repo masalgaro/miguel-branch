@@ -1,19 +1,18 @@
 <?php
- 
+
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use App\Models\Phone;
- 
+use Illuminate\View\View;
+
 class PhoneController extends Controller
 {
-    
-
     public function index(): View
     {
         $viewData = [];
-        $viewData["phones"] = Phone::all();
-        return view('phone.index')->with("viewData", $viewData);
+        $viewData['phones'] = Phone::all();
+
+        return view('phone.index')->with('viewData', $viewData);
     }
 
     // public function show(string $id) : View

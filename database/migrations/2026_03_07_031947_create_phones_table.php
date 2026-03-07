@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); 
-            $table->string('memory'); 
+            $table->string('name');
+            $table->string('memory');
             $table->string('ram');
-            $table->string('battery'); 
-            $table->string('brand'); 
+            $table->string('battery');
+            $table->string('brand');
             $table->integer('quantity');
             $table->timestamps();
         });
