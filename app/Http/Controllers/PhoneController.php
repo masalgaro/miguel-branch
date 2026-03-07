@@ -6,6 +6,7 @@ use App\Http\Requests\StorePhoneRequest;
 use App\Models\Phone;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use App\Interfaces\ImageStorage;
 
 class PhoneController extends Controller
 {
@@ -33,17 +34,21 @@ class PhoneController extends Controller
         return view('phone.create')->with('viewData', $viewData);
     }
 
-    public function save(StorePhoneRequest $request): RedirectResponse
-    {
-        Phone::create($request->only([
+    public function save(StorePhoneRequest $request, ImageStorage $imageStorage): RedirectResponse
+    {   
+        $data = $request->only([
             'name',
             'memory',
             'ram',
             'battery',
             'brand',
             'quantity',
-        ]));
+        ]);
 
+        $data['image'] = $imageStorage->store($request);
+        Phone::create($data);
+
+        
         return redirect()->route('phone.index');
     }
 }
