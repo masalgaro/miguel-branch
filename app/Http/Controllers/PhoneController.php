@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Phone;
+use App\Http\Requests\StorePhoneRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class PhoneController extends Controller
@@ -15,13 +17,32 @@ class PhoneController extends Controller
         return view('phone.index')->with('viewData', $viewData);
     }
 
-    // public function show(string $id) : View
-    // {
-    //     $viewData = [];
-    //     $product = ProductController::$products[$id-1];
-    //     $viewData["title"] = $product["name"]." - Online Store";
-    //     $viewData["subtitle"] =  $product["name"]." - Product information";
-    //     $viewData["product"] = $product;
-    //     return view('product.show')->with("viewData", $viewData);
-    // }
+    public function show(string $id) : View
+    {
+        $viewData = [];
+        $phone = Phone::findOrFail($id);
+        $viewData["phone"] = $phone;
+        return view('phone.show')->with("viewData", $viewData);
+    }
+
+    public function create(): View 
+    {
+        $viewData = [];
+        return view('phone.create')->with("viewData",$viewData);
+    }
+
+    public function save(StorePhoneRequest $request): RedirectResponse
+    {
+        Phone::create($request->only([
+            'name',
+            'memory',
+            'ram',
+            'battery',
+            'brand',
+            'quantity'
+        ]));
+
+
+        return redirect()->route('phone.index');
+    }
 }
