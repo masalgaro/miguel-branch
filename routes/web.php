@@ -2,6 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+# Routes for class Phone
+
+Route::get('/phones','App\Http\Controllers\PhoneController@index')->name("phone.index"); 
