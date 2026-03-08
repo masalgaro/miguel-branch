@@ -22,7 +22,7 @@ class StorePhoneRequest extends FormRequest
             'ram' => 'required|max:20',
             'battery' => 'required|max:20',
             'brand' => 'required|max:50',
-            'quantity' => 'required|integer|gte: 0',
+            'quantity' => 'required|integer|gte:0',
         ];
     }
 }

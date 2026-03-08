@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePhoneRequest;
+use App\Interfaces\ImageStorage;
 use App\Models\Phone;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use App\Interfaces\ImageStorage;
 
 class PhoneController extends Controller
 {
@@ -34,21 +34,43 @@ class PhoneController extends Controller
         return view('phone.create')->with('viewData', $viewData);
     }
 
-    public function save(StorePhoneRequest $request, ImageStorage $imageStorage): RedirectResponse
-    {   
-        $data = $request->only([
-            'name',
-            'memory',
-            'ram',
-            'battery',
-            'brand',
-            'quantity',
-        ]);
+    public function edit(string $id): View
+    {
+        $viewData = [];
+        $phone = Phone::findOrFail($id);
+        $viewData['phone'] = $phone;
 
-        $data['image'] = $imageStorage->store($request);
+        return view('phone.edit')->with('viewData', $viewData);
+    }
+
+    public function update(StorePhoneRequest $request, int $id): RedirectResponse
+    {
+        $phone = Phone::findOrFail($id);
+        $phone->update($request->validated());
+
+        return redirect()->route('phone.show', $phone->getId());
+    }
+
+    public function save(StorePhoneRequest $request): RedirectResponse
+    {
+        $data = $request->validated();
+
+        $storeInterface = app(ImageStorage::class);
+
+        $data['image'] = $storeInterface->store($request);
+
         Phone::create($data);
 
-        
         return redirect()->route('phone.index');
     }
+
+    public function destroy(string $id): RedirectResponse
+    {
+        Phone::destroy($id);
+        return redirect()->route('phone.index'); 
+    }
+
+    
+    
+
 }

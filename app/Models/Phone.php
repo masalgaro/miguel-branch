@@ -21,13 +21,12 @@ class Phone extends Model
      * $this->attributes['battery'] - string - contains the phone battery. It also includes the unit of measure. For example mAh, etc.
 
      * $this->attributes['brand'] - string - contains the phone brand. For example Samsumg, Apple, Xiaomi, etc.
-      
-     * $this->attributes['image'] - string - contains the path for a image stored locally. 
+
+     * $this->attributes['image'] - string - contains the path for a image stored locally.
 
      * $this->attributes['quantity'] - integer - contains the number of phones in that store.
-     
      */
-    protected $fillable = ['name', 'memory', 'ram', 'battery', 'brand', 'quantity','image'];
+    protected $fillable = ['name', 'memory', 'ram', 'battery', 'brand', 'quantity', 'image'];
 
     // Id
 
@@ -105,12 +104,12 @@ class Phone extends Model
 
     public function getImage(): ?string
     {
-        return $this->attributes['image'] ?? null; 
+        return $this->attributes['image'] ?? null;
     }
 
-    public function setImage(string $image): void 
+    public function setImage(string $image): void
     {
-        $this->attributes['image'] = $image; 
+        $this->attributes['image'] = $image;
     }
 
     // Quantity

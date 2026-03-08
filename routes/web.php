@@ -11,3 +11,9 @@ Route::get('/phones/create', 'App\Http\Controllers\PhoneController@create')->nam
 Route::post('/phones/save', 'App\Http\Controllers\PhoneController@save')->name('phone.save');
 
 Route::get('/phones/{id}', 'App\Http\Controllers\PhoneController@show')->name('phone.show');
+
+Route::delete('/phones/{id}','App\Http\Controllers\PhoneController@destroy')->name('phone.destroy');
+
+Route::get('/phones/{id}/edit','App\Http\Controllers\PhoneController@edit')->name('phone.edit');
+
+Route::put('/phones/{id}', 'App\Http\Controllers\PhoneController@update')->name('phone.update');
