@@ -30,4 +30,8 @@ Route::get('/offices/{id}','App\Http\Controllers\OfficeController@show')->name('
 
 Route::delete('/offices/{id}','App\Http\Controllers\OfficeController@destroy')->name('office.destroy');
 
+Route::get('/offices/{id}/edit','App\Http\Controllers\OfficeController@edit')->name('office.edit');
+
+Route::put('/offices/{id}', 'App\Http\Controllers\OfficeController@update')->name('office.update');
+
 

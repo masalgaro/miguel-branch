@@ -49,9 +49,27 @@ class OfficeController extends Controller
     public function destroy(string $id): RedirectResponse
     {
         Office::destroy($id);
-        
+
         return redirect()->route('office.index'); 
     }
+
+    public function edit(string $id): View
+    {
+        $viewData = [];
+        $office = Office::findOrFail($id);
+        $viewData['office'] = $office;
+
+        return view('office.edit')->with('viewData', $viewData);
+    }
+
+    public function update(StoreOfficeRequest $request, string $id): RedirectResponse
+    {
+        $office = Office::findOrFail($id);
+        $office->update($request->validated());
+
+        return redirect()->route('office.show', $office->getId());
+    }
+
 
 
 

@@ -6,6 +6,10 @@
 <form action="{{ route('office.destroy', $viewData['office']->getId()) }}" method="POST">
     @csrf
     @method('DELETE')
-    <button type="submit">Delete this Phone</button>
+    <button type="submit">Delete this office</button>
 </form>
+<a href="{{ route('office.edit', $viewData['office']->getId()) }}">
+    Edit this office
+</a>
+
 @endsection
