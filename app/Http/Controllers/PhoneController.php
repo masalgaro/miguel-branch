@@ -67,10 +67,7 @@ class PhoneController extends Controller
     public function destroy(string $id): RedirectResponse
     {
         Phone::destroy($id);
-        return redirect()->route('phone.index'); 
+
+        return redirect()->route('phone.index');
     }
-
-    
-    
-
 }

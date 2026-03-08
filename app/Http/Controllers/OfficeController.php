@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
-
-use App\Models\Office;
 use App\Http\Requests\StoreOfficeRequest;
+use App\Models\Office;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -19,16 +17,15 @@ class OfficeController extends Controller
         return view('office.index')->with('viewData', $viewData);
     }
 
-    public function show(string $id): View 
+    public function show(string $id): View
     {
-        $viewData = []; 
-        $office = Office::findOrFail($id); 
-        $viewData['office'] = $office; 
+        $viewData = [];
+        $office = Office::findOrFail($id);
+        $viewData['office'] = $office;
 
-        return view('office.show')->with('viewData', $viewData); 
+        return view('office.show')->with('viewData', $viewData);
 
     }
-    
 
     public function create(): View
     {
@@ -50,7 +47,7 @@ class OfficeController extends Controller
     {
         Office::destroy($id);
 
-        return redirect()->route('office.index'); 
+        return redirect()->route('office.index');
     }
 
     public function edit(string $id): View
@@ -69,11 +66,4 @@ class OfficeController extends Controller
 
         return redirect()->route('office.show', $office->getId());
     }
-
-
-
-
-    
-    
-
 }
