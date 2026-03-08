@@ -17,3 +17,9 @@ Route::delete('/phones/{id}','App\Http\Controllers\PhoneController@destroy')->na
 Route::get('/phones/{id}/edit','App\Http\Controllers\PhoneController@edit')->name('phone.edit');
 
 Route::put('/phones/{id}', 'App\Http\Controllers\PhoneController@update')->name('phone.update');
+
+// Routes for class Office 
+
+Route::get('/offices', 'App\Http\Controllers\OfficeController@index')->name('office.index');
+
+Route::get('/offices/{id}','App\Http\Controllers\OfficeController@show')->name('office.show'); 
