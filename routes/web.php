@@ -22,4 +22,12 @@ Route::put('/phones/{id}', 'App\Http\Controllers\PhoneController@update')->name(
 
 Route::get('/offices', 'App\Http\Controllers\OfficeController@index')->name('office.index');
 
+Route::get('/offices/create', 'App\Http\Controllers\OfficeController@create')->name('office.create');
+
+Route::post('/offices/save', 'App\Http\Controllers\OfficeController@save')->name('office.save');
+
 Route::get('/offices/{id}','App\Http\Controllers\OfficeController@show')->name('office.show'); 
+
+Route::delete('/offices/{id}','App\Http\Controllers\OfficeController@destroy')->name('office.destroy');
+
+
