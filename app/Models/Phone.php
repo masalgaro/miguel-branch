@@ -28,6 +28,7 @@ class Phone extends Model
      */
     protected $fillable = ['name', 'memory', 'ram', 'battery', 'brand', 'quantity', 'image'];
 
+    // Poner comentario de getters y setters
     // Id
 
     public function getId(): int

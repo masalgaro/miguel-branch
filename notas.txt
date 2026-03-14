@@ -1,0 +1,12 @@
+1. SUbcarpeta de admin en controllers 
+2. Separar lógica de adminsitracion de logica de usuario final 
+3. Espaciados 
+4. Relaciones con getters 
+5. Quitar setters de timestamp y de id 
+6. Eliminar ImagePhoneController 
+7. Mantener estandar de retorno -> signo de pregunta o nulo 
+8. Deben existir dos layouts, uno para admin y otro para usuario final 
+9. Añadir comentario de atributos de getters y setters en user 
+10. Mirar libro o repositorio del libro para gestion de roles -> https://github.com/PracticalBooks/Practical-Laravel/blob/main/Chapter28/onlineStore/database/migrations/2022_02_12_140820_alter_users_table.php 
+https://github.com/PracticalBooks/Practical-Laravel/blob/main/Chapter28/onlineStore/routes/web.php 
+https://github.com/PracticalBooks/Practical-Laravel/blob/main/Chapter28/onlineStore/app/Http/Middleware/AdminAuthMiddleware.php 
