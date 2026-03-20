@@ -12,18 +12,22 @@ class Office extends Model
      * $this->attributes['name'] - string - contains the office name
      * $this->attributes['address'] - string - contains the address of the office
      * $this->attributes['manager_name'] - string - contains the name of the office manager name
-     */
+     * $this->attributes['created_at'] - string - timestamp of creation
+     * $this->attributes['updated_at'] - string - timestamp of last update
+    */
+
     protected $fillable = ['name', 'address', 'manager_name'];
+
+    // Getters y Setters
+
+    // Id
 
     public function getId(): int
     {
         return $this->attributes['id'];
     }
 
-    public function setId(int $id): void
-    {
-        $this->attributes['id'] = $id;
-    }
+    // Name
 
     public function getName(): string
     {
@@ -35,6 +39,8 @@ class Office extends Model
         $this->attributes['name'] = $name;
     }
 
+    // Address 
+
     public function getAddress(): string
     {
         return $this->attributes['address'];
@@ -45,6 +51,8 @@ class Office extends Model
         $this->attributes['address'] = $address;
     }
 
+    // Manager Name 
+
     public function getManagerName(): string
     {
         return $this->attributes['manager_name'];
@@ -54,4 +62,19 @@ class Office extends Model
     {
         $this->attributes['manager_name'] = $manager_name;
     }
+
+    // CreatedAt
+
+    public function getCreatedAt(): string
+    {
+        return $this->attributes['created_at'];
+    }
+
+    // UpdatedAt
+
+    public function getUpdatedAt(): string
+    {
+        return $this->attributes['updated_at'];
+    }
+
 }

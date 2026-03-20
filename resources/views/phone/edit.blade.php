@@ -41,7 +41,7 @@
 
     <div>
         <label>Change image</label>
-        <input type="file" name="profile_image">
+        <input type="file" name="image" value="{{ $viewData['phone']->getImage() }}">
     </div>
 
     <button type="submit">Update Phone</button>

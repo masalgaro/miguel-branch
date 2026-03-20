@@ -17,14 +17,13 @@ class OfficeController extends Controller
         return view('office.index')->with('viewData', $viewData);
     }
 
-    public function show(string $id): View
+    public function show(int $id): View
     {
         $viewData = [];
         $office = Office::findOrFail($id);
         $viewData['office'] = $office;
 
         return view('office.show')->with('viewData', $viewData);
-
     }
 
     public function create(): View
@@ -36,21 +35,21 @@ class OfficeController extends Controller
 
     public function save(StoreOfficeRequest $request): RedirectResponse
     {
-        $data = $request->validated();
+        $validatedOfficeData = $request->validated();
 
-        Office::create($data);
+        Office::create($validatedOfficeData);
 
         return redirect()->route('office.index');
     }
 
-    public function destroy(string $id): RedirectResponse
+    public function destroy(int $id): RedirectResponse
     {
         Office::destroy($id);
 
         return redirect()->route('office.index');
     }
 
-    public function edit(string $id): View
+    public function edit(int $id): View
     {
         $viewData = [];
         $office = Office::findOrFail($id);
@@ -59,9 +58,10 @@ class OfficeController extends Controller
         return view('office.edit')->with('viewData', $viewData);
     }
 
-    public function update(StoreOfficeRequest $request, string $id): RedirectResponse
+    public function update(StoreOfficeRequest $request, int $id): RedirectResponse
     {
         $office = Office::findOrFail($id);
+        
         $office->update($request->validated());
 
         return redirect()->route('office.show', $office->getId());

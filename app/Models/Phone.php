@@ -9,36 +9,27 @@ class Phone extends Model
 {
     /**
      * PHONE ATTRIBUTES
-
      * $this->attributes['id'] - int - contains the phone primary key (id)
-
      * $this->attributes['name'] - string - contains the phone name
-
      * $this->attributes['memory'] - string - contains the phone memory. It also includes the unit of measure. For example kb, mb, gb, etc.
-
      * $this->attributes['ram'] - string - contains the phone ram. It also includes the unit of measure. For example kb, mb, gb, etc.
-
      * $this->attributes['battery'] - string - contains the phone battery. It also includes the unit of measure. For example mAh, etc.
-
      * $this->attributes['brand'] - string - contains the phone brand. For example Samsumg, Apple, Xiaomi, etc.
-
      * $this->attributes['image'] - string - contains the path for a image stored locally.
-
      * $this->attributes['quantity'] - integer - contains the number of phones in that store.
-     */
+     * $this->attributes['created_at'] - string - timestamp of creation
+     * $this->attributes['updated_at'] - string - timestamp of last update
+    */
+    
     protected $fillable = ['name', 'memory', 'ram', 'battery', 'brand', 'quantity', 'image'];
 
-    // Poner comentario de getters y setters
+    // Getters y Setters
+
     // Id
 
     public function getId(): int
     {
         return $this->attributes['id'];
-    }
-
-    public function setId(int $id): void
-    {
-        $this->attributes['id'] = $id;
     }
 
     // Name
@@ -108,7 +99,7 @@ class Phone extends Model
         return $this->attributes['image'] ?? null;
     }
 
-    public function setImage(string $image): void
+    public function setImage(?string $image): void
     {
         $this->attributes['image'] = $image;
     }
@@ -124,6 +115,22 @@ class Phone extends Model
     {
         $this->attributes['quantity'] = $quantity;
     }
+
+    // CreatedAt
+
+    public function getCreatedAt(): string
+    {
+        return $this->attributes['created_at'];
+    }
+
+    // UpdatedAt
+
+    public function getUpdatedAt(): string
+    {
+        return $this->attributes['updated_at'];
+    }
+
+    // Relations 
 
     public function comments(): HasMany
     {

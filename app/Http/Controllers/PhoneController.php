@@ -18,7 +18,7 @@ class PhoneController extends Controller
         return view('phone.index')->with('viewData', $viewData);
     }
 
-    public function show(string $id): View
+    public function show(int $id): View
     {
         $viewData = [];
         $phone = Phone::findOrFail($id);
@@ -34,7 +34,7 @@ class PhoneController extends Controller
         return view('phone.create')->with('viewData', $viewData);
     }
 
-    public function edit(string $id): View
+    public function edit(int $id): View
     {
         $viewData = [];
         $phone = Phone::findOrFail($id);
@@ -46,25 +46,33 @@ class PhoneController extends Controller
     public function update(StorePhoneRequest $request, int $id): RedirectResponse
     {
         $phone = Phone::findOrFail($id);
-        $phone->update($request->validated());
+        
+        $validatedPhoneData = $request->validated();
+
+        $storeInterface = app(ImageStorage::class);
+        if ($request->hasFile('image')) {
+            $validatedPhoneData['image'] = $storeInterface->store($request);
+        }
+
+        $phone->update($validatedPhoneData);
 
         return redirect()->route('phone.show', $phone->getId());
     }
 
     public function save(StorePhoneRequest $request): RedirectResponse
     {
-        $data = $request->validated();
+        $validatedPhoneData = $request->validated();
 
         $storeInterface = app(ImageStorage::class);
 
-        $data['image'] = $storeInterface->store($request);
+        $validatedPhoneData['image'] = $storeInterface->store($request);
 
-        Phone::create($data);
+        Phone::create($validatedPhoneData);
 
         return redirect()->route('phone.index');
     }
 
-    public function destroy(string $id): RedirectResponse
+    public function destroy(int $id): RedirectResponse
     {
         Phone::destroy($id);
 

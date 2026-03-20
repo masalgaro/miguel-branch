@@ -7,8 +7,8 @@
     <input type="text" class="form-control mb-2" placeholder="Enter memory" name="memory" value="{{ old('memory') }}" />
     <input type="text" class="form-control mb-2" placeholder="Enter ram" name="ram" value="{{ old('ram') }}" />
     <input type="text" class="form-control mb-2" placeholder="Enter battery" name="battery" value="{{ old('battery') }}" />
-    <input type="numerical" class="form-control mb-2" placeholder="Enter quantity" name="quantity" value="{{ old('quantity') }}" />
-    <input type="file" name="profile_image">
+    <input type="number" class="form-control mb-2" placeholder="Enter quantity" name="quantity" value="{{ old('quantity') }}" />
+    <input type="file" name="image">
     <input type="submit" class="btn btn-primary" value="Send" />
 </form>
 @endsection 

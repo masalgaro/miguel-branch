@@ -9,9 +9,9 @@ class ImageLocalStorage implements ImageStorage
 {
     public function store(Request $request): ?string
     {
-        if ($request->hasFile('profile_image')) {
+        if ($request->hasFile('image')) {
 
-            $path = $request->file('profile_image')
+            $path = $request->file('image')
                 ->store('phones', 'public');
 
             return $path;

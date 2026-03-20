@@ -7,8 +7,6 @@
     @csrf
     @method('PUT')
 
-    
-
     <div>
         <label>Name</label>
         <input type="text" name="name" value="{{ $viewData['office']->getName() }}">
