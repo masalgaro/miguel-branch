@@ -9,31 +9,26 @@ class SavingsAccount extends Model
 {
     /**
      * SAVINGS ACCOUNT ATTRIBUTES
-     * $this->attributes['id'] - int
-     * $this->attributes['type'] - string
-     * $this->attributes['number'] - string
-     * $this->attributes['expiration_date'] - date
-     * $this->attributes['balance'] - int
-     * $this->attributes['user_id'] - int
-     * $this->attributes['created_at'] - timestamp
-     * $this->attributes['updated_at'] - timestamp
+     * $this->attributes['id'] - int - contains the savings account primary key
+     * $this->attributes['type'] - string - contains the account type
+     * $this->attributes['number'] - string - contains the account number
+     * $this->attributes['expiration_date'] - string - contains the expiration date
+     * $this->attributes['balance'] - int - contains the account balance
+     * $this->attributes['user_id'] - int - contains the associated user foreign key
+     * $this->attributes['created_at'] - string - contains the creation timestamp
+     * $this->attributes['updated_at'] - string - contains the update timestamp
+     * $this->user - User - contains the associated user
      */
-    protected $fillable = [
-        'type',
-        'number',
-        'expiration_date',
-        'balance',
-        'user_id'
-    ];
+    protected $fillable = ['type', 'number', 'expiration_date', 'balance', 'user_id'];
 
-    /*Relationships*/
+    /* Relationships */
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }   
+    }
 
-    /*end relationships*/
+    /* End relationships */
 
     public function getId(): int
     {
@@ -65,9 +60,9 @@ class SavingsAccount extends Model
         return $this->attributes['expiration_date'];
     }
 
-    public function setExpirationDate(string $date): void
+    public function setExpirationDate(string $expirationDate): void
     {
-        $this->attributes['expiration_date'] = $date;
+        $this->attributes['expiration_date'] = $expirationDate;
     }
 
     public function getBalance(): int
@@ -88,6 +83,16 @@ class SavingsAccount extends Model
     public function setUserId(int $userId): void
     {
         $this->attributes['user_id'] = $userId;
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): void
+    {
+        $this->user()->associate($user);
     }
 
     public function getCreatedAt(): string

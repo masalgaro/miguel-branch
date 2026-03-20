@@ -2,50 +2,49 @@
 @section('content')
 
 <div class="container">
-  <h1>Create User</h1>
-  <form method="POST" action="{{ route('user.save') }}">
-    @csrf
+    <h1>{{ __('messages.createUser') }}</h1>
+    <form method="POST" action="{{ route('users.save') }}">
+        @csrf
 
-    <div class="mb-3">
-        <label class="form-label">National ID</label>
-        <input type="number" name="nationalId" class="form-control">
-    </div>
+        <div class="mb-3">
+            <label class="form-label">{{ __('messages.userNationalId') }}</label>
+            <input type="number" name="national_id" value="{{ old('national_id') }}" class="form-control">
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">First Name</label>
-        <input type="text" name="firstName" class="form-control">
-    </div>
+        <div class="mb-3">
+            <label class="form-label">{{ __('messages.userFirstName') }}</label>
+            <input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control">
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Last Name</label>
-        <input type="text" name="lastName" class="form-control">
-    </div>
+        <div class="mb-3">
+            <label class="form-label">{{ __('messages.userLastName') }}</label>
+            <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control">
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Role</label>
-        <input type="text" name="role" class="form-control">
-    </div>
+        <div class="mb-3">
+            <label class="form-label">{{ __('messages.userRole') }}</label>
+            <input type="text" name="role" value="{{ old('role') }}" class="form-control">
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Phone Number</label>
-        <input type="number" name="phoneNumber" class="form-control">
-    </div>
+        <div class="mb-3">
+            <label class="form-label">{{ __('messages.userPhoneNumber') }}</label>
+            <input type="number" name="phone_number" value="{{ old('phone_number') }}" class="form-control">
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Birthday</label>
-        <input type="date" name="birthday" class="form-control">
-    </div>
+        <div class="mb-3">
+            <label class="form-label">{{ __('messages.userBirthday') }}</label>
+            <input type="date" name="birthday" value="{{ old('birthday') }}" class="form-control">
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Address</label>
-        <input type="text" name="address" class="form-control">
-    </div>
+        <div class="mb-3">
+            <label class="form-label">{{ __('messages.userAddress') }}</label>
+            <input type="text" name="address" value="{{ old('address') }}" class="form-control">
+        </div>
 
-    <button type="submit" class="btn btn-primary">
-      Save
-    </button>
-
-  </form>
+        <button type="submit" class="btn btn-primary">
+            {{ __('messages.saveButton') }}
+        </button>
+    </form>
 </div>
 
 @endsection

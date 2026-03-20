@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -9,48 +10,28 @@ class User extends Model
 {
     /**
      * USER ATTRIBUTES
-     * $this->attributes['id'] - int
-     * $this->attributes['national_id'] - int
-     * $this->attributes['first_name'] - string
-     * $this->attributes['last_name'] - string
-     * $this->attributes['role'] - string
-     * $this->attributes['phone_number'] - int
-     * $this->attributes['birthday'] - date
-     * $this->attributes['address'] - string
-     * $this->attributes['created_at'] - timestamp
-     * $this->attributes['updated_at'] - timestamp
+     * $this->attributes['id'] - int - contains the user primary key
+     * $this->attributes['national_id'] - int - contains the national ID
+     * $this->attributes['first_name'] - string - contains the first name
+     * $this->attributes['last_name'] - string - contains the last name
+     * $this->attributes['role'] - string - contains the user role
+     * $this->attributes['phone_number'] - int - contains the phone number
+     * $this->attributes['birthday'] - string - contains the birthday
+     * $this->attributes['address'] - string - contains the address
+     * $this->attributes['created_at'] - string - contains the creation timestamp
+     * $this->attributes['updated_at'] - string - contains the update timestamp
+     * $this->savingsAccounts - SavingsAccount[] - contains the associated saving accounts
      */
+    protected $fillable = ['national_id', 'first_name', 'last_name', 'role', 'phone_number', 'birthday', 'address'];
 
-    protected $fillable = [
-        'national_id',
-        'first_name',
-        'last_name',
-        'role',
-        'phone_number',
-        'birthday',
-        'address'
-    ];
-
-    /*Relationships*/
+    /* Relationships */
 
     public function savingsAccounts(): HasMany
     {
         return $this->hasMany(SavingsAccount::class);
     }
-    
-    /*
-    public function invoices()
-    {
-        return $this->hasMany(Invoice::class);
-    }
 
-    public function consultPurchaseHistory()
-    {
-        return $this->invoices;
-    }
-    */
-    
-    /*end Relationships*/
+    /* End Relationships */
 
     public function getId(): int
     {
@@ -127,7 +108,17 @@ class User extends Model
         $this->attributes['address'] = $address;
     }
 
-        public function getCreatedAt(): string
+    public function getSavingsAccounts(): Collection
+    {
+        return $this->savingsAccounts;
+    }
+
+    public function setSavingsAccounts(Collection $savingsAccounts): void
+    {
+        $this->savingsAccounts = $savingsAccounts;
+    }
+
+    public function getCreatedAt(): string
     {
         return $this->attributes['created_at'];
     }

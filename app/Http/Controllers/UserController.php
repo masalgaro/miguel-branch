@@ -2,58 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    public function create(): View
-    {
-        return view('user.create');
-    }
-
-    public function save(Request $request): RedirectResponse
-    {
-        $user = new User();
-
-        $user->setNationalId($request->input('nationalId'));
-        $user->setFirstName($request->input('firstName'));
-        $user->setLastName($request->input('lastName'));
-        $user->setRole($request->input('role'));
-        $user->setPhoneNumber($request->input('phoneNumber'));
-        $user->setBirthday($request->input('birthday'));
-        $user->setAddress($request->input('address'));
-
-        $user->save();
-
-        return redirect()->route('user.list')
-            ->with('success', 'User created successfully');
-    }
-
-    public function list(): View
+    public function index(): View
     {
         $viewData = [];
-
         $viewData['users'] = User::all();
 
-        return view('user.list')->with('viewData', $viewData);
+        return view('user.index')->with('viewData', $viewData);
     }
 
     public function show(int $id): View
     {
         $viewData = [];
-
-        $viewData['user'] = User::findOrFail($id);
+        $user = User::findOrFail($id);
+        $viewData['user'] = $user;
 
         return view('user.show')->with('viewData', $viewData);
     }
 
-    public function delete(int $id): RedirectResponse
+    public function create(): View
+    {
+        $viewData = [];
+
+        return view('user.create')->with('viewData', $viewData);
+    }
+
+    public function save(StoreUserRequest $request): RedirectResponse
+    {
+        $validatedData = $request->validated();
+        User::create($validatedData);
+        session()->flash('success', __('messages.userCreatedSuccessfully'));
+
+        return redirect()->route('users.index');
+    }
+
+    public function destroy(int $id): RedirectResponse
     {
         User::destroy($id);
+        session()->flash('success', __('messages.userDeletedSuccessfully'));
 
-        return redirect()->route('user.list');
+        return redirect()->route('users.index');
     }
 }

@@ -3,20 +3,18 @@
 
 <div class="container">
 
-    <h1>Purchase History</h1>
+    <h1>{{ __('messages.purchaseHistory') }}</h1>
 
-        <h4>
-        User:
-        {{ $viewData["user"]->getFirstName() }}
-        {{ $viewData["user"]->getLastName() }}
-        </h4>
+    <h4>
+        {{ __('messages.userLabel') }}:
+        {{ $viewData['user']->getFirstName() }}
+        {{ $viewData['user']->getLastName() }}
+    </h4>
 
-        @if(empty($viewData["history"]))
-
+    @if (empty($viewData['history']))
         <div class="alert alert-info">
-        No purchase history available.
+            {{ __('messages.noPurchaseHistory') }}
         </div>
-
     @endif
 
 </div>

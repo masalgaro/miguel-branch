@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('type');
             $table->string('number');
             $table->date('expiration_date');
-            $table->int('balance')->default(0);
-            $table->foreignId('user_id') ->constrained('users') ->onDelete('cascade');
+            $table->integer('balance')->default(0);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
