@@ -1,0 +1,10 @@
+@extends('layouts.app')
+@section('content')
+    @foreach ($viewData['phones'] as $phone)
+    <img src="{{ asset('storage/'.$phone->getImage()) }}" width="200">
+    <h1>{{$phone->getName()}}</h1>
+    <p>{{$phone->getMemory()}}</p>
+    <p>{{$phone->getBrand()}}</p>
+    <a href="{{ route('phone.show', ['id'=> $phone->getId()]) }}">Info</a>
+    @endforeach
+@endsection
