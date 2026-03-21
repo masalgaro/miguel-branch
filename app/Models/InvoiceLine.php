@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Phone;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -20,8 +19,7 @@ class InvoiceLine extends Model
      * $this->attributes['created_at'] - string - timestamp of creation
      * $this->attributes['updated_at'] - string - timestamp of last update
      * $this->phone - Phone - contains the associated Phone
-    */
-
+     */
     protected $fillable = [
         'unit_price',
         'discount',

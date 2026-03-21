@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreInvoiceLineRequest;
 use App\Models\InvoiceLine;
 use App\Models\Phone;
-use App\Models\Invoice;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 

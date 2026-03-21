@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Phone;
 
 class Office extends Model
 {
@@ -17,8 +16,7 @@ class Office extends Model
      * $this->attributes['created_at'] - string - timestamp of creation
      * $this->attributes['updated_at'] - string - timestamp of last update
      * $this->phones - Phones[] - contain the associated phones
-    */
-
+     */
     protected $fillable = ['name', 'address', 'manager_name'];
 
     // Getters y Setters
@@ -42,7 +40,7 @@ class Office extends Model
         $this->attributes['name'] = $name;
     }
 
-    // Address 
+    // Address
 
     public function getAddress(): string
     {
@@ -54,7 +52,7 @@ class Office extends Model
         $this->attributes['address'] = $address;
     }
 
-    // Manager Name 
+    // Manager Name
 
     public function getManagerName(): string
     {
@@ -80,11 +78,10 @@ class Office extends Model
         return $this->attributes['updated_at'];
     }
 
-    // Relations 
+    // Relations
 
     public function phones(): HasMany
     {
         return $this->hasMany(Phone::class);
     }
-
 }

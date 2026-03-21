@@ -50,16 +50,16 @@ class SavingsAccountController extends Controller
         return redirect()->route('savingsAccount.index');
     }
 
-    public function edit(int $id): view
+    public function edit(int $id): View
     {
         $viewData = [];
         $savingsAccount = SavingsAccount::findOrFail($id);
         $viewData['savingsAccount'] = $savingsAccount;
 
-        return view('savingsAccount.edit')->with('viewData' , $viewData);
+        return view('savingsAccount.edit')->with('viewData', $viewData);
     }
 
-    public function update(StoreSavingsAccountRequest $request , int $id): RedirectResponse
+    public function update(StoreSavingsAccountRequest $request, int $id): RedirectResponse
     {
         $savingsAccount = SavingsAccount::findOrFail($id);
         $savingsAccount->update($request->validated());

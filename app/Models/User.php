@@ -30,29 +30,29 @@ class User extends Model
      * $this->invoices - Invoices[] - contains the associated invoices
      * $this->savingsAccounts - SavingsAccount[] - contains the associated saving accounts
      */
-    protected $fillable = ['name' , 'email', 'password', 'national_id', 'first_name', 'last_name', 'role', 'phone_number', 'birthday', 'address'];
+    protected $fillable = ['name', 'email', 'password', 'national_id', 'first_name', 'last_name', 'role', 'phone_number', 'birthday', 'address'];
 
     public function getId(): int
     {
         return $this->attributes['id'];
     }
 
-    public function getName (): string
+    public function getName(): string
     {
         return $this->attributes['name'];
     }
 
-    public function setName (string $name): void
+    public function setName(string $name): void
     {
         $this->attributes['name'] = $name;
     }
 
-    public function getEmail (): string
+    public function getEmail(): string
     {
         return $this->attributes['email'];
     }
 
-    public function setEmail (string $email): void
+    public function setEmail(string $email): void
     {
         $this->attributes['email'] = $email;
     }
@@ -62,7 +62,7 @@ class User extends Model
         return $this->attributes['email_verified_at'];
     }
 
-    public function setEmailVerifiedAt (string $email_verified_at): void
+    public function setEmailVerifiedAt(string $email_verified_at): void
     {
         $this->attributes['email_verified_at'] = $email_verified_at;
     }
@@ -72,7 +72,7 @@ class User extends Model
         return $this->attributes['password'];
     }
 
-    public function setPassword (string $password): void
+    public function setPassword(string $password): void
     {
         $this->attributes['password'] = $password;
     }
@@ -82,7 +82,7 @@ class User extends Model
         return $this->attributes['remember_token'];
     }
 
-    public function setRememberToken(string $remember_token ): void
+    public function setRememberToken(string $remember_token): void
     {
         $this->attributes['remember_token'] = $remember_token;
     }

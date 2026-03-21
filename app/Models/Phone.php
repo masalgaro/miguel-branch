@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Office;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Phone extends Model
@@ -23,8 +21,7 @@ class Phone extends Model
      * $this->attributes['created_at'] - string - timestamp of creation
      * $this->attributes['updated_at'] - string - timestamp of last update
      * $this->office - Office - contains the associated Office
-    */
-    
+     */
     protected $fillable = ['name', 'memory', 'ram', 'battery', 'brand', 'quantity', 'image', 'office_id'];
 
     // Getters y Setters
@@ -134,7 +131,7 @@ class Phone extends Model
         return $this->attributes['updated_at'];
     }
 
-    // Relations 
+    // Relations
 
     public function office(): BelongsTo
     {

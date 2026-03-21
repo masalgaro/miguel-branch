@@ -21,7 +21,7 @@ class StorePhoneRequest extends FormRequest
             'brand' => 'required|max:50',
             'quantity' => 'required|integer|gte:0',
             'office_id' => 'required|exists:offices,id',
-            'image' => 'nullable|file'
+            'image' => 'nullable|file',
         ];
     }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -57,7 +56,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $viewData['user'] = $user;
 
-        return view('user.edit')->with('viewData' , $viewData);
+        return view('user.edit')->with('viewData', $viewData);
     }
 
     public function update(StoreUserRequest $request, int $id): RedirectResponse
@@ -67,5 +66,4 @@ class UserController extends Controller
 
         return redirect()->route('user.index');
     }
-
 }

@@ -61,7 +61,7 @@ class OfficeController extends Controller
     public function update(StoreOfficeRequest $request, int $id): RedirectResponse
     {
         $office = Office::findOrFail($id);
-        
+
         $office->update($request->validated());
 
         return redirect()->route('office.show', $office->getId());

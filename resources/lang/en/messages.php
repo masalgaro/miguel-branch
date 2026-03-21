@@ -10,7 +10,7 @@ return [
     'saveButton' => 'Save',
     'deleteButton' => 'Delete',
     'backButton' => 'Back',
-    'editButton'=> 'Edit',
+    'editButton' => 'Edit',
     'userLabel' => 'User',
 
     // SavingsAccount class related
@@ -28,8 +28,8 @@ return [
     'userDetails' => 'User Details',
     'createUser' => 'Create User',
     'userName' => 'User name',
-    'userEmail'=> 'User email',
-    'userPassword'=> 'User password',
+    'userEmail' => 'User email',
+    'userPassword' => 'User password',
     'userNationalId' => 'National ID',
     'userFirstName' => 'First Name',
     'userLastName' => 'Last Name',

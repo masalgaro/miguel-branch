@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/' , 'App\Http\Controllers\HomeController@index')->name('home.index');
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
 
 // Routes for class Phone
 
@@ -41,8 +41,8 @@ Route::get('/savingsAccount/create', 'App\Http\Controllers\SavingsAccountControl
 Route::post('/savingsAccount', 'App\Http\Controllers\SavingsAccountController@save')->name('savingsAccount.save');
 Route::get('/savingsAccount/{id}', 'App\Http\Controllers\SavingsAccountController@show')->name('savingsAccount.show');
 Route::delete('/savingsAccount/{id}', 'App\Http\Controllers\SavingsAccountController@destroy')->name('savingsAccount.destroy');
-Route::get('/savingsAccount/{id}/edit' , 'App\Http\Controllers\SavingsAccountController@edit' )->name('savingsAccount.edit');
-Route::put('/savingsAccount/{id}' , 'App\Http\Controllers\SavingsAccountController@update' )->name('savingsAccount.update');
+Route::get('/savingsAccount/{id}/edit', 'App\Http\Controllers\SavingsAccountController@edit')->name('savingsAccount.edit');
+Route::put('/savingsAccount/{id}', 'App\Http\Controllers\SavingsAccountController@update')->name('savingsAccount.update');
 
 // Routes for user Class
 

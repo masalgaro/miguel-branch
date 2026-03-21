@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePhoneRequest;
 use App\Interfaces\ImageStorage;
-use App\Models\Phone;
 use App\Models\Office;
+use App\Models\Phone;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
