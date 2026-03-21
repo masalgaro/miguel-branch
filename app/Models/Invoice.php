@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -47,6 +48,38 @@ class Invoice extends Model
     public function getOfficeId(): int
     {
         return $this->attributes['office_id'];
+    }
+
+    // Relations Getters and setters
+
+    public function getInvoiceLines(): Collection
+    {
+        return $this->invoiceLines;
+    }
+
+    public function setInvoiceLines(Collection $invoiceLines): void
+    {
+        $this->invoiceLines = $invoiceLines;
+    }
+
+    public function getuser(): User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
+    }
+
+    public function getOffice(): Office
+    {
+        return $this->office;
+    }
+
+    public function setOffice(Office $office): void
+    {
+        $this->office = $office;
     }
 
     // Relations

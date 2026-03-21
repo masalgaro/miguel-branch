@@ -14,12 +14,21 @@ return [
     'backButton' => 'Back',
     'editButton' => 'Edit',
     'userLabel' => 'User',
+    'selectAnOptionTitle' => 'Select an option',
 
     // Cart controller related
     'addTocartButton' => 'Add to cart',
     'cartIsEmptyTitle' => 'The cart is empty.',
     'subtotalTitle' => 'Subtotal',
     'shoppingCartTitle' => 'Shopping Cart',
+    'errorEmptyCart' => 'The cart is empty',
+    'errorValidating' => 'Error validating the cart products',
+    'successOnPurchase' => 'Your purchase was successfull!',
+    'totalTitle' => 'Total',
+    'quantityTitle' => 'Quantity',
+    'selectPaymentAccountTitle' => 'Select a saving account',
+    'invoicePreviewTitle' => 'Invoice preview',
+    'readOnlyPreviewTitle' => 'Read only',
 
     // Phone class related
     'brandTitle' => 'Brand',

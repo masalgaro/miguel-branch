@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
 
 class AdminUserController extends Controller
 {
@@ -66,7 +66,7 @@ class AdminUserController extends Controller
 
         $validatedUserData = $request->validated();
 
-        if (!empty($validatedUserData['password'])) {
+        if (! empty($validatedUserData['password'])) {
             $validatedUserData['password'] = Hash::make($validatedUserData['password']);
         } else {
             unset($validatedUserData['password']);

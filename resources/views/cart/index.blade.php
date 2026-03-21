@@ -49,10 +49,14 @@
         </div>
 
         <div class="mt-4 d-flex justify-content-between align-items-center">
-            <h4 class="mb-0">Total: ${{ $viewData['total'] }}</h4>
+            <h4 class="mb-0">{{__('messages.totalTitle')}}: ${{ $viewData['total'] }}</h4>
 
             <a href="{{ route('cart.removeAll') }}" class="btn btn-danger">
                 {{ __('messages.removeAllButton') }}
+            </a>
+
+            <a href="{{ route('cart.show') }}" class="btn btn-success">
+                {{ __('messages.buyButton') }}
             </a>
         </div>
     @endif

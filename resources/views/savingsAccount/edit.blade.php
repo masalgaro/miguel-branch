@@ -17,18 +17,8 @@
             <input type="number" name="balance" value="{{ $viewData['savingsAccount']->getBalance() }}" class="form-control">
         </div>
 
-        <label>{{ __('messages.savingsAccountUserId') }}</label>
-        <select name="user_id">
-            @foreach($viewData['users'] as $user)
-                <option 
-                    value="{{ $user->getId() }}"
-                    @if($user->getId() == $viewData['savingsAccount']->getUser()->getId()) selected @endif
-                >
-                    {{ $user->getName() }}
-                </option>
-            @endforeach
-        </select>
-
+        <input type="hidden" name="user_id" value="{{ auth()->user()->getId() }}">
+        
         <button type="submit" class="btn btn-primary">
             {{ __('messages.saveButton') }}
         </button>

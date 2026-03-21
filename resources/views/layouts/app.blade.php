@@ -31,6 +31,7 @@
                 <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
                 <a class="nav-link active" href="{{ route('office.index') }}">View offices</a>
                 <a class="nav-link active" href="{{ route('phone.index') }}">View phones</a>
+                <a class="nav-link active" href="{{ route('savingsAccount.create') }}">Create saving account</a>
 
                 <a href="{{ route('cart.index') }}"
                    class="btn btn-light rounded-pill ms-lg-3 position-relative d-inline-flex align-items-center justify-content-center"
@@ -58,6 +59,13 @@
           {{ session('success') }}
       </div>
   @endif
+
+  @if (session('error'))
+      <div class="alert alert-warning">
+          {{ session('error') }}
+      </div>
+  @endif
+
 
   <div class="container my-4">
     @yield('content')
