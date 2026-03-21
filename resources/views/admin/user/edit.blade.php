@@ -40,12 +40,18 @@
                                class="form-control bg-dark text-light border-secondary">
                     </div>
 
-                    <!-- Password (opcional) -->
+                    
                     <div class="mb-3">
                         <label class="form-label text-secondary">New Password</label>
                         <input type="password" name="password"
                                class="form-control bg-dark text-light border-secondary">
                         <small class="text-muted">Leave empty to keep current password</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-secondary">Confirm Password</label>
+                        <input type="password" name="password_confirmation"
+                            class="form-control bg-dark text-light border-secondary">
                     </div>
 
                     <div class="mb-3">
