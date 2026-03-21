@@ -1,23 +1,62 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 
-@foreach($viewData['invoices'] as $invoice)
+<h2 class="mb-4 text-warning">Invoices</h2>
 
-    <div>
+<div class="table-responsive">
+    <table class="table table-dark table-hover align-middle">
 
-        <h1>Invoice #{{ $invoice->getId() }}</h1>
+        <thead>
+            <tr class="text-warning">
+                <th>ID</th>
+                <th>Date</th>
+                <th>User</th>
+                <th>Office</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
 
-        <p>Date: {{ $invoice->getDate() }}</p>
-        <p>User: {{ $invoice->user->getName() }}</p>
-        <p>Office: {{ $invoice->office->getName() }}</p>
+        <tbody>
+            @foreach($viewData['invoices'] as $invoice)
+            <tr>
+                <td>#{{ $invoice->getId() }}</td>
+                <td>{{ $invoice->getDate() }}</td>
+                <td>{{ $invoice->user->getName() }}</td>
+                <td>{{ $invoice->office->getName() }}</td>
 
-        <a href="{{ route('admin.invoice.show', ['id'=> $invoice->getId()]) }}">
-            Info
-        </a>
+                <td class="text-end">
 
-    </div>
+                    <!-- View -->
+                    <a href="{{ route('admin.invoice.show', ['id'=> $invoice->getId()]) }}" 
+                       class="btn btn-sm btn-outline-warning">
+                        View
+                    </a>
 
-@endforeach
+                    <!-- Edit -->
+                    <a href="{{ route('admin.invoice.edit', ['id'=> $invoice->getId()]) }}" 
+                       class="btn btn-sm btn-outline-light">
+                        Edit
+                    </a>
+
+                    <!-- Delete -->
+                    <form action="{{ route('admin.invoice.destroy', ['id'=> $invoice->getId()]) }}" 
+                          method="POST" 
+                          class="d-inline">
+                        @csrf
+                        @method('DELETE')
+
+                        <button class="btn btn-sm btn-danger">
+                            Delete
+                        </button>
+                    </form>
+
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+
+    </table>
+</div>
 
 @endsection
