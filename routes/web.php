@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
 
 // Admin Routes using Middleware
 
-Route::middleware([AdminAuthMiddleware::class])->group(function () {
+Route::middleware([AdminAuthMiddleware::class])->group(function () { // Check this, it should be admin 
 
     Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
 
