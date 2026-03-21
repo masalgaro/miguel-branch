@@ -14,10 +14,8 @@ return new class extends Migration
         Schema::create('savings_accounts', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->string('number');
-            $table->date('expiration_date');
             $table->integer('balance')->default(0);
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

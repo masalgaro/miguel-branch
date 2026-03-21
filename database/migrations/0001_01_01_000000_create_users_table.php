@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Eloquent\Collection;
 
 return new class extends Migration
 {
@@ -13,19 +14,21 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('email')->unique()->nullable();
+            $table->string('name');
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable();
+            $table->string('password');
             $table->rememberToken();
-            $table->biginteger('national_id');
+            $table->timestamps();
+
+            // Added information to match class
+            $table->string('national_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('role');
-            $table->biginteger('phone_number');
+            $table->string('phone_number');
             $table->date('birthday');
             $table->string('address');
-            $table->timestamps();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

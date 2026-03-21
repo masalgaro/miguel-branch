@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('brand');
             $table->string('memory');
             $table->string('ram');
             $table->string('battery');
-            $table->string('brand');
             $table->integer('quantity');
+            $table->foreignId('office_id')->constrained('offices')->cascadeOnDelete();
             $table->timestamps();
         });
     }
