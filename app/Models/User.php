@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class User extends Model
+class User extends Authenticatable
 {
     /**
      * USER ATTRIBUTES
@@ -31,6 +32,10 @@ class User extends Model
      * $this->savingsAccounts - SavingsAccount[] - contains the associated saving accounts
      */
     protected $fillable = ['name', 'email', 'password', 'national_id', 'first_name', 'last_name', 'role', 'phone_number', 'birthday', 'address'];
+
+    use Notifiable;
+
+    protected $hidden = ['password','remember_token'];
 
     // Getters and Setters
 
@@ -94,11 +99,6 @@ class User extends Model
     public function getRememberToken(): ?string
     {
         return $this->attributes['remember_token'];
-    }
-
-    public function setRememberToken(?string $remember_token): void
-    {
-        $this->attributes['remember_token'] = $remember_token;
     }
 
     // National id

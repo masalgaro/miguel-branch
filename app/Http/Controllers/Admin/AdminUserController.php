@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
 {
@@ -22,6 +23,7 @@ class AdminUserController extends Controller
     public function show(int $id): View
     {
         $viewData = [];
+
         $user = User::with(['invoices', 'savingsAccounts'])->findOrFail($id);
 
         $viewData['user'] = $user;
@@ -31,14 +33,14 @@ class AdminUserController extends Controller
 
     public function create(): View
     {
-        $viewData = [];
-
-        return view('admin.user.create')->with('viewData', $viewData);
+        return view('admin.user.create');
     }
 
     public function save(StoreUserRequest $request): RedirectResponse
     {
         $validatedUserData = $request->validated();
+
+        $validatedUserData['password'] = Hash::make($validatedUserData['password']);
 
         User::create($validatedUserData);
 
@@ -63,6 +65,12 @@ class AdminUserController extends Controller
         $user = User::findOrFail($id);
 
         $validatedUserData = $request->validated();
+
+        if (!empty($validatedUserData['password'])) {
+            $validatedUserData['password'] = Hash::make($validatedUserData['password']);
+        } else {
+            unset($validatedUserData['password']);
+        }
 
         $user->update($validatedUserData);
 
