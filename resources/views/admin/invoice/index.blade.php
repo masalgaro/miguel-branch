@@ -1,8 +1,13 @@
 @extends('layouts.admin')
-
 @section('content')
 
 <h2 class="mb-4 text-warning">Invoices</h2>
+
+<div class="mb-3">
+    <a href="{{ route('admin.invoice.create') }}" class="btn btn-warning">
+        Create Invoice
+    </a>
+</div> 
 
 <div class="table-responsive">
     <table class="table table-dark table-hover align-middle">

@@ -51,16 +51,16 @@
                     @foreach($viewData['invoice']->invoiceLines as $invoiceLine)
 
                         @php
-                            $lineTotal = ($invoiceLine->getUnitPrice() * $invoiceLine->getQuantity()) - $invoiceLine->getDiscount();
+                            $lineTotal = ($invoiceLine->getUnitPrice() * $invoiceLine->getQuantity()) * (1 - $invoiceLine->getDiscount());
                             $total += $lineTotal;
                         @endphp 
                         <!-- This is temporal -->
-                         
+
                         <tr>
                             <td>{{ $invoiceLine->phone->getName() }}</td>
                             <td>{{ $invoiceLine->getQuantity() }}</td>
                             <td>${{ $invoiceLine->getUnitPrice() }}</td>
-                            <td>${{ $invoiceLine->getDiscount() }}</td>
+                            <td>{{ $invoiceLine->getDiscount() * 100 }}%</td>
                             <td>${{ $lineTotal }}</td>
                         </tr>
 
