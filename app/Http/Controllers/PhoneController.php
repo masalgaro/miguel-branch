@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePhoneRequest;
 use App\Interfaces\ImageStorage;
 use App\Models\Phone;
+use App\Models\Office;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -22,6 +23,7 @@ class PhoneController extends Controller
     {
         $viewData = [];
         $phone = Phone::findOrFail($id);
+
         $viewData['phone'] = $phone;
 
         return view('phone.show')->with('viewData', $viewData);
@@ -30,6 +32,7 @@ class PhoneController extends Controller
     public function create(): View
     {
         $viewData = [];
+        $viewData['offices'] = Office::all();
 
         return view('phone.create')->with('viewData', $viewData);
     }
@@ -38,7 +41,9 @@ class PhoneController extends Controller
     {
         $viewData = [];
         $phone = Phone::findOrFail($id);
+
         $viewData['phone'] = $phone;
+        $viewData['offices'] = Office::all();
 
         return view('phone.edit')->with('viewData', $viewData);
     }
@@ -46,10 +51,11 @@ class PhoneController extends Controller
     public function update(StorePhoneRequest $request, int $id): RedirectResponse
     {
         $phone = Phone::findOrFail($id);
-        
+
         $validatedPhoneData = $request->validated();
 
         $storeInterface = app(ImageStorage::class);
+
         if ($request->hasFile('image')) {
             $validatedPhoneData['image'] = $storeInterface->store($request);
         }
@@ -65,7 +71,9 @@ class PhoneController extends Controller
 
         $storeInterface = app(ImageStorage::class);
 
-        $validatedPhoneData['image'] = $storeInterface->store($request);
+        if ($request->hasFile('image')) {
+            $validatedPhoneData['image'] = $storeInterface->store($request);
+        }
 
         Phone::create($validatedPhoneData);
 
