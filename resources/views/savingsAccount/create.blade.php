@@ -16,10 +16,14 @@
             <input type="number" name="balance" value="{{ old('balance') }}" class="form-control">
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">{{ __('messages.savingsAccountUserId') }}</label>
-            <input type="number" name="user_id" value="{{ old('user_id') }}" class="form-control">
-        </div>
+        <label>{{ __('messages.savingsAccountUserId') }}</label>
+        <select name="user_id">
+        @foreach($viewData['users'] as $user)
+            <option value="{{ $user->getId() }}">
+                {{ $user->getName() }}
+            </option>
+        @endforeach
+        </select>
 
         <button type="submit" class="btn btn-primary">
             {{ __('messages.saveButton') }}

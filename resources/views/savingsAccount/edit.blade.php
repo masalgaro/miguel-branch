@@ -17,10 +17,17 @@
             <input type="number" name="balance" value="{{ $viewData['savingsAccount']->getBalance() }}" class="form-control">
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">{{ __('messages.savingsAccountUserId') }}</label>
-            <input type="number" name="user_id" value="{{ $viewData['savingsAccount']->getUser()->getId() }}" class="form-control">
-        </div>
+        <label>{{ __('messages.savingsAccountUserId') }}</label>
+        <select name="user_id">
+            @foreach($viewData['users'] as $user)
+                <option 
+                    value="{{ $user->getId() }}"
+                    @if($user->getId() == $viewData['savingsAccount']->getUser()->getId()) selected @endif
+                >
+                    {{ $user->getName() }}
+                </option>
+            @endforeach
+        </select>
 
         <button type="submit" class="btn btn-primary">
             {{ __('messages.saveButton') }}

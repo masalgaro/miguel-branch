@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSavingsAccountRequest;
 use App\Models\SavingsAccount;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -29,6 +30,8 @@ class SavingsAccountController extends Controller
     public function create(): View
     {
         $viewData = [];
+        $users = User::all();
+        $viewData['users'] = $users;
 
         return view('savingsAccount.create')->with('viewData', $viewData);
     }
@@ -55,6 +58,9 @@ class SavingsAccountController extends Controller
         $viewData = [];
         $savingsAccount = SavingsAccount::findOrFail($id);
         $viewData['savingsAccount'] = $savingsAccount;
+
+        $users = User::all();
+        $viewData['users'] = $users;
 
         return view('savingsAccount.edit')->with('viewData', $viewData);
     }

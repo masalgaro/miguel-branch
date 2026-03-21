@@ -41,6 +41,13 @@
 
     <input 
         type="number" 
+        placeholder="Enter price" 
+        name="price" 
+        value="{{ old('price') }}" 
+    />
+
+    <input 
+        type="number" 
         placeholder="Enter quantity" 
         name="quantity" 
         value="{{ old('quantity') }}" 
