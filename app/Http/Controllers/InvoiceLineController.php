@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreInvoiceLineRequest;
+use App\Models\Invoice;
 use App\Models\InvoiceLine;
 use App\Models\Phone;
-use App\Models\Invoice;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -19,7 +19,6 @@ class InvoiceLineController extends Controller
         return view('invoiceLine.index')->with('viewData', $viewData);
     }
 
-
     public function show(int $id): View
     {
         $viewData = [];
@@ -31,17 +30,15 @@ class InvoiceLineController extends Controller
         return view('invoiceLine.show')->with('viewData', $viewData);
     }
 
-
     public function create(): View
     {
         $viewData = [];
 
         $viewData['phones'] = Phone::all();
-        $viewData['invoices'] = Invoice::all(); 
+        $viewData['invoices'] = Invoice::all();
 
         return view('invoiceLine.create')->with('viewData', $viewData);
     }
-
 
     public function save(StoreInvoiceLineRequest $request): RedirectResponse
     {

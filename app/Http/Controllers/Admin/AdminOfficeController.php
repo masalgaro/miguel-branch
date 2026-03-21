@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreOfficeRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreOfficeRequest;
 use App\Models\Office;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -19,7 +19,6 @@ class AdminOfficeController extends Controller
         return view('admin.office.index')->with('viewData', $viewData);
     }
 
-
     public function show(int $id): View
     {
         $viewData = [];
@@ -30,14 +29,12 @@ class AdminOfficeController extends Controller
         return view('admin.office.show')->with('viewData', $viewData);
     }
 
-
     public function create(): View
     {
         $viewData = [];
 
         return view('admin.office.create')->with('viewData', $viewData);
     }
-
 
     public function save(StoreOfficeRequest $request): RedirectResponse
     {
@@ -47,7 +44,6 @@ class AdminOfficeController extends Controller
 
         return redirect()->route('admin.office.index');
     }
-
 
     public function edit(int $id): View
     {
@@ -60,7 +56,6 @@ class AdminOfficeController extends Controller
         return view('admin.office.edit')->with('viewData', $viewData);
     }
 
-
     public function update(StoreOfficeRequest $request, int $id): RedirectResponse
     {
         $office = Office::findOrFail($id);
@@ -71,7 +66,6 @@ class AdminOfficeController extends Controller
 
         return redirect()->route('admin.office.show', $office->getId());
     }
-
 
     public function destroy(int $id): RedirectResponse
     {

@@ -19,7 +19,6 @@ class UserController extends Controller
         return view('user.index')->with('viewData', $viewData);
     }
 
-
     public function show(int $id): View
     {
         $viewData = [];
@@ -30,14 +29,12 @@ class UserController extends Controller
         return view('user.show')->with('viewData', $viewData);
     }
 
-
     public function create(): View
     {
         $viewData = [];
 
         return view('user.create')->with('viewData', $viewData);
     }
-
 
     public function save(StoreUserRequest $request): RedirectResponse
     {
@@ -52,7 +49,6 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
-
     public function edit(int $id): View
     {
         $viewData = [];
@@ -63,7 +59,6 @@ class UserController extends Controller
 
         return view('user.edit')->with('viewData', $viewData);
     }
-
 
     public function update(StoreUserRequest $request, int $id): RedirectResponse
     {

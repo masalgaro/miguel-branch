@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSavingsAccountRequest;
 use App\Models\SavingsAccount;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 
 class AdminSavingsAccountController extends Controller

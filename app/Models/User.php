@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Invoice;
-use App\Models\SavingsAccount;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -32,11 +30,10 @@ class User extends Authenticatable
      * $this->attributes['updated_at'] - string - contains the update timestamp
      * $this->invoices - Invoice[] - contains the associated invoices
      * $this->savingsAccounts - SavingsAccount[] - contains the associated saving accounts
-    */
+     */
+    protected $fillable = ['name', 'email', 'password', 'national_id', 'first_name', 'last_name', 'role', 'phone_number', 'birthday', 'address'];
 
     use Notifiable;
-
-    protected $fillable = ['name','email','password','national_id','first_name','last_name','role','phone_number','birthday','address'];
 
     protected $hidden = ['password','remember_token'];
 

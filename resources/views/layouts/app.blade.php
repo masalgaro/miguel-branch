@@ -17,18 +17,31 @@
 <!-- header -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-4">
     <div class="container">
-      <a class="navbar-brand" href="{{ '#' }}">Banana Phone Store</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ms-auto">
-        <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
-        <a class="nav-link active" href="{{ route('office.index') }}">View offices</a>
-        <a class="nav-link active" href="{{ route('phone.index') }}">View phones</a>
+        <a class="navbar-brand fw-bold" href="{{ route('home.index') }}">
+            Banana Phone Store
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
+                <a class="nav-link active" href="{{ route('office.index') }}">View offices</a>
+                <a class="nav-link active" href="{{ route('phone.index') }}">View phones</a>
+
+                <a href="{{ route('cart.index') }}"
+                   class="btn btn-light rounded-pill ms-lg-3 position-relative d-inline-flex align-items-center justify-content-center"
+                   style="width: 46px; height: 46px;"
+                   title="Cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .49.402L2.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 2H.5A.5.5 0 0 1 0 1.5M3.102 4l1.313 6h8.18l1.286-6zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                    </svg>
+                </a>
+            </div>
         </div>
-      </div>
     </div>
 </nav>
 

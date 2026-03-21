@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePhoneRequest;
-use App\Interfaces\ImageStorage;
-use App\Models\Office;
 use App\Models\Phone;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class PhoneController extends Controller
@@ -30,5 +26,4 @@ class PhoneController extends Controller
 
         return view('phone.show')->with('viewData', $viewData);
     }
-
 }
