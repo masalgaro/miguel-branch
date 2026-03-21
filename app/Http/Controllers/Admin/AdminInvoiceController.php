@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreInvoiceRequest;
+use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\User;
 use App\Models\Office;
