@@ -46,7 +46,6 @@ Route::put('/savingsAccount/{id}' , 'App\Http\Controllers\SavingsAccountControll
 
 // Routes for user Class
 
-<<<<<<< HEAD
 Route::get('/user', 'App\Http\Controllers\UserController@index')->name('user.index');
 Route::get('/user/create', 'App\Http\Controllers\UserController@create')->name('user.create');
 Route::post('/user', 'App\Http\Controllers\UserController@save')->name('user.save');
@@ -54,12 +53,3 @@ Route::get('/user/{id}', 'App\Http\Controllers\UserController@show')->name('user
 Route::delete('/user/{id}', 'App\Http\Controllers\UserController@destroy')->name('user.destroy');
 Route::get('/user/{id}/edit', 'App\Http\Controllers\UserController@edit')->name('user.edit');
 Route::put('/user/{id}', 'App\Http\Controllers\UserController@update')->name('user.update');
-=======
-Route::get('users', 'App\Http\Controllers\UserController@index')->name('users.index');
-Route::get('users/create', 'App\Http\Controllers\UserController@create')->name('users.create');
-Route::post('users', 'App\Http\Controllers\UserController@save')->name('users.save');
-Route::get('users/{id}', 'App\Http\Controllers\UserController@show')->name('users.show');
-Route::delete('users/{id}', 'App\Http\Controllers\UserController@destroy')->name('users.destroy');
-
-
->>>>>>> b3622da7d4559dcf5008f17baf8850ccfe5b81f1
