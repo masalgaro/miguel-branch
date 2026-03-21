@@ -26,22 +26,22 @@ Route::delete('/savingsAccount/{id}', 'App\Http\Controllers\SavingsAccountContro
 Route::get('/savingsAccount/{id}/edit', 'App\Http\Controllers\SavingsAccountController@edit')->name('savingsAccount.edit');
 Route::put('/savingsAccount/{id}', 'App\Http\Controllers\SavingsAccountController@update')->name('savingsAccount.update');
 
-// Cart rutes
-Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
-Route::get('/cart/add/{id}', 'App\Http\Controllers\CartController@add')->name('cart.add');
-Route::post('/cart/update/{id}', 'App\Http\Controllers\CartController@update')->name('cart.update');
-Route::get('/cart/remove/{id}', 'App\Http\Controllers\CartController@remove')->name('cart.remove');
-Route::get('/cart/removeAll/', 'App\Http\Controllers\CartController@removeAll')->name('cart.removeAll');
-Route::get('/cart/show/', 'App\Http\Controllers\CartController@show')->name('cart.show');
-Route::post('cart/purchase', 'App\Http\Controllers\PurchaseController@purchase')->name('purchase.purchase');
+Route::middleware('auth')->group(function () {
+    // Cart rutes
+    Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
+    Route::get('/cart/add/{id}', 'App\Http\Controllers\CartController@add')->name('cart.add');
+    Route::post('/cart/update/{id}', 'App\Http\Controllers\CartController@update')->name('cart.update');
+    Route::get('/cart/remove/{id}', 'App\Http\Controllers\CartController@remove')->name('cart.remove');
+    Route::get('/cart/removeAll/', 'App\Http\Controllers\CartController@removeAll')->name('cart.removeAll');
+    Route::get('/cart/show/', 'App\Http\Controllers\CartController@show')->name('cart.show');
+    Route::post('cart/purchase', 'App\Http\Controllers\PurchaseController@purchase')->name('purchase.purchase');
+});
 
-// Admin Routes using MiddleWare
 
-// Route::middleware('admin')->group(function () {
 
 // Admin Routes using Middleware
 
-Route::middleware([AdminAuthMiddleware::class])->group(function () {
+Route::middleware([AdminAuthMiddleware::class])->group(function () { // Check this, it should be admin 
 
     Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
 

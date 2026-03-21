@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreUserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -15,8 +16,15 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'email' => 'required|max:255|unique:users,email',
-            'password' => 'required|max:255|confirmed',
+
+            'email' => [
+                'required',
+                'max:255',
+                Rule::unique('users', 'email')->ignore($this->route('id'))
+            ],
+
+            'password' => 'nullable|max:255|confirmed',
+
             'national_id' => 'required|max:255',
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',

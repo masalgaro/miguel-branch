@@ -17,7 +17,7 @@ class AdminInvoiceController extends Controller
         $viewData = [];
         $viewData['invoices'] = Invoice::with(['user', 'office'])->get();
 
-        return view('admin.home.index')->with('viewData', $viewData);
+        return view('admin.invoice.index')->with('viewData', $viewData);
     }
 
     public function show(int $id): View

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInvoiceLineRequest;
+use App\Http\Requests\UpdateInvoiceLineRequest;
 use App\Models\Invoice;
 use App\Models\InvoiceLine;
 use App\Models\Phone;
@@ -63,7 +64,7 @@ class AdminInvoiceLineController extends Controller
         return view('admin.invoiceLine.edit')->with('viewData', $viewData);
     }
 
-    public function update(StoreInvoiceLineRequest $request, int $id): RedirectResponse
+    public function update(UpdateInvoiceLineRequest $request, int $id): RedirectResponse
     {
         $invoiceLine = InvoiceLine::findOrFail($id);
 

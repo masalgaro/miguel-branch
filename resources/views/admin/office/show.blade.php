@@ -1,15 +1,54 @@
-@extends('layouts.app')
+@extends('layouts.admin')
+
 @section('content')
-<h1>{{$viewData['office']->getName()}}</h1>
-<h3>{{$viewData['office']->getAddress()}}</h3>
-<p>{{$viewData['office']->getManagerName()}}</p>
-<form action="{{ route('admin.office.destroy', $viewData['office']->getId()) }}" method="POST">
-    @csrf
-    @method('DELETE')
-    <button type="submit">Delete this office</button>
-</form>
-<a href="{{ route('admin.office.edit', $viewData['office']->getId()) }}">
-    Edit this office
-</a>
+
+<h2 class="mb-4 text-warning">Office Details</h2>
+
+<div class="card bg-dark border-secondary text-light">
+    <div class="card-body">
+
+        <!-- Info -->
+        <div class="mb-3">
+            <h5 class="text-secondary">Name</h5>
+            <p class="fs-5">{{ $viewData['office']->getName() }}</p>
+        </div>
+
+        <div class="mb-3">
+            <h5 class="text-secondary">Address</h5>
+            <p>{{ $viewData['office']->getAddress() }}</p>
+        </div>
+
+        <div class="mb-4">
+            <h5 class="text-secondary">Manager</h5>
+            <p>{{ $viewData['office']->getManagerName() }}</p>
+        </div>
+
+        <!-- Actions -->
+        <div class="d-flex gap-2">
+
+            <a href="{{ route('admin.office.edit', $viewData['office']->getId()) }}" 
+               class="btn btn-outline-warning">
+                Edit
+            </a>
+
+            <form action="{{ route('admin.office.destroy', $viewData['office']->getId()) }}" 
+                  method="POST">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="btn btn-danger">
+                    Delete
+                </button>
+            </form>
+
+            <a href="{{ route('admin.office.index') }}" 
+               class="btn btn-outline-light">
+                Back
+            </a>
+
+        </div>
+
+    </div>
+</div>
 
 @endsection

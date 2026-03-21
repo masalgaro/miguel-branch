@@ -1,38 +1,82 @@
-@extends('layouts.app')
-
+@extends('layouts.admin')
 @section('content')
 
-<h1>Admin Panel</h1>
+<h2 class="mb-4 text-warning">Dashboard</h2>
 
-<div>
-    <h3>Offices</h3>
-    <a href="{{ route('admin.office.index') }}">View Offices</a>
-    <a href="{{ route('admin.office.create') }}">Create Office</a>
-</div>
+<div class="row g-4">
 
-<div>
-    <h3>Users</h3>
-    <a href="{{ route('admin.user.index') }}">View Users</a>
-    <a href="{{ route('admin.user.create') }}">Create User</a>
-</div>
+    <!-- Offices -->
+    <div class="col-md-3">
+        <div class="card bg-dark border-secondary text-light h-100">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Offices</h5>
 
-<div>
-    <h3>Invoices</h3>
-    <a href="{{ route('admin.invoice.index') }}">View Invoices</a>
-    <a href="{{ route('admin.invoice.create') }}">Create Invoice</a>
-</div>
+                <div class="mt-auto">
+                    <a href="{{ route('admin.office.index') }}" class="btn btn-warning btn-sm w-100 mb-2">
+                        View
+                    </a>
+                    <a href="{{ route('admin.office.create') }}" class="btn btn-outline-warning btn-sm w-100">
+                        Create
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div>
-    <h3>Phones</h3>
-    <a href="{{ route('admin.phone.index') }}">View Phones</a>
-    <a href="{{ route('admin.phone.create') }}">Create Phones</a>
-</div>
+    <!-- Users -->
+    <div class="col-md-3">
+        <div class="card bg-dark border-secondary text-light h-100">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Users</h5>
 
+                <div class="mt-auto">
+                    <a href="{{ route('admin.user.index') }}" class="btn btn-warning btn-sm w-100 mb-2">
+                        View
+                    </a>
+                    <a href="{{ route('admin.user.create') }}" class="btn btn-outline-warning btn-sm w-100">
+                        Create
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div>
-    <h3>Users</h3>
-    <a href="{{ route('admin.user.index') }}">View Users</a>
-    <a href="{{ route('admin.user.create') }}">Create Users</a>
+    <!-- Invoices -->
+    <div class="col-md-3">
+        <div class="card bg-dark border-secondary text-light h-100">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Invoices</h5>
+
+                <div class="mt-auto">
+                    <a href="{{ route('admin.invoice.index') }}" class="btn btn-warning btn-sm w-100 mb-2">
+                        View
+                    </a>
+                    <a href="{{ route('admin.invoice.create') }}" class="btn btn-outline-warning btn-sm w-100">
+                        Create
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phones -->
+    <div class="col-md-3">
+        <div class="card bg-dark border-secondary text-light h-100">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Phones</h5>
+
+                <div class="mt-auto">
+                    <a href="{{ route('admin.phone.index') }}" class="btn btn-warning btn-sm w-100 mb-2">
+                        View
+                    </a>
+                    <a href="{{ route('admin.phone.create') }}" class="btn btn-outline-warning btn-sm w-100">
+                        Create
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 @endsection

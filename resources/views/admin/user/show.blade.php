@@ -1,58 +1,72 @@
-@extends('layouts.app')
+@extends('layouts.admin')
+
 @section('content')
 
-<div class="container">
-    <h1>{{ __('messages.userDetails') }}</h1>
-    <ul class="list-group">
+<h2 class="mb-4 text-warning">{{ __('messages.userDetails') }}</h2>
 
-        <li class="list-group-item">
-            <strong>{{ __('messages.idLabel') }}:</strong> {{ $viewData['user']->getId() }}
-        </li>
+<div class="card bg-dark border-secondary text-light">
+    <div class="card-body">
 
-        <li class="list-group-item">
-            <strong>{{ __('messages.userName') }}:</strong> {{ $viewData['user']->getName() }}
-        </li>
+        <div class="row">
 
-        <li class="list-group-item">
-            <strong>{{ __('messages.userEmail') }}:</strong> {{ $viewData['user']->getEmail() }}
-        </li>
+            <!-- Columna izquierda -->
+            <div class="col-md-6">
 
-        <li class="list-group-item">
-            <strong>{{ __('messages.userPassword') }}:</strong> {{ $viewData['user']->getPassword() }}
-        </li>
+                <p><span class="text-secondary">{{ __('messages.idLabel') }}:</span> {{ $viewData['user']->getId() }}</p>
 
-        <li class="list-group-item">
-            <strong>{{ __('messages.userNationalId') }}:</strong> {{ $viewData['user']->getNationalId() }}
-        </li>
+                <p><span class="text-secondary">{{ __('messages.userName') }}:</span> {{ $viewData['user']->getName() }}</p>
 
-        <li class="list-group-item">
-            <strong>{{ __('messages.userFirstName') }}:</strong> {{ $viewData['user']->getFirstName() }}
-        </li>
+                <p><span class="text-secondary">{{ __('messages.userEmail') }}:</span> {{ $viewData['user']->getEmail() }}</p>
 
-        <li class="list-group-item">
-            <strong>{{ __('messages.userLastName') }}:</strong> {{ $viewData['user']->getLastName() }}
-        </li>
+                <p><span class="text-secondary">{{ __('messages.userNationalId') }}:</span> {{ $viewData['user']->getNationalId() }}</p>
 
-        <li class="list-group-item">
-            <strong>{{ __('messages.userRole') }}:</strong> {{ $viewData['user']->getRole() }}
-        </li>
+                <p><span class="text-secondary">{{ __('messages.userRole') }}:</span> {{ $viewData['user']->getRole() }}</p>
 
-        <li class="list-group-item">
-            <strong>{{ __('messages.userPhoneNumber') }}:</strong> {{ $viewData['user']->getPhoneNumber() }}
-        </li>
+            </div>
 
-        <li class="list-group-item">
-            <strong>{{ __('messages.userBirthday') }}:</strong> {{ $viewData['user']->getBirthday() }}
-        </li>
+            <!-- Columna derecha -->
+            <div class="col-md-6">
 
-        <li class="list-group-item">
-            <strong>{{ __('messages.userAddress') }}:</strong> {{ $viewData['user']->getAddress() }}
-        </li>
+                <p><span class="text-secondary">{{ __('messages.userFirstName') }}:</span> {{ $viewData['user']->getFirstName() }}</p>
 
-    </ul>
-    <a href="{{ route('admin.user.index') }}" class="btn btn-secondary mt-3">
-        {{ __('messages.backButton') }}
-    </a>
+                <p><span class="text-secondary">{{ __('messages.userLastName') }}:</span> {{ $viewData['user']->getLastName() }}</p>
+
+                <p><span class="text-secondary">{{ __('messages.userPhoneNumber') }}:</span> {{ $viewData['user']->getPhoneNumber() }}</p>
+
+                <p><span class="text-secondary">{{ __('messages.userBirthday') }}:</span> {{ $viewData['user']->getBirthday() }}</p>
+
+                <p><span class="text-secondary">{{ __('messages.userAddress') }}:</span> {{ $viewData['user']->getAddress() }}</p>
+
+            </div>
+
+        </div>
+
+        <!-- Actions -->
+        <div class="mt-4 d-flex gap-2">
+
+            <a href="{{ route('admin.user.edit', $viewData['user']->getId()) }}" 
+               class="btn btn-outline-warning">
+                {{ __('messages.editButton') }}
+            </a>
+
+            <form action="{{ route('admin.user.destroy', $viewData['user']->getId()) }}" 
+                  method="POST">
+                @csrf
+                @method('DELETE')
+
+                <button class="btn btn-danger">
+                    {{ __('messages.deleteButton') }}
+                </button>
+            </form>
+
+            <a href="{{ route('admin.user.index') }}" 
+               class="btn btn-outline-light">
+                {{ __('messages.backButton') }}
+            </a>
+
+        </div>
+
+    </div>
 </div>
 
 @endsection
