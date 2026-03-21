@@ -10,6 +10,18 @@
         </li>
 
         <li class="list-group-item">
+            <strong>{{ __('messages.userName') }}:</strong> {{ $viewData['user']->getName() }}
+        </li>
+
+        <li class="list-group-item">
+            <strong>{{ __('messages.userEmail') }}:</strong> {{ $viewData['user']->getEmail() }}
+        </li>
+
+        <li class="list-group-item">
+            <strong>{{ __('messages.userPassword') }}:</strong> {{ $viewData['user']->getPassword() }}
+        </li>
+
+        <li class="list-group-item">
             <strong>{{ __('messages.userNationalId') }}:</strong> {{ $viewData['user']->getNationalId() }}
         </li>
 
@@ -38,7 +50,7 @@
         </li>
 
     </ul>
-    <a href="{{ route('users.index') }}" class="btn btn-secondary mt-3">
+    <a href="{{ route('user.index') }}" class="btn btn-secondary mt-3">
         {{ __('messages.backButton') }}
     </a>
 </div>

@@ -14,19 +14,11 @@
         </li>
 
         <li class="list-group-item">
-            <strong>{{ __('messages.savingsAccountNumber') }}:</strong> {{ $viewData['savingsAccount']->getNumber() }}
-        </li>
-
-        <li class="list-group-item">
-            <strong>{{ __('messages.savingsAccountExpirationDate') }}:</strong> {{ $viewData['savingsAccount']->getExpirationDate() }}
-        </li>
-
-        <li class="list-group-item">
             <strong>{{ __('messages.savingsAccountBalance') }}:</strong> {{ $viewData['savingsAccount']->getBalance() }}
         </li>
 
     </ul>
-    <a href="{{ route('savingsAccounts.index') }}" class="btn btn-secondary mt-3">
+    <a href="{{ route('savingsAccount.index') }}" class="btn btn-secondary mt-3">
         {{ __('messages.backButton') }}
     </a>
 </div>

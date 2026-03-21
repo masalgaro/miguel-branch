@@ -11,41 +11,90 @@ class User extends Model
     /**
      * USER ATTRIBUTES
      * $this->attributes['id'] - int - contains the user primary key
-     * $this->attributes['national_id'] - int - contains the national ID
+     * Default laravel fields
+     * $this->attributes('name') - string - contains the name
+     * $this->attributes('email')->unique() - string - contains the email
+     * $this->attributes('email_verified_at') - string|null - contains the timestamp of when was the email verified, can be null
+     * $this->attributes('password') - string - contains the password
+     * $this->attributes('remember_token') - string|null - stores the token used for "remember me" sessions
+     * End of default laravel fields
+     * $this->attributes['national_id'] - string - contains the national ID
      * $this->attributes['first_name'] - string - contains the first name
      * $this->attributes['last_name'] - string - contains the last name
      * $this->attributes['role'] - string - contains the user role
-     * $this->attributes['phone_number'] - int - contains the phone number
+     * $this->attributes['phone_number'] - string - contains the phone number
      * $this->attributes['birthday'] - string - contains the birthday
      * $this->attributes['address'] - string - contains the address
      * $this->attributes['created_at'] - string - contains the creation timestamp
      * $this->attributes['updated_at'] - string - contains the update timestamp
+     * $this->invoices - Invoices[] - contains the associated invoices
      * $this->savingsAccounts - SavingsAccount[] - contains the associated saving accounts
      */
-    protected $fillable = ['national_id', 'first_name', 'last_name', 'role', 'phone_number', 'birthday', 'address'];
-
-    /* Relationships */
-
-    public function savingsAccounts(): HasMany
-    {
-        return $this->hasMany(SavingsAccount::class);
-    }
-
-    /* End Relationships */
+    protected $fillable = ['name' , 'email', 'password', 'national_id', 'first_name', 'last_name', 'role', 'phone_number', 'birthday', 'address'];
 
     public function getId(): int
     {
         return $this->attributes['id'];
     }
 
-    public function getNationalId(): int
+    public function getName (): string
+    {
+        return $this->attributes['name'];
+    }
+
+    public function setName (string $name): void
+    {
+        $this->attributes['name'] = $name;
+    }
+
+    public function getEmail (): string
+    {
+        return $this->attributes['email'];
+    }
+
+    public function setEmail (string $email): void
+    {
+        $this->attributes['email'] = $email;
+    }
+
+    public function getEmailVerifiedAt(): string
+    {
+        return $this->attributes['email_verified_at'];
+    }
+
+    public function setEmailVerifiedAt (string $email_verified_at): void
+    {
+        $this->attributes['email_verified_at'] = $email_verified_at;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->attributes['password'];
+    }
+
+    public function setPassword (string $password): void
+    {
+        $this->attributes['password'] = $password;
+    }
+
+    public function getRememberToken(): string
+    {
+        return $this->attributes['remember_token'];
+    }
+
+    public function setRememberToken(string $remember_token ): void
+    {
+        $this->attributes['remember_token'] = $remember_token;
+    }
+
+    public function getNationalId(): string
     {
         return $this->attributes['national_id'];
     }
 
-    public function setNationalId(int $nationalId): void
+    public function setNationalId(string $national_id): void
     {
-        $this->attributes['national_id'] = $nationalId;
+        $this->attributes['national_id'] = $national_id;
     }
 
     public function getFirstName(): string
@@ -53,9 +102,9 @@ class User extends Model
         return $this->attributes['first_name'];
     }
 
-    public function setFirstName(string $firstName): void
+    public function setFirstName(string $first_name): void
     {
-        $this->attributes['first_name'] = $firstName;
+        $this->attributes['first_name'] = $first_name;
     }
 
     public function getLastName(): string
@@ -63,9 +112,9 @@ class User extends Model
         return $this->attributes['last_name'];
     }
 
-    public function setLastName(string $lastName): void
+    public function setLastName(string $last_name): void
     {
-        $this->attributes['last_name'] = $lastName;
+        $this->attributes['last_name'] = $last_name;
     }
 
     public function getRole(): string
@@ -78,14 +127,14 @@ class User extends Model
         $this->attributes['role'] = $role;
     }
 
-    public function getPhoneNumber(): int
+    public function getPhoneNumber(): string
     {
         return $this->attributes['phone_number'];
     }
 
-    public function setPhoneNumber(int $phoneNumber): void
+    public function setPhoneNumber(string $phone_number): void
     {
-        $this->attributes['phone_number'] = $phoneNumber;
+        $this->attributes['phone_number'] = $phone_number;
     }
 
     public function getBirthday(): string
@@ -108,6 +157,16 @@ class User extends Model
         $this->attributes['address'] = $address;
     }
 
+    public function getCreatedAt(): string
+    {
+        return $this->attributes['created_at'];
+    }
+
+    public function getUpdatedAt(): string
+    {
+        return $this->attributes['updated_at'];
+    }
+
     public function getSavingsAccounts(): Collection
     {
         return $this->savingsAccounts;
@@ -118,13 +177,23 @@ class User extends Model
         $this->savingsAccounts = $savingsAccounts;
     }
 
-    public function getCreatedAt(): string
+    public function getInvoices(): Collection
     {
-        return $this->attributes['created_at'];
+        return $this->invoices;
     }
 
-    public function getUpdatedAt(): string
+    public function setInvoices(Collection $invoices): void
     {
-        return $this->attributes['updated_at'];
+        $this->invoices = $invoices;
     }
+
+    public function savingsAccounts(): HasMany
+    {
+        return $this->hasMany(SavingsAccount::class);
+    }
+
+    // public function invoices(): HasMany
+    // {
+    //     return $this->hasMany(Invoice::class);
+    // }
 }

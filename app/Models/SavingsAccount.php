@@ -11,24 +11,13 @@ class SavingsAccount extends Model
      * SAVINGS ACCOUNT ATTRIBUTES
      * $this->attributes['id'] - int - contains the savings account primary key
      * $this->attributes['type'] - string - contains the account type
-     * $this->attributes['number'] - string - contains the account number
-     * $this->attributes['expiration_date'] - string - contains the expiration date
      * $this->attributes['balance'] - int - contains the account balance
      * $this->attributes['user_id'] - int - contains the associated user foreign key
      * $this->attributes['created_at'] - string - contains the creation timestamp
      * $this->attributes['updated_at'] - string - contains the update timestamp
      * $this->user - User - contains the associated user
      */
-    protected $fillable = ['type', 'number', 'expiration_date', 'balance', 'user_id'];
-
-    /* Relationships */
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    /* End relationships */
+    protected $fillable = ['type', 'balance', 'user_id'];
 
     public function getId(): int
     {
@@ -43,26 +32,6 @@ class SavingsAccount extends Model
     public function setType(string $type): void
     {
         $this->attributes['type'] = $type;
-    }
-
-    public function getNumber(): string
-    {
-        return $this->attributes['number'];
-    }
-
-    public function setNumber(string $number): void
-    {
-        $this->attributes['number'] = $number;
-    }
-
-    public function getExpirationDate(): string
-    {
-        return $this->attributes['expiration_date'];
-    }
-
-    public function setExpirationDate(string $expirationDate): void
-    {
-        $this->attributes['expiration_date'] = $expirationDate;
     }
 
     public function getBalance(): int
@@ -80,9 +49,19 @@ class SavingsAccount extends Model
         return $this->attributes['user_id'];
     }
 
-    public function setUserId(int $userId): void
+    public function setUserId(int $user_id): void
     {
-        $this->attributes['user_id'] = $userId;
+        $this->attributes['user_id'] = $user_id;
+    }
+
+    public function getCreatedAt(): string
+    {
+        return $this->attributes['created_at'];
+    }
+
+    public function getUpdatedAt(): string
+    {
+        return $this->attributes['updated_at'];
     }
 
     public function getUser(): User
@@ -95,13 +74,8 @@ class SavingsAccount extends Model
         $this->user()->associate($user);
     }
 
-    public function getCreatedAt(): string
+    public function user(): BelongsTo
     {
-        return $this->attributes['created_at'];
-    }
-
-    public function getUpdatedAt(): string
-    {
-        return $this->attributes['updated_at'];
+        return $this->belongsTo(User::class);
     }
 }

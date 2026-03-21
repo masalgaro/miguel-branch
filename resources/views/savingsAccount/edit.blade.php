@@ -3,22 +3,23 @@
 
 <div class="container">
     <h1>{{ __('messages.createSavingsAccount') }}</h1>
-    <form method="POST" action="{{ route('savingsAccount.save') }}">
+    <form method="POST" action="{{ route('savingsAccount.update' , ['id' => $viewData['savingsAccount']->getId()]) }}">
         @csrf
+        @method('PUT')
 
         <div class="mb-3">
             <label class="form-label">{{ __('messages.savingsAccountType') }}</label>
-            <input type="text" name="type" value="{{ old('type') }}" class="form-control">
+            <input type="text" name="type" value="{{ $viewData['savingsAccount']->getType() }}" class="form-control">
         </div>
 
         <div class="mb-3">
             <label class="form-label">{{ __('messages.savingsAccountBalance') }}</label>
-            <input type="number" name="balance" value="{{ old('balance') }}" class="form-control">
+            <input type="number" name="balance" value="{{ $viewData['savingsAccount']->getBalance() }}" class="form-control">
         </div>
 
         <div class="mb-3">
             <label class="form-label">{{ __('messages.savingsAccountUserId') }}</label>
-            <input type="number" name="user_id" value="{{ old('user_id') }}" class="form-control">
+            <input type="number" name="user_id" value="{{ $viewData['savingsAccount']->getUser()->getId() }}" class="form-control">
         </div>
 
         <button type="submit" class="btn btn-primary">

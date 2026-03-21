@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/' , 'App\Http\Controllers\HomeController@index')->name('home.index');
+
 // Routes for class Phone
 
 Route::get('/phone', 'App\Http\Controllers\PhoneController@index')->name('phone.index');
@@ -24,16 +26,20 @@ Route::put('/office/{id}', 'App\Http\Controllers\OfficeController@update')->name
 
 // Routes for savingsAccount class
 
-Route::get('savingsAccounts', 'App\Http\Controllers\SavingsAccountController@index')->name('savingsAccounts.index');
-Route::get('savingsAccounts/create', 'App\Http\Controllers\SavingsAccountController@create')->name('savingsAccounts.create');
-Route::post('savingsAccounts', 'App\Http\Controllers\SavingsAccountController@save')->name('savingsAccounts.save');
-Route::get('savingsAccounts/{id}', 'App\Http\Controllers\SavingsAccountController@show')->name('savingsAccounts.show');
-Route::delete('savingsAccounts/{id}', 'App\Http\Controllers\SavingsAccountController@destroy')->name('savingsAccounts.destroy');
+Route::get('/savingsAccount', 'App\Http\Controllers\SavingsAccountController@index')->name('savingsAccount.index');
+Route::get('/savingsAccount/create', 'App\Http\Controllers\SavingsAccountController@create')->name('savingsAccount.create');
+Route::post('/savingsAccount', 'App\Http\Controllers\SavingsAccountController@save')->name('savingsAccount.save');
+Route::get('/savingsAccount/{id}', 'App\Http\Controllers\SavingsAccountController@show')->name('savingsAccount.show');
+Route::delete('/savingsAccount/{id}', 'App\Http\Controllers\SavingsAccountController@destroy')->name('savingsAccount.destroy');
+Route::get('/savingsAccount/{id}/edit' , 'App\Http\Controllers\SavingsAccountController@edit' )->name('savingsAccount.edit');
+Route::put('/savingsAccount/{id}' , 'App\Http\Controllers\SavingsAccountController@update' )->name('savingsAccount.update');
 
 // Routes for user Class
 
-Route::get('users', 'App\Http\Controllers\UserController@index')->name('users.index');
-Route::get('users/create', 'App\Http\Controllers\UserController@create')->name('users.create');
-Route::post('users', 'App\Http\Controllers\UserController@save')->name('users.save');
-Route::get('users/{id}', 'App\Http\Controllers\UserController@show')->name('users.show');
-Route::delete('users/{id}', 'App\Http\Controllers\UserController@destroy')->name('users.destroy');
+Route::get('/user', 'App\Http\Controllers\UserController@index')->name('user.index');
+Route::get('/user/create', 'App\Http\Controllers\UserController@create')->name('user.create');
+Route::post('/user', 'App\Http\Controllers\UserController@save')->name('user.save');
+Route::get('/user/{id}', 'App\Http\Controllers\UserController@show')->name('user.show');
+Route::delete('/user/{id}', 'App\Http\Controllers\UserController@destroy')->name('user.destroy');
+Route::get('/user/{id}/edit', 'App\Http\Controllers\UserController@edit')->name('user.edit');
+Route::put('/user/{id}', 'App\Http\Controllers\UserController@update')->name('user.update');

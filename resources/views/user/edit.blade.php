@@ -3,57 +3,58 @@
 
 <div class="container">
     <h1>{{ __('messages.createUser') }}</h1>
-    <form method="POST" action="{{ route('user.save') }}">
+    <form method="POST" action="{{ route('user.update' , ['id' => $viewData['user']->getId()]) }}">
         @csrf
-
+        @method('PUT')
+        
         <div class="mb-3">
             <label class="form-label">{{ __('messages.userName') }}</label>
-            <input type="text" name="name" value="{{ old('name') }}" class="form-control">
+            <input type="text" name="name" value="{{ $viewData['user']->getName() }}" class="form-control">
         </div>
-
+        
         <div class="mb-3">
             <label class="form-label">{{ __('messages.userEmail') }}</label>
-            <input type="email" name="email" value="{{ old('email') }}" class="form-control">
+            <input type="email" name="email" value="{{ $viewData['user']->getEmail() }}" class="form-control">
         </div>
 
         <div class="mb-3">
             <label class="form-label">{{ __('messages.userPassword') }}</label>
-            <input type="text" name="password" value="{{ old('password') }}" class="form-control">
+            <input type="text" name="password" value="{{ $viewData['user']->getPassword() }}" class="form-control">
         </div>
 
         <div class="mb-3">
             <label class="form-label">{{ __('messages.userNationalId') }}</label>
-            <input type="text" name="national_id" value="{{ old('national_id') }}" class="form-control">
+            <input type="text" name="national_id" value="{{ $viewData['user']->getNationalId() }}" class="form-control">
         </div>
 
         <div class="mb-3">
             <label class="form-label">{{ __('messages.userFirstName') }}</label>
-            <input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control">
+            <input type="text" name="first_name" value="{{ $viewData['user']->getFirstName() }}" class="form-control">
         </div>
 
         <div class="mb-3">
             <label class="form-label">{{ __('messages.userLastName') }}</label>
-            <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control">
+            <input type="text" name="last_name" value="{{ $viewData['user']->getLastName()}}" class="form-control">
         </div>
 
         <div class="mb-3">
             <label class="form-label">{{ __('messages.userRole') }}</label>
-            <input type="text" name="role" value="{{ old('role') }}" class="form-control">
+            <input type="text" name="role" value="{{ $viewData['user']->getRole()}}" class="form-control">
         </div>
 
         <div class="mb-3">
             <label class="form-label">{{ __('messages.userPhoneNumber') }}</label>
-            <input type="text" name="phone_number" value="{{ old('phone_number') }}" class="form-control">
+            <input type="text" name="phone_number" value="{{ $viewData['user']->getPhoneNumber() }}" class="form-control">
         </div>
 
         <div class="mb-3">
             <label class="form-label">{{ __('messages.userBirthday') }}</label>
-            <input type="date" name="birthday" value="{{ old('birthday') }}" class="form-control">
+            <input type="date" name="birthday" value="{{ $viewData['user']->getBirthday() }}" class="form-control">
         </div>
 
         <div class="mb-3">
             <label class="form-label">{{ __('messages.userAddress') }}</label>
-            <input type="text" name="address" value="{{ old('address') }}" class="form-control">
+            <input type="text" name="address" value="{{ $viewData['user']->getAddress() }}" class="form-control">
         </div>
 
         <button type="submit" class="btn btn-primary">

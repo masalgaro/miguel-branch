@@ -39,7 +39,7 @@ class SavingsAccountController extends Controller
         SavingsAccount::create($validatedData);
         session()->flash('success', __('messages.savingsAccountCreatedSuccessfully'));
 
-        return redirect()->route('savingsAccounts.index');
+        return redirect()->route('savingsAccount.index');
     }
 
     public function destroy(int $id): RedirectResponse
@@ -47,6 +47,23 @@ class SavingsAccountController extends Controller
         SavingsAccount::destroy($id);
         session()->flash('success', __('messages.savingsAccountDeletedSuccessfully'));
 
-        return redirect()->route('savingsAccounts.index');
+        return redirect()->route('savingsAccount.index');
+    }
+
+    public function edit(int $id): view
+    {
+        $viewData = [];
+        $savingsAccount = SavingsAccount::findOrFail($id);
+        $viewData['savingsAccount'] = $savingsAccount;
+
+        return view('savingsAccount.edit')->with('viewData' , $viewData);
+    }
+
+    public function update(StoreSavingsAccountRequest $request , int $id): RedirectResponse
+    {
+        $savingsAccount = SavingsAccount::findOrFail($id);
+        $savingsAccount->update($request->validated());
+
+        return redirect()->route('savingsAccount.index');
     }
 }
