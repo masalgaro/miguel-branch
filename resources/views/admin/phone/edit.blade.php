@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<form action="{{ route('phone.update', $viewData['phone']->getId()) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.phone.update', $viewData['phone']->getId()) }}" method="POST" enctype="multipart/form-data">
 
     @csrf
     @method('PUT')

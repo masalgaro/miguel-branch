@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<form method="POST" enctype="multipart/form-data" action="{{ route('phone.save') }}">
+<form method="POST" enctype="multipart/form-data" action="{{ route('admin.phone.save') }}">
 
     @csrf
     <input 

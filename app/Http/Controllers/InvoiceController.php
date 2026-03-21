@@ -50,37 +50,4 @@ class InvoiceController extends Controller
 
         return redirect()->route('invoice.index');
     }
-
-
-    public function edit(int $id): View
-    {
-        $viewData = [];
-
-        $invoice = Invoice::with(['user', 'office'])->findOrFail($id);
-
-        $viewData['invoice'] = $invoice;
-        $viewData['users'] = User::all();
-        $viewData['offices'] = Office::all();
-
-        return view('invoice.edit')->with('viewData', $viewData);
-    }
-
-
-    public function update(StoreInvoiceRequest $request, int $id): RedirectResponse
-    {
-        $invoice = Invoice::with(['user', 'office'])->findOrFail($id);
-        $validatedInvoiceData = $request->validated();
-
-        $invoice->update($validatedInvoiceData);
-
-        return redirect()->route('invoice.show', $invoice->getId());
-    }
-
-
-    public function destroy(int $id): RedirectResponse
-    {
-        Invoice::destroy($id);
-
-        return redirect()->route('invoice.index');
-    }
 }

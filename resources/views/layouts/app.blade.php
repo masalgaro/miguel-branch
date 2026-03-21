@@ -25,10 +25,8 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto">
         <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
-        <a class="nav-link active" href="{{ route('office.create') }}">Create office</a>
-        <a class="nav-link active" href="{{ route('user.create') }}">Create user</a>
-        <a class="nav-link active" href="{{ route('phone.create') }}">Create phone</a>
-        <a class="nav-link active" href="{{ route('savingsAccount.create') }}">Create savings Account</a>
+        <a class="nav-link active" href="{{ route('office.index') }}">View offices</a>
+        <a class="nav-link active" href="{{ route('phone.index') }}">View phones</a>
         </div>
       </div>
     </div>
@@ -47,7 +45,7 @@
           {{ session('success') }}
       </div>
   @endif
-  
+
   <div class="container my-4">
     @yield('content')
   </div>

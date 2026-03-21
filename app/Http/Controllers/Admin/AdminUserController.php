@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
-class UserController extends Controller
+class AdminUserController extends Controller
 {
     public function index(): View
     {
@@ -15,7 +15,7 @@ class UserController extends Controller
 
         $viewData['users'] = User::with(['invoices', 'savingsAccounts'])->get();
 
-        return view('user.index')->with('viewData', $viewData);
+        return view('admin.user.index')->with('viewData', $viewData);
     }
 
 
@@ -26,7 +26,7 @@ class UserController extends Controller
 
         $viewData['user'] = $user;
 
-        return view('user.show')->with('viewData', $viewData);
+        return view('admin.user.show')->with('viewData', $viewData);
     }
 
 
@@ -34,7 +34,7 @@ class UserController extends Controller
     {
         $viewData = [];
 
-        return view('user.create')->with('viewData', $viewData);
+        return view('admin.user.create')->with('viewData', $viewData);
     }
 
 
@@ -46,7 +46,7 @@ class UserController extends Controller
 
         session()->flash('success', __('messages.userCreatedSuccessfully'));
 
-        return redirect()->route('user.index');
+        return redirect()->route('admin.user.index');
     }
 
 
@@ -58,7 +58,7 @@ class UserController extends Controller
 
         $viewData['user'] = $user;
 
-        return view('user.edit')->with('viewData', $viewData);
+        return view('admin.user.edit')->with('viewData', $viewData);
     }
 
 
@@ -72,6 +72,18 @@ class UserController extends Controller
 
         session()->flash('success', __('messages.userUpdatedSuccessfully'));
 
-        return redirect()->route('user.index');
+        return redirect()->route('admin.user.index');
+    }
+
+
+    public function destroy(int $id): RedirectResponse
+    {
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        session()->flash('success', __('messages.userDeletedSuccessfully'));
+
+        return redirect()->route('admin.user.index');
     }
 }

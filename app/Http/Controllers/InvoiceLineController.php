@@ -51,40 +51,4 @@ class InvoiceLineController extends Controller
 
         return redirect()->route('invoiceLine.index');
     }
-
-
-    public function edit(int $id): View
-    {
-        $viewData = [];
-
-        $invoiceLine = InvoiceLine::with(['phone', 'invoice'])->findOrFail($id);
-
-        $viewData['invoiceLine'] = $invoiceLine;
-        $viewData['phones'] = Phone::all();
-        $viewData['invoices'] = Invoice::all();
-
-        return view('invoiceLine.edit')->with('viewData', $viewData);
-    }
-
-
-    public function update(StoreInvoiceLineRequest $request, int $id): RedirectResponse
-    {
-        $invoiceLine = InvoiceLine::findOrFail($id);
-
-        $validatedData = $request->validated();
-
-        $invoiceLine->update($validatedData);
-
-        return redirect()->route('invoiceLine.show', $invoiceLine->getId());
-    }
-
-
-    public function destroy(int $id): RedirectResponse
-    {
-        $invoiceLine = InvoiceLine::findOrFail($id);
-
-        $invoiceLine->delete();
-
-        return redirect()->route('invoiceLine.index');
-    }
 }
