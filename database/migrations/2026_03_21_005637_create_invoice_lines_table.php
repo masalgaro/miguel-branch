@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('reason')->nullable();
 
-            $table->foreignId('invoice_id') 
+            $table->foreignId('invoice_id')
                 ->constrained('invoices')
                 ->cascadeOnDelete();
 

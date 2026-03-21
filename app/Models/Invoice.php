@@ -2,12 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Office;
-use App\Models\InvoiceLine;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Invoice extends Model
 {
@@ -23,7 +20,6 @@ class Invoice extends Model
      * $this->attributes['created_at'] - string - timestamp of creation
      * $this->attributes['updated_at'] - string - timestamp of last update
      */
-
     protected $fillable = ['date', 'user_id', 'office_id'];
 
     // Getters and Setters

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Models\Invoice;
-use App\Models\User;
 use App\Models\Office;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -19,7 +19,6 @@ class InvoiceController extends Controller
         return view('invoice.index')->with('viewData', $viewData);
     }
 
-
     public function show(int $id): View
     {
         $viewData = [];
@@ -30,7 +29,6 @@ class InvoiceController extends Controller
         return view('invoice.show')->with('viewData', $viewData);
     }
 
-
     public function create(): View
     {
         $viewData = [];
@@ -40,7 +38,6 @@ class InvoiceController extends Controller
 
         return view('invoice.create')->with('viewData', $viewData);
     }
-
 
     public function save(StoreInvoiceRequest $request): RedirectResponse
     {

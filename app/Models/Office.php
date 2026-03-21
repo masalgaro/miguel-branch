@@ -2,11 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Invoice;
-use App\Models\Phone;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
 
 class Office extends Model
 {
@@ -20,8 +17,7 @@ class Office extends Model
      * $this->attributes['updated_at'] - string - timestamp of last update
      * $this->phones - Phone[] - contains the associated phones
      * $this->invoices - Invoice[] - contains the associated invoices
-    */
-
+     */
     protected $fillable = ['name', 'address', 'manager_name'];
 
     // Getters and Setters

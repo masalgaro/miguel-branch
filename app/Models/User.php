@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Invoice;
-use App\Models\SavingsAccount;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -31,9 +29,8 @@ class User extends Model
      * $this->attributes['updated_at'] - string - contains the update timestamp
      * $this->invoices - Invoice[] - contains the associated invoices
      * $this->savingsAccounts - SavingsAccount[] - contains the associated saving accounts
-    */
-
-    protected $fillable = ['name','email','password','national_id','first_name','last_name','role','phone_number','birthday','address'];
+     */
+    protected $fillable = ['name', 'email', 'password', 'national_id', 'first_name', 'last_name', 'role', 'phone_number', 'birthday', 'address'];
 
     // Getters and Setters
 

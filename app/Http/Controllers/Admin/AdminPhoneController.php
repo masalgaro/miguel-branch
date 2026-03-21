@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePhoneRequest;
 use App\Interfaces\ImageStorage;
 use App\Models\Office;
@@ -20,7 +21,6 @@ class AdminPhoneController extends Controller
         return view('admin.phone.index')->with('viewData', $viewData);
     }
 
-
     public function show(int $id): View
     {
         $viewData = [];
@@ -32,7 +32,6 @@ class AdminPhoneController extends Controller
         return view('admin.phone.show')->with('viewData', $viewData);
     }
 
-
     public function create(): View
     {
         $viewData = [];
@@ -41,7 +40,6 @@ class AdminPhoneController extends Controller
 
         return view('admin.phone.create')->with('viewData', $viewData);
     }
-
 
     public function edit(int $id): View
     {
@@ -54,7 +52,6 @@ class AdminPhoneController extends Controller
 
         return view('admin.phone.edit')->with('viewData', $viewData);
     }
-
 
     public function save(StorePhoneRequest $request): RedirectResponse
     {
@@ -70,7 +67,6 @@ class AdminPhoneController extends Controller
 
         return redirect()->route('admin.phone.index');
     }
-
 
     public function update(StorePhoneRequest $request, int $id): RedirectResponse
     {
@@ -88,7 +84,6 @@ class AdminPhoneController extends Controller
 
         return redirect()->route('admin.phone.show', $phone->getId());
     }
-
 
     public function destroy(int $id): RedirectResponse
     {

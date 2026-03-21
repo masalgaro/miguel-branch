@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInvoiceLineRequest;
+use App\Models\Invoice;
 use App\Models\InvoiceLine;
 use App\Models\Phone;
-use App\Models\Invoice;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -30,17 +31,15 @@ class AdminInvoiceLineController extends Controller
         return view('admin.invoiceLine.show')->with('viewData', $viewData);
     }
 
-
     public function create(): View
     {
         $viewData = [];
 
         $viewData['phones'] = Phone::all();
-        $viewData['invoices'] = Invoice::all(); 
+        $viewData['invoices'] = Invoice::all();
 
         return view('admin.invoiceLine.create')->with('viewData', $viewData);
     }
-
 
     public function save(StoreInvoiceLineRequest $request): RedirectResponse
     {
@@ -50,7 +49,6 @@ class AdminInvoiceLineController extends Controller
 
         return redirect()->route('admin.invoiceLine.index');
     }
-
 
     public function edit(int $id): View
     {
@@ -64,7 +62,6 @@ class AdminInvoiceLineController extends Controller
 
         return view('admin.invoiceLine.edit')->with('viewData', $viewData);
     }
-
 
     public function update(StoreInvoiceLineRequest $request, int $id): RedirectResponse
     {

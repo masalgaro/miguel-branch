@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Models\Invoice;
-use App\Models\User;
 use App\Models\Office;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -19,7 +20,6 @@ class AdminInvoiceController extends Controller
         return view('admin.home.index')->with('viewData', $viewData);
     }
 
-
     public function show(int $id): View
     {
         $viewData = [];
@@ -29,7 +29,6 @@ class AdminInvoiceController extends Controller
 
         return view('admin.invoice.show')->with('viewData', $viewData);
     }
-
 
     public function create(): View
     {
@@ -41,7 +40,6 @@ class AdminInvoiceController extends Controller
         return view('admin.invoice.create')->with('viewData', $viewData);
     }
 
-
     public function save(StoreInvoiceRequest $request): RedirectResponse
     {
         $validatedInvoiceData = $request->validated();
@@ -50,7 +48,6 @@ class AdminInvoiceController extends Controller
 
         return redirect()->route('admin.invoice.index');
     }
-
 
     public function edit(int $id): View
     {
@@ -65,7 +62,6 @@ class AdminInvoiceController extends Controller
         return view('admin.invoice.edit')->with('viewData', $viewData);
     }
 
-
     public function update(StoreInvoiceRequest $request, int $id): RedirectResponse
     {
         $invoice = Invoice::with(['user', 'office'])->findOrFail($id);
@@ -75,7 +71,6 @@ class AdminInvoiceController extends Controller
 
         return redirect()->route('admin.invoice.show', $invoice->getId());
     }
-
 
     public function destroy(int $id): RedirectResponse
     {

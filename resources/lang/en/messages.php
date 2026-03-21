@@ -9,9 +9,35 @@ return [
     'viewButton' => 'View',
     'saveButton' => 'Save',
     'deleteButton' => 'Delete',
+    'removeButton' => 'Remove',
+    'removeAllButton' => 'Remove all',
     'backButton' => 'Back',
     'editButton' => 'Edit',
     'userLabel' => 'User',
+
+    // Cart controller related
+    'addTocartButton' => 'Add to cart',
+    'cartIsEmptyTitle' => 'The cart is empty.',
+    'subtotalTitle' => 'Subtotal',
+    'shoppingCartTitle' => 'Shopping Cart',
+
+    // Phone class related
+    'brandTitle' => 'Brand',
+    'memoryTitle' => 'Memory',
+    'detailsTitle' => 'See details',
+    'batteryTitle' => 'Battery',
+    'priceTitle' => 'Price',
+    'ramTitle' => 'RAM',
+    'stockTitle' => 'Stock',
+    'unitTitle' => 'Unit',
+    'buyButton' => 'Purchase',
+    'availableInTitle' => 'Available in',
+
+    // Office class related
+    'officeNameTitle' => 'Office',
+    'addressTitle' => 'Address',
+    'managerNameTitle' => 'Manager Name',
+    'viewOfficeButton' => 'View office',
 
     // SavingsAccount class related
     'savingsAccountList' => 'Savings Account List',

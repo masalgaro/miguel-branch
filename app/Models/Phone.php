@@ -144,10 +144,34 @@ class Phone extends Model
         return $this->attributes['updated_at'];
     }
 
+    // Office id
+
+    public function getOfficeId(): int
+    {
+        return $this->attributes['office_id'];
+    }
+
+    public function setOfficeId(int $officeId): void
+    {
+        $this->attributes['office_id'] = $officeId;
+    }
+
     // Relations
 
     public function office(): BelongsTo
     {
         return $this->belongsTo(Office::class);
+    }
+
+    // Relations getters and setters
+
+    public function getOffice(): Office
+    {
+        return $this->office;
+    }
+
+    public function setOffice(Office $office): void
+    {
+        $this->office = $office;
     }
 }
