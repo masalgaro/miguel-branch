@@ -23,7 +23,7 @@ class User extends Model
      * $this->attributes['national_id'] - string - contains the national ID
      * $this->attributes['first_name'] - string - contains the first name
      * $this->attributes['last_name'] - string - contains the last name
-     * $this->attributes['role'] - string - contains the user role
+     * $this->attributes['role'] - string - contains the user role, by default is 'client'
      * $this->attributes['phone_number'] - string - contains the phone number
      * $this->attributes['birthday'] - string - contains the birthday
      * $this->attributes['address'] - string - contains the address

@@ -45,6 +45,15 @@
     </div>
 
     <div>
+        <label>Price</label>
+        <input 
+            type="number" 
+            name="price" 
+            value="{{ $viewData['phone']->getPrice() }}"
+        >
+    </div>
+
+    <div>
         <label>Brand</label>
         <input 
             type="text" 

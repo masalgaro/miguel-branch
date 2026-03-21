@@ -15,6 +15,7 @@ class Phone extends Model
      * $this->attributes['ram'] - string - contains the phone ram. It also includes the unit of measure. For example kb, mb, gb, etc.
      * $this->attributes['battery'] - string - contains the phone battery. It also includes the unit of measure. For example mAh, etc.
      * $this->attributes['brand'] - string - contains the phone brand. For example Samsumg, Apple, Xiaomi, etc.
+     * $this->attributes['price'] - int - contains the phone price.
      * $this->attributes['image'] - string - contains the path for a image stored locally.
      * $this->attributes['quantity'] - integer - contains the number of phones in that store.
      * $this->attributes['office_id'] - int - contains the associated office id
@@ -22,7 +23,7 @@ class Phone extends Model
      * $this->attributes['updated_at'] - string - timestamp of last update
      * $this->office - Office - contains the associated Office
      */
-    protected $fillable = ['name', 'memory', 'ram', 'battery', 'brand', 'quantity', 'image', 'office_id'];
+    protected $fillable = ['name', 'memory', 'ram', 'battery', 'brand', 'price', 'quantity', 'image', 'office_id'];
 
     // Getters y Setters
 
@@ -91,6 +92,18 @@ class Phone extends Model
     public function setBrand(string $brand): void
     {
         $this->attributes['brand'] = $brand;
+    }
+
+    // Price
+
+    public function getPrice(): int
+    {
+        return $this->attributes['price'];
+    }
+
+    public function setPrice(int $price): void
+    {
+        $this->attributes['price'] = $price;
     }
 
     // Image
