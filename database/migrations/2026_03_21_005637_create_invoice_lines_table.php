@@ -18,6 +18,10 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('reason')->nullable();
 
+            $table->foreignId('invoice_id') 
+                ->constrained('invoices')
+                ->cascadeOnDelete();
+
             $table->foreignId('phone_id')
                 ->constrained('phones')
                 ->cascadeOnDelete();

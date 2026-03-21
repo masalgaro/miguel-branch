@@ -22,6 +22,7 @@ class StoreInvoiceLineRequest extends FormRequest
             'quantity' => 'required|integer|min:1',
             'reason' => 'nullable|max:255',
             'phone_id' => 'required|exists:phones,id',
+            'invoice_id' => 'required|exists:invoices,id',
         ];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Phone;
+use App\Models\Invoice;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -10,8 +12,8 @@ class InvoiceLine extends Model
     /**
      * INVOICE LINE ATTRIBUTES
      * $this->attributes['id'] - int - contains the invoice line primary key (id)
-     * $this->attributes['unit_price'] - int - contains the unit price of the phone
-     * $this->attributes['discount'] - int - contains the discount applied
+     * $this->attributes['unit_price'] - float - contains the unit price of the phone
+     * $this->attributes['discount'] - float - contains the discount applied
      * $this->attributes['quantity'] - int - contains the quantity of phones
      * $this->attributes['reason'] - string - contains the reason for discount
      * $this->attributes['invoice_id'] - int - contains the associated invoice id
@@ -19,12 +21,16 @@ class InvoiceLine extends Model
      * $this->attributes['created_at'] - string - timestamp of creation
      * $this->attributes['updated_at'] - string - timestamp of last update
      * $this->phone - Phone - contains the associated Phone
-     */
+     * $this->invoice - Invoice - contains the associated Invoice
+    */
+
     protected $fillable = [
         'unit_price',
         'discount',
         'quantity',
         'reason',
+        'phone_id',
+        'invoice_id'
     ];
 
     // Getters and Setters
@@ -38,12 +44,12 @@ class InvoiceLine extends Model
 
     // Unit Price
 
-    public function getUnitPrice(): int
+    public function getUnitPrice(): float
     {
-        return $this->attributes['unit_price'];
+        return (float) $this->attributes['unit_price'];
     }
 
-    public function setUnitPrice(int $unitPrice): void
+    public function setUnitPrice(float $unitPrice): void
     {
         $this->attributes['unit_price'] = $unitPrice;
     }
@@ -52,7 +58,7 @@ class InvoiceLine extends Model
 
     public function getDiscount(): float
     {
-        return $this->attributes['discount'];
+        return (float) $this->attributes['discount'];
     }
 
     public function setDiscount(float $discount): void
@@ -96,6 +102,18 @@ class InvoiceLine extends Model
         $this->attributes['phone_id'] = $phoneId;
     }
 
+    // Invoice Id
+
+    public function getInvoiceId(): int
+    {
+        return $this->attributes['invoice_id'];
+    }
+
+    public function setInvoiceId(int $invoiceId): void
+    {
+        $this->attributes['invoice_id'] = $invoiceId;
+    }
+
     // CreatedAt
 
     public function getCreatedAt(): string
@@ -115,5 +133,10 @@ class InvoiceLine extends Model
     public function phone(): BelongsTo
     {
         return $this->belongsTo(Phone::class);
+    }
+
+    public function invoice(): BelongsTo
+    {
+        return $this->belongsTo(Invoice::class);
     }
 }

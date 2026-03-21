@@ -34,6 +34,16 @@ Route::delete('/invoiceLine/{id}', 'App\Http\Controllers\InvoiceLineController@d
 Route::get('/invoiceLine/{id}/edit', 'App\Http\Controllers\InvoiceLineController@edit')->name('invoiceLine.edit');
 Route::put('/invoiceLine/{id}', 'App\Http\Controllers\InvoiceLineController@update')->name('invoiceLine.update');
 
+// Routes for class Invoice
+
+Route::get('invoice', 'App\Http\Controllers\InvoiceController@index')->name('invoice.index');
+Route::get('invoice/create', 'App\Http\Controllers\InvoiceController@create')->name('invoice.create');
+Route::post('invoice/save', 'App\Http\Controllers\InvoiceController@save')->name('invoice.save');
+Route::get('invoice/{id}', 'App\Http\Controllers\InvoiceController@show')->name('invoice.show');
+Route::get('invoice/{id}/edit', 'App\Http\Controllers\InvoiceController@edit')->name('invoice.edit');
+Route::put('invoice/{id}', 'App\Http\Controllers\InvoiceController@update')->name('invoice.update');
+Route::delete('invoice/{id}', 'App\Http\Controllers\InvoiceController@destroy')->name('invoice.destroy');
+
 // Routes for savingsAccount class
 
 Route::get('/savingsAccount', 'App\Http\Controllers\SavingsAccountController@index')->name('savingsAccount.index');

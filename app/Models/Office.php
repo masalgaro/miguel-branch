@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Invoice;
+use App\Models\Phone;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class Office extends Model
 {
@@ -15,11 +18,13 @@ class Office extends Model
      * $this->attributes['manager_name'] - string - contains the name of the office manager name
      * $this->attributes['created_at'] - string - timestamp of creation
      * $this->attributes['updated_at'] - string - timestamp of last update
-     * $this->phones - Phones[] - contain the associated phones
-     */
+     * $this->phones - Phone[] - contains the associated phones
+     * $this->invoices - Invoice[] - contains the associated invoices
+    */
+
     protected $fillable = ['name', 'address', 'manager_name'];
 
-    // Getters y Setters
+    // Getters and Setters
 
     // Id
 
@@ -83,5 +88,10 @@ class Office extends Model
     public function phones(): HasMany
     {
         return $this->hasMany(Phone::class);
+    }
+
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Invoice;
+use App\Models\SavingsAccount;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -12,11 +14,11 @@ class User extends Model
      * USER ATTRIBUTES
      * $this->attributes['id'] - int - contains the user primary key
      * Default laravel fields
-     * $this->attributes('name') - string - contains the name
-     * $this->attributes('email')->unique() - string - contains the email
-     * $this->attributes('email_verified_at') - string|null - contains the timestamp of when was the email verified, can be null
-     * $this->attributes('password') - string - contains the password
-     * $this->attributes('remember_token') - string|null - stores the token used for "remember me" sessions
+     * $this->attributes['name'] - string - contains the name
+     * $this->attributes['email'] - string - contains the email
+     * $this->attributes['email_verified_at'] - string|null - contains the timestamp of when the email was verified
+     * $this->attributes['password'] - string - contains the password
+     * $this->attributes['remember_token'] - string|null - stores the token used for "remember me" sessions
      * End of default laravel fields
      * $this->attributes['national_id'] - string - contains the national ID
      * $this->attributes['first_name'] - string - contains the first name
@@ -27,10 +29,13 @@ class User extends Model
      * $this->attributes['address'] - string - contains the address
      * $this->attributes['created_at'] - string - contains the creation timestamp
      * $this->attributes['updated_at'] - string - contains the update timestamp
-     * $this->invoices - Invoices[] - contains the associated invoices
+     * $this->invoices - Invoice[] - contains the associated invoices
      * $this->savingsAccounts - SavingsAccount[] - contains the associated saving accounts
-     */
-    protected $fillable = ['name', 'email', 'password', 'national_id', 'first_name', 'last_name', 'role', 'phone_number', 'birthday', 'address'];
+    */
+
+    protected $fillable = ['name','email','password','national_id','first_name','last_name','role','phone_number','birthday','address'];
+
+    // Getters and Setters
 
     public function getId(): int
     {
@@ -57,12 +62,12 @@ class User extends Model
         $this->attributes['email'] = $email;
     }
 
-    public function getEmailVerifiedAt(): string
+    public function getEmailVerifiedAt(): ?string
     {
         return $this->attributes['email_verified_at'];
     }
 
-    public function setEmailVerifiedAt(string $email_verified_at): void
+    public function setEmailVerifiedAt(?string $email_verified_at): void
     {
         $this->attributes['email_verified_at'] = $email_verified_at;
     }
@@ -77,12 +82,12 @@ class User extends Model
         $this->attributes['password'] = $password;
     }
 
-    public function getRememberToken(): string
+    public function getRememberToken(): ?string
     {
         return $this->attributes['remember_token'];
     }
 
-    public function setRememberToken(string $remember_token): void
+    public function setRememberToken(?string $remember_token): void
     {
         $this->attributes['remember_token'] = $remember_token;
     }
@@ -167,33 +172,27 @@ class User extends Model
         return $this->attributes['updated_at'];
     }
 
-    public function getSavingsAccounts(): Collection
-    {
-        return $this->savingsAccounts;
-    }
-
-    public function setSavingsAccounts(Collection $savingsAccounts): void
-    {
-        $this->savingsAccounts = $savingsAccounts;
-    }
-
-    public function getInvoices(): Collection
-    {
-        return $this->invoices;
-    }
-
-    public function setInvoices(Collection $invoices): void
-    {
-        $this->invoices = $invoices;
-    }
+    // Relations
 
     public function savingsAccounts(): HasMany
     {
         return $this->hasMany(SavingsAccount::class);
     }
 
-    // public function invoices(): HasMany
-    // {
-    //     return $this->hasMany(Invoice::class);
-    // }
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
+    // Relations Getters
+
+    public function getSavingsAccounts(): Collection
+    {
+        return $this->savingsAccounts;
+    }
+
+    public function getInvoices(): Collection
+    {
+        return $this->invoices;
+    }
 }

@@ -12,19 +12,23 @@ class UserController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['users'] = User::all();
+
+        $viewData['users'] = User::with(['invoices', 'savingsAccounts'])->get();
 
         return view('user.index')->with('viewData', $viewData);
     }
 
+
     public function show(int $id): View
     {
         $viewData = [];
-        $user = User::findOrFail($id);
+        $user = User::with(['invoices', 'savingsAccounts'])->findOrFail($id);
+
         $viewData['user'] = $user;
 
         return view('user.show')->with('viewData', $viewData);
     }
+
 
     public function create(): View
     {
@@ -33,36 +37,52 @@ class UserController extends Controller
         return view('user.create')->with('viewData', $viewData);
     }
 
+
     public function save(StoreUserRequest $request): RedirectResponse
     {
-        $validatedData = $request->validated();
-        User::create($validatedData);
+        $validatedUserData = $request->validated();
+
+        User::create($validatedUserData);
+
         session()->flash('success', __('messages.userCreatedSuccessfully'));
 
         return redirect()->route('user.index');
     }
 
-    public function destroy(int $id): RedirectResponse
-    {
-        User::destroy($id);
-        session()->flash('success', __('messages.userDeletedSuccessfully'));
-
-        return redirect()->route('user.index');
-    }
 
     public function edit(int $id): View
     {
         $viewData = [];
+
         $user = User::findOrFail($id);
+
         $viewData['user'] = $user;
 
         return view('user.edit')->with('viewData', $viewData);
     }
 
+
     public function update(StoreUserRequest $request, int $id): RedirectResponse
     {
         $user = User::findOrFail($id);
-        $user->update($request->validated());
+
+        $validatedUserData = $request->validated();
+
+        $user->update($validatedUserData);
+
+        session()->flash('success', __('messages.userUpdatedSuccessfully'));
+
+        return redirect()->route('user.index');
+    }
+
+
+    public function destroy(int $id): RedirectResponse
+    {
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        session()->flash('success', __('messages.userDeletedSuccessfully'));
 
         return redirect()->route('user.index');
     }
