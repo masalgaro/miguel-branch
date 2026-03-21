@@ -20,15 +20,22 @@ Route::get('/invoiceLine', 'App\Http\Controllers\InvoiceLineController@index')->
 Route::get('/invoiceLine/{id}', 'App\Http\Controllers\InvoiceLineController@show')->name('invoiceLine.show');
 
 // Cart rutes
-Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
-Route::get('/cart/add/{id}', 'App\Http\Controllers\CartController@add')->name('cart.add');
-Route::post('/cart/update/{id}', 'App\Http\Controllers\CartController@update')->name('cart.update');
-Route::get('/cart/remove/{id}', 'App\Http\Controllers\CartController@remove')->name('cart.remove');
-Route::get('/cart/removeAll/', 'App\Http\Controllers\CartController@removeAll')->name('cart.removeAll');
+// Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
+// Route::get('/cart/add/{id}', 'App\Http\Controllers\CartController@add')->name('cart.add');
+// Route::post('/cart/update/{id}', 'App\Http\Controllers\CartController@update')->name('cart.update');
+// Route::get('/cart/remove/{id}', 'App\Http\Controllers\CartController@remove')->name('cart.remove');
+// Route::get('/cart/removeAll/', 'App\Http\Controllers\CartController@removeAll')->name('cart.removeAll');
 
-// Admin Routes using MiddleWare
 
-// Route::middleware('admin')->group(function () {
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
+    Route::get('/cart/add/{id}', 'App\Http\Controllers\CartController@add')->name('cart.add');
+    Route::post('/cart/update/{id}', 'App\Http\Controllers\CartController@update')->name('cart.update');
+    Route::get('/cart/remove/{id}', 'App\Http\Controllers\CartController@remove')->name('cart.remove');
+    Route::get('/cart/removeAll/', 'App\Http\Controllers\CartController@removeAll')->name('cart.removeAll');
+});
+
+
 
 
 
@@ -36,7 +43,7 @@ Route::get('/cart/removeAll/', 'App\Http\Controllers\CartController@removeAll')-
 
 Route::middleware([AdminAuthMiddleware::class])->group(function () {
 
-//     Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
+    Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
 
     // Phone
     Route::get('admin/phone', 'App\Http\Controllers\Admin\AdminPhoneController@index')->name('admin.phone.index');
@@ -94,6 +101,6 @@ Route::middleware([AdminAuthMiddleware::class])->group(function () {
 
 });
 
-//Auth::routes();
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
