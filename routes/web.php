@@ -22,6 +22,16 @@ Route::delete('/office/{id}', 'App\Http\Controllers\OfficeController@destroy')->
 Route::get('/office/{id}/edit', 'App\Http\Controllers\OfficeController@edit')->name('office.edit');
 Route::put('/office/{id}', 'App\Http\Controllers\OfficeController@update')->name('office.update');
 
+// Routes for class InvoiceLine
+
+Route::get('/invoiceLine', 'App\Http\Controllers\InvoiceLineController@index')->name('invoiceLine.index');
+Route::get('/invoiceLine/create', 'App\Http\Controllers\InvoiceLineController@create')->name('invoiceLine.create');
+Route::post('/invoiceLine/save', 'App\Http\Controllers\InvoiceLineController@save')->name('invoiceLine.save');
+Route::get('/invoiceLine/{id}', 'App\Http\Controllers\InvoiceLineController@show')->name('invoiceLine.show');
+Route::delete('/invoiceLine/{id}', 'App\Http\Controllers\InvoiceLineController@destroy')->name('invoiceLine.destroy');
+Route::get('/invoiceLine/{id}/edit', 'App\Http\Controllers\InvoiceLineController@edit')->name('invoiceLine.edit');
+Route::put('/invoiceLine/{id}', 'App\Http\Controllers\InvoiceLineController@update')->name('invoiceLine.update');
+
 // Routes for savingsAccount class
 
 Route::get('savingsAccounts', 'App\Http\Controllers\SavingsAccountController@index')->name('savingsAccounts.index');
@@ -37,3 +47,5 @@ Route::get('users/create', 'App\Http\Controllers\UserController@create')->name('
 Route::post('users', 'App\Http\Controllers\UserController@save')->name('users.save');
 Route::get('users/{id}', 'App\Http\Controllers\UserController@show')->name('users.show');
 Route::delete('users/{id}', 'App\Http\Controllers\UserController@destroy')->name('users.destroy');
+
+

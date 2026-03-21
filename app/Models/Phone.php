@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Office;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Phone extends Model
 {
@@ -17,11 +19,13 @@ class Phone extends Model
      * $this->attributes['brand'] - string - contains the phone brand. For example Samsumg, Apple, Xiaomi, etc.
      * $this->attributes['image'] - string - contains the path for a image stored locally.
      * $this->attributes['quantity'] - integer - contains the number of phones in that store.
+     * $this->attributes['office_id'] - int - contains the associated office id
      * $this->attributes['created_at'] - string - timestamp of creation
      * $this->attributes['updated_at'] - string - timestamp of last update
+     * $this->office - Office - contains the associated Office
     */
     
-    protected $fillable = ['name', 'memory', 'ram', 'battery', 'brand', 'quantity', 'image'];
+    protected $fillable = ['name', 'memory', 'ram', 'battery', 'brand', 'quantity', 'image', 'office_id'];
 
     // Getters y Setters
 
@@ -132,8 +136,8 @@ class Phone extends Model
 
     // Relations 
 
-    public function comments(): HasMany
+    public function office(): BelongsTo
     {
-        return $this->hasMany(Comment::class);
+        return $this->belongsTo(Office::class);
     }
 }

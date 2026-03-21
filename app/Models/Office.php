@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Phone;
 
 class Office extends Model
 {
@@ -14,6 +16,7 @@ class Office extends Model
      * $this->attributes['manager_name'] - string - contains the name of the office manager name
      * $this->attributes['created_at'] - string - timestamp of creation
      * $this->attributes['updated_at'] - string - timestamp of last update
+     * $this->phones - Phones[] - contain the associated phones
     */
 
     protected $fillable = ['name', 'address', 'manager_name'];
@@ -75,6 +78,13 @@ class Office extends Model
     public function getUpdatedAt(): string
     {
         return $this->attributes['updated_at'];
+    }
+
+    // Relations 
+
+    public function phones(): HasMany
+    {
+        return $this->hasMany(Phone::class);
     }
 
 }
