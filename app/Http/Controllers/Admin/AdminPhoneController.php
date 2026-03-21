@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StorePhoneRequest;
+use App\Http\Controllers\Controller;
 use App\Interfaces\ImageStorage;
 use App\Models\Office;
 use App\Models\Phone;

@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
 {
@@ -18,10 +20,10 @@ class AdminUserController extends Controller
         return view('admin.user.index')->with('viewData', $viewData);
     }
 
-
     public function show(int $id): View
     {
         $viewData = [];
+
         $user = User::with(['invoices', 'savingsAccounts'])->findOrFail($id);
 
         $viewData['user'] = $user;
@@ -29,18 +31,16 @@ class AdminUserController extends Controller
         return view('admin.user.show')->with('viewData', $viewData);
     }
 
-
     public function create(): View
     {
-        $viewData = [];
-
-        return view('admin.user.create')->with('viewData', $viewData);
+        return view('admin.user.create');
     }
-
 
     public function save(StoreUserRequest $request): RedirectResponse
     {
         $validatedUserData = $request->validated();
+
+        $validatedUserData['password'] = Hash::make($validatedUserData['password']);
 
         User::create($validatedUserData);
 
@@ -48,7 +48,6 @@ class AdminUserController extends Controller
 
         return redirect()->route('admin.user.index');
     }
-
 
     public function edit(int $id): View
     {
@@ -61,12 +60,17 @@ class AdminUserController extends Controller
         return view('admin.user.edit')->with('viewData', $viewData);
     }
 
-
     public function update(StoreUserRequest $request, int $id): RedirectResponse
     {
         $user = User::findOrFail($id);
 
         $validatedUserData = $request->validated();
+
+        if (!empty($validatedUserData['password'])) {
+            $validatedUserData['password'] = Hash::make($validatedUserData['password']);
+        } else {
+            unset($validatedUserData['password']);
+        }
 
         $user->update($validatedUserData);
 
@@ -74,7 +78,6 @@ class AdminUserController extends Controller
 
         return redirect()->route('admin.user.index');
     }
-
 
     public function destroy(int $id): RedirectResponse
     {

@@ -1,6 +1,16 @@
 @extends('layouts.app')
 @section('content')
 
+@if ($errors->any())
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="container">
     <h1>{{ __('messages.createUser') }}</h1>
     <form method="POST" action="{{ route('admin.user.save') }}">
@@ -19,6 +29,11 @@
         <div class="mb-3">
             <label class="form-label">{{ __('messages.userPassword') }}</label>
             <input type="text" name="password" value="{{ old('password') }}" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Confirm Password</label>
+            <input type="password" name="password_confirmation" class="form-control">
         </div>
 
         <div class="mb-3">

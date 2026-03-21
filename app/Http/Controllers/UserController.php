@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -42,6 +43,8 @@ class UserController extends Controller
     {
         $validatedUserData = $request->validated();
 
+        $validatedUserData['password'] = Hash::make($validatedUserData['password']);
+
         User::create($validatedUserData);
 
         session()->flash('success', __('messages.userCreatedSuccessfully'));
@@ -67,6 +70,12 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $validatedUserData = $request->validated();
+
+        if (!empty($validatedUserData['password'])) {
+            $validatedUserData['password'] = Hash::make($validatedUserData['password']);
+        } else {
+            unset($validatedUserData['password']); 
+        }
 
         $user->update($validatedUserData);
 

@@ -18,7 +18,12 @@
 
         <div class="mb-3">
             <label class="form-label">{{ __('messages.userPassword') }}</label>
-            <input type="text" name="password" value="{{ old('password') }}" class="form-control">
+            <input type="password" name="password" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Confirm Password</label>
+            <input type="password" name="password_confirmation" class="form-control">
         </div>
 
         <div class="mb-3">
