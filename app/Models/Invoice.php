@@ -24,11 +24,7 @@ class Invoice extends Model
      * $this->attributes['updated_at'] - string - timestamp of last update
      */
 
-    protected $fillable = [
-        'date',
-        'user_id',
-        'office_id'
-    ];
+    protected $fillable = ['date', 'user_id', 'office_id'];
 
     // Getters and Setters
 

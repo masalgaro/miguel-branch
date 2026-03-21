@@ -37,10 +37,14 @@ class User extends Model
 
     // Getters and Setters
 
+    // Id
+
     public function getId(): int
     {
         return $this->attributes['id'];
     }
+
+    // Name
 
     public function getName(): string
     {
@@ -52,6 +56,8 @@ class User extends Model
         $this->attributes['name'] = $name;
     }
 
+    // Email
+
     public function getEmail(): string
     {
         return $this->attributes['email'];
@@ -61,6 +67,8 @@ class User extends Model
     {
         $this->attributes['email'] = $email;
     }
+
+    // Email verified at
 
     public function getEmailVerifiedAt(): ?string
     {
@@ -72,6 +80,8 @@ class User extends Model
         $this->attributes['email_verified_at'] = $email_verified_at;
     }
 
+    // Password
+
     public function getPassword(): string
     {
         return $this->attributes['password'];
@@ -81,6 +91,8 @@ class User extends Model
     {
         $this->attributes['password'] = $password;
     }
+
+    // Remember token
 
     public function getRememberToken(): ?string
     {
@@ -92,6 +104,8 @@ class User extends Model
         $this->attributes['remember_token'] = $remember_token;
     }
 
+    // National id
+
     public function getNationalId(): string
     {
         return $this->attributes['national_id'];
@@ -101,6 +115,8 @@ class User extends Model
     {
         $this->attributes['national_id'] = $national_id;
     }
+
+    // First name
 
     public function getFirstName(): string
     {
@@ -112,6 +128,8 @@ class User extends Model
         $this->attributes['first_name'] = $first_name;
     }
 
+    // Last name
+
     public function getLastName(): string
     {
         return $this->attributes['last_name'];
@@ -121,6 +139,8 @@ class User extends Model
     {
         $this->attributes['last_name'] = $last_name;
     }
+
+    // Role
 
     public function getRole(): string
     {
@@ -132,6 +152,8 @@ class User extends Model
         $this->attributes['role'] = $role;
     }
 
+    // Phone number
+
     public function getPhoneNumber(): string
     {
         return $this->attributes['phone_number'];
@@ -141,6 +163,8 @@ class User extends Model
     {
         $this->attributes['phone_number'] = $phone_number;
     }
+
+    // Birthday
 
     public function getBirthday(): string
     {
@@ -152,6 +176,8 @@ class User extends Model
         $this->attributes['birthday'] = $birthday;
     }
 
+    // Address
+
     public function getAddress(): string
     {
         return $this->attributes['address'];
@@ -162,10 +188,14 @@ class User extends Model
         $this->attributes['address'] = $address;
     }
 
+    // CreatedAt
+
     public function getCreatedAt(): string
     {
         return $this->attributes['created_at'];
     }
+
+    // UpdatedAt
 
     public function getUpdatedAt(): string
     {

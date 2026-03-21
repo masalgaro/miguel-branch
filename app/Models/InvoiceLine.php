@@ -22,7 +22,7 @@ class InvoiceLine extends Model
      * $this->attributes['updated_at'] - string - timestamp of last update
      * $this->phone - Phone - contains the associated Phone
      */
-    protected $fillable = ['unit_price', 'discount', 'quantity', 'reason', 'phone_id'];
+    protected $fillable = ['unit_price', 'discount', 'quantity', 'reason', 'phone_id' , 'invoice_id'];
 
     // Getters and Setters
 

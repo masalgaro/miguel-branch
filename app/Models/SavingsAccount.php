@@ -19,6 +19,7 @@ class SavingsAccount extends Model
      */
     protected $fillable = ['type', 'balance', 'user_id'];
 
+    // Id
     public function getId(): int
     {
         return $this->attributes['id'];
@@ -28,6 +29,8 @@ class SavingsAccount extends Model
     {
         return $this->attributes['type'];
     }
+
+    // Type
 
     public function setType(string $type): void
     {
@@ -39,6 +42,8 @@ class SavingsAccount extends Model
         return $this->attributes['balance'];
     }
 
+    // Balance
+
     public function setBalance(int $balance): void
     {
         $this->attributes['balance'] = $balance;
@@ -49,20 +54,28 @@ class SavingsAccount extends Model
         return $this->attributes['user_id'];
     }
 
+    // User id
+
     public function setUserId(int $user_id): void
     {
         $this->attributes['user_id'] = $user_id;
     }
+
+    // CreatedAt
 
     public function getCreatedAt(): string
     {
         return $this->attributes['created_at'];
     }
 
+    // UpdatedAt
+
     public function getUpdatedAt(): string
     {
         return $this->attributes['updated_at'];
     }
+
+    // Relations getters and setters
 
     public function getUser(): User
     {
@@ -73,6 +86,8 @@ class SavingsAccount extends Model
     {
         $this->user()->associate($user);
     }
+
+    // Relations
 
     public function user(): BelongsTo
     {
