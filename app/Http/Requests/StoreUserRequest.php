@@ -20,7 +20,7 @@ class StoreUserRequest extends FormRequest
             'national_id' => 'required|max:255',
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
-            'role' => 'required|max:255',
+            'role' => 'required|in:admin,client',
             'phone_number' => 'required|max:14',
             'birthday' => 'required|date',
             'address' => 'required|max:500',

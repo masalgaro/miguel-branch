@@ -18,10 +18,16 @@ class AdminAuthMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && strtolower(Auth::user()->getRole()) === 'admin') {
-            return $next($request);
+        // if (Auth::check() && strtolower(Auth::user()->getRole()) === 'admin') {
+        //     return $next($request);
+        // }
+
+        // return redirect()->route('home.index');
+
+        if (Auth::user()->getRole() !== 'Admin') {
+            abort(403);
         }
 
-        return redirect()->route('home.index');
+        return $next($request);
     }
 }
