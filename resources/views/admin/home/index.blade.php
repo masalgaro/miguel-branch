@@ -22,5 +22,17 @@
     <a href="{{ route('admin.invoice.create') }}">Create Invoice</a>
 </div>
 
+<div>
+    <h3>Phones</h3>
+    <a href="{{ route('admin.phone.index') }}">View Phones</a>
+    <a href="{{ route('admin.phone.create') }}">Create Phones</a>
+</div>
+
+
+<div>
+    <h3>Users</h3>
+    <a href="{{ route('admin.user.index') }}">View Users</a>
+    <a href="{{ route('admin.user.create') }}">Create Users</a>
+</div>
 
 @endsection

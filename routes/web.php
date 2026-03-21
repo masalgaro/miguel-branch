@@ -20,6 +20,8 @@ Route::get('/invoiceLine', 'App\Http\Controllers\InvoiceLineController@index')->
 Route::get('/invoiceLine/{id}', 'App\Http\Controllers\InvoiceLineController@show')->name('invoiceLine.show');
 
 
+
+
 // Admin Routes using Middleware
 
 Route::middleware([AdminAuthMiddleware::class])->group(function () {
