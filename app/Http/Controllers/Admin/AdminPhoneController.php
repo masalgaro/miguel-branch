@@ -25,9 +25,7 @@ class AdminPhoneController extends Controller
     {
         $viewData = [];
 
-        $phone = Phone::with(['office'])->findOrFail($id);
-
-        $viewData['phone'] = $phone;
+        $viewData['phone'] = Phone::with(['office'])->findOrFail($id);
 
         return view('admin.phone.show')->with('viewData', $viewData);
     }
@@ -45,9 +43,8 @@ class AdminPhoneController extends Controller
     {
         $viewData = [];
 
-        $phone = Phone::findOrFail($id);
+        $viewData['phone'] = Phone::findOrFail($id);
 
-        $viewData['phone'] = $phone;
         $viewData['offices'] = Office::all();
 
         return view('admin.phone.edit')->with('viewData', $viewData);

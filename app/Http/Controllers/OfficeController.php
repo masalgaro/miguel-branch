@@ -10,7 +10,6 @@ class OfficeController extends Controller
     public function index(): View
     {
         $viewData = [];
-
         $viewData['offices'] = Office::with(['phones', 'invoices'])->get();
 
         return view('office.index')->with('viewData', $viewData);
@@ -19,9 +18,7 @@ class OfficeController extends Controller
     public function show(int $id): View
     {
         $viewData = [];
-        $office = Office::with(['phones', 'invoices'])->findOrFail($id);
-
-        $viewData['office'] = $office;
+        $viewData['office'] = Office::with(['phones', 'invoices'])->findOrFail($id);
 
         return view('office.show')->with('viewData', $viewData);
     }

@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreInvoiceLineRequest;
-use App\Models\Invoice;
 use App\Models\InvoiceLine;
-use App\Models\Phone;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class InvoiceLineController extends Controller
@@ -22,10 +18,7 @@ class InvoiceLineController extends Controller
     public function show(int $id): View
     {
         $viewData = [];
-
-        $invoiceLine = InvoiceLine::with(['phone', 'invoice'])->findOrFail($id);
-
-        $viewData['invoiceLine'] = $invoiceLine;
+        $viewData['invoiceLine'] = InvoiceLine::with(['phone', 'invoice'])->findOrFail($id);
 
         return view('invoiceLine.show')->with('viewData', $viewData);
     }

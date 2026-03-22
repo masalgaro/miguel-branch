@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +14,6 @@ class UserController extends Controller
     public function index(): View
     {
         $viewData = [];
-
         $viewData['users'] = User::with(['invoices', 'savingsAccounts'])->get();
 
         return view('user.index')->with('viewData', $viewData);
@@ -22,18 +22,15 @@ class UserController extends Controller
     public function show(int $id): View
     {
         $viewData = [];
-        $user = User::findOrFail($id);
-        $viewData['user'] = $user;
-        $viewData['savingsAccounts'] = $user->getSavingsAccounts();
+        $viewData['user'] = User::findOrFail($id);
+        $viewData['savingsAccounts'] = $viewData['user']->getSavingsAccounts();
 
         return view('user.show')->with('viewData', $viewData);
     }
 
     public function create(): View
     {
-        $viewData = [];
-
-        return view('user.create')->with('viewData', $viewData);
+        return view('user.create');
     }
 
     public function save(StoreUserRequest $request): RedirectResponse
@@ -53,14 +50,12 @@ class UserController extends Controller
     {
         $viewData = [];
 
-        $user = User::findOrFail($id);
-
-        $viewData['user'] = $user;
+        $viewData['user'] = User::findOrFail($id);
 
         return view('user.edit')->with('viewData', $viewData);
     }
 
-    public function update(StoreUserRequest $request, int $id): RedirectResponse
+    public function update(UpdateUserRequest $request, int $id): RedirectResponse
     {
         $user = User::findOrFail($id);
 

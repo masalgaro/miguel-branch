@@ -57,7 +57,7 @@ return [
     'savingsAccountUserId' => 'User ID',
     'savingsAccountCreatedSuccessfully' => 'Savings account created successfully.',
     'savingsAccountDeletedSuccessfully' => 'Savings account deleted successfully.',
-    'noSavingsAccountsFound'=> 'No savings account found',
+    'noSavingsAccountsFound' => 'No savings account found',
 
     // User class related
     'userList' => 'User List',
@@ -90,8 +90,7 @@ return [
     'registerButton' => 'Create account',
     'forgotPasswordTitle' => 'Forgot your password?',
 
-
     // User logout message
-    'logoutSuccess'=> 'Logged out successfully',
+    'logoutSuccess' => 'Logged out successfully',
 
 ];

@@ -25,9 +25,7 @@ class AdminUserController extends Controller
     {
         $viewData = [];
 
-        $user = User::with(['invoices', 'savingsAccounts'])->findOrFail($id);
-
-        $viewData['user'] = $user;
+        $viewData['user'] = User::with(['invoices', 'savingsAccounts'])->findOrFail($id);
 
         return view('admin.user.show')->with('viewData', $viewData);
     }
@@ -54,9 +52,7 @@ class AdminUserController extends Controller
     {
         $viewData = [];
 
-        $user = User::findOrFail($id);
-
-        $viewData['user'] = $user;
+        $viewData['user'] = User::findOrFail($id);
 
         return view('admin.user.edit')->with('viewData', $viewData);
     }

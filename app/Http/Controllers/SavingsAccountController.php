@@ -13,8 +13,7 @@ class SavingsAccountController extends Controller
     public function show(int $id): View
     {
         $viewData = [];
-        $savingsAccount = SavingsAccount::findOrFail($id);
-        $viewData['savingsAccount'] = $savingsAccount;
+        $viewData['savingsAccount'] = SavingsAccount::findOrFail($id);
 
         return view('savingsAccount.show')->with('viewData', $viewData);
     }
@@ -22,8 +21,7 @@ class SavingsAccountController extends Controller
     public function create(): View
     {
         $viewData = [];
-        $users = User::all();
-        $viewData['users'] = $users;
+        $viewData['users'] = User::all();
 
         return view('savingsAccount.create')->with('viewData', $viewData);
     }
@@ -34,7 +32,7 @@ class SavingsAccountController extends Controller
         SavingsAccount::create($validatedData);
         session()->flash('success', __('messages.savingsAccountCreatedSuccessfully'));
 
-        return redirect()->route('user.show' , ['id' => auth()->user()->getId()]);
+        return redirect()->route('user.show', ['id' => auth()->user()->getId()]);
     }
 
     public function destroy(int $id): RedirectResponse
@@ -42,14 +40,13 @@ class SavingsAccountController extends Controller
         SavingsAccount::destroy($id);
         session()->flash('success', __('messages.savingsAccountDeletedSuccessfully'));
 
-        return redirect()->route('user.show' , ['id' => auth()->user()->getId()]);
+        return redirect()->route('user.show', ['id' => auth()->user()->getId()]);
     }
 
     public function edit(int $id): View
     {
         $viewData = [];
-        $savingsAccount = SavingsAccount::findOrFail($id);
-        $viewData['savingsAccount'] = $savingsAccount;
+        $viewData['savingsAccount'] = SavingsAccount::findOrFail($id);
 
         $users = User::all();
         $viewData['users'] = $users;
@@ -62,6 +59,6 @@ class SavingsAccountController extends Controller
         $savingsAccount = SavingsAccount::findOrFail($id);
         $savingsAccount->update($request->validated());
 
-        return redirect()->route('user.show' , ['id' => auth()->user()->getId()]);
+        return redirect()->route('user.show', ['id' => auth()->user()->getId()]);
     }
 }

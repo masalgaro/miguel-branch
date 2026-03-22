@@ -20,9 +20,7 @@ class PhoneController extends Controller
     {
         $viewData = [];
 
-        $phone = Phone::with(['office'])->findOrFail($id);
-
-        $viewData['phone'] = $phone;
+        $viewData['phone'] = Phone::with(['office'])->findOrFail($id);
 
         return view('phone.show')->with('viewData', $viewData);
     }

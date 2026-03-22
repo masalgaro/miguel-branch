@@ -15,11 +15,11 @@ class Invoice extends Model
      * $this->attributes['date'] - string - contains the invoice date
      * $this->attributes['user_id'] - int - contains the associated user id
      * $this->attributes['office_id'] - int - contains the associated office id
+     * $this->attributes['created_at'] - string - timestamp of creation
+     * $this->attributes['updated_at'] - string - timestamp of last update
      * $this->invoiceLines - InvoiceLine[] - contains the associated invoice lines
      * $this->user - User - contains the associated user
      * $this->office - Office - contains the associated office
-     * $this->attributes['created_at'] - string - timestamp of creation
-     * $this->attributes['updated_at'] - string - timestamp of last update
      */
     protected $fillable = ['date', 'user_id', 'office_id'];
 
@@ -62,7 +62,7 @@ class Invoice extends Model
         $this->invoiceLines = $invoiceLines;
     }
 
-    public function getuser(): User
+    public function getUser(): User
     {
         return $this->user;
     }

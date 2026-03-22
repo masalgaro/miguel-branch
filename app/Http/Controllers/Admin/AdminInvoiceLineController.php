@@ -24,10 +24,7 @@ class AdminInvoiceLineController extends Controller
     public function show(int $id): View
     {
         $viewData = [];
-
-        $invoiceLine = InvoiceLine::with(['phone', 'invoice'])->findOrFail($id);
-
-        $viewData['invoiceLine'] = $invoiceLine;
+        $viewData['invoiceLine'] = InvoiceLine::with(['phone', 'invoice'])->findOrFail($id);
 
         return view('admin.invoiceLine.show')->with('viewData', $viewData);
     }
@@ -35,7 +32,6 @@ class AdminInvoiceLineController extends Controller
     public function create(): View
     {
         $viewData = [];
-
         $viewData['phones'] = Phone::all();
         $viewData['invoices'] = Invoice::all();
 
@@ -55,9 +51,7 @@ class AdminInvoiceLineController extends Controller
     {
         $viewData = [];
 
-        $invoiceLine = InvoiceLine::with(['phone', 'invoice'])->findOrFail($id);
-
-        $viewData['invoiceLine'] = $invoiceLine;
+        $viewData['invoiceLine'] = InvoiceLine::with(['phone', 'invoice'])->findOrFail($id);
         $viewData['phones'] = Phone::all();
         $viewData['invoices'] = Invoice::all();
 

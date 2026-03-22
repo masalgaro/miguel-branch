@@ -14,7 +14,7 @@ class UpdateInvoiceLineRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
+
             'unit_price' => 'required|integer|min:1',
             'discount' => 'nullable|numeric|gte:0|lte:1',
             'quantity' => 'required|integer|min:1',

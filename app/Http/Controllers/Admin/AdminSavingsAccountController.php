@@ -22,8 +22,7 @@ class AdminSavingsAccountController extends Controller
     public function show(int $id): View
     {
         $viewData = [];
-        $savingsAccount = SavingsAccount::findOrFail($id);
-        $viewData['savingsAccount'] = $savingsAccount;
+        $viewData['savingsAccount'] = SavingsAccount::findOrFail($id);
 
         return view('admin.savingsAccount.show')->with('viewData', $viewData);
     }
@@ -31,8 +30,7 @@ class AdminSavingsAccountController extends Controller
     public function create(): View
     {
         $viewData = [];
-        $users = User::all();
-        $viewData['users'] = $users;
+        $viewData['users'] = User::all();
 
         return view('admin.savingsAccount.create')->with('viewData', $viewData);
     }
@@ -60,8 +58,7 @@ class AdminSavingsAccountController extends Controller
         $savingsAccount = SavingsAccount::findOrFail($id);
         $viewData['savingsAccount'] = $savingsAccount;
 
-        $users = User::all();
-        $viewData['users'] = $users;
+        $viewData['users'] = User::all();
 
         return view('admin.savingsAccount.edit')->with('viewData', $viewData);
     }

@@ -22,9 +22,7 @@ class AdminOfficeController extends Controller
     public function show(int $id): View
     {
         $viewData = [];
-        $office = Office::with(['phones', 'invoices'])->findOrFail($id);
-
-        $viewData['office'] = $office;
+        $viewData['office'] = Office::with(['phones', 'invoices'])->findOrFail($id);
 
         return view('admin.office.show')->with('viewData', $viewData);
     }
@@ -49,9 +47,7 @@ class AdminOfficeController extends Controller
     {
         $viewData = [];
 
-        $office = Office::findOrFail($id);
-
-        $viewData['office'] = $office;
+        $viewData['office'] = Office::findOrFail($id);
 
         return view('admin.office.edit')->with('viewData', $viewData);
     }

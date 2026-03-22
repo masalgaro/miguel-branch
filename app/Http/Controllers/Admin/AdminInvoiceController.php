@@ -23,9 +23,7 @@ class AdminInvoiceController extends Controller
     public function show(int $id): View
     {
         $viewData = [];
-        $invoice = Invoice::with(['user', 'office', 'invoiceLines'])->findOrFail($id);
-
-        $viewData['invoice'] = $invoice;
+        $viewData['invoice'] = Invoice::with(['user', 'office', 'invoiceLines'])->findOrFail($id);
 
         return view('admin.invoice.show')->with('viewData', $viewData);
     }
@@ -53,9 +51,7 @@ class AdminInvoiceController extends Controller
     {
         $viewData = [];
 
-        $invoice = Invoice::with(['user', 'office'])->findOrFail($id);
-
-        $viewData['invoice'] = $invoice;
+        $viewData['invoice'] = Invoice::with(['user', 'office'])->findOrFail($id);
         $viewData['users'] = User::all();
         $viewData['offices'] = Office::all();
 
