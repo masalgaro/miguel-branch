@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('national_id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('role')->default('client');
+            $table->string('role')->default('Client');
             $table->string('phone_number');
             $table->date('birthday');
             $table->string('address');

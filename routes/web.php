@@ -67,8 +67,6 @@ Route::middleware([AdminAuthMiddleware::class])->group(function () { // Check th
 
     // Invoice
     Route::get('admin/invoice', 'App\Http\Controllers\Admin\AdminInvoiceController@index')->name('admin.invoice.index');
-    Route::get('admin/invoice/create', 'App\Http\Controllers\Admin\AdminInvoiceController@create')->name('admin.invoice.create');
-    Route::post('admin/invoice/save', 'App\Http\Controllers\Admin\AdminInvoiceController@save')->name('admin.invoice.save');
     Route::get('admin/invoice/{id}', 'App\Http\Controllers\Admin\AdminInvoiceController@show')->name('admin.invoice.show');
     Route::get('admin/invoice/{id}/edit', 'App\Http\Controllers\Admin\AdminInvoiceController@edit')->name('admin.invoice.edit');
     Route::put('admin/invoice/{id}', 'App\Http\Controllers\Admin\AdminInvoiceController@update')->name('admin.invoice.update');

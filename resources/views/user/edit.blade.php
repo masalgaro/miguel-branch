@@ -2,6 +2,16 @@
 @section('content')
 
 <div class="container">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <h1>{{ __('messages.createUser') }}</h1>
     <form method="POST" action="{{ route('user.update' , ['id' => $viewData['user']->getId()]) }}">
         @csrf
@@ -32,10 +42,7 @@
             <input type="text" name="last_name" value="{{ $viewData['user']->getLastName()}}" class="form-control">
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">{{ __('messages.userRole') }}</label>
-            <input type="text" name="role" value="{{ $viewData['user']->getRole()}}" class="form-control">
-        </div>
+        <input type="hidden" name="role" value="{{ $viewData['user']->getRole() }}">
 
         <div class="mb-3">
             <label class="form-label">{{ __('messages.userPhoneNumber') }}</label>
