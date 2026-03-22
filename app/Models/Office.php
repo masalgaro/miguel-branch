@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Ramsey\Collection\Collection;
 
 class Office extends Model
 {
@@ -11,14 +13,15 @@ class Office extends Model
      * $this->attributes['id'] - int - contains the office primary key (id)
      * $this->attributes['name'] - string - contains the office name
      * $this->attributes['address'] - string - contains the address of the office
-     * $this->attributes['manager_name'] - string - contains the name of the office manager name
+     * $this->attributes['manager_name'] - string - contains the name of the office manager
      * $this->attributes['created_at'] - string - timestamp of creation
      * $this->attributes['updated_at'] - string - timestamp of last update
-    */
-
+     * $this->phones - Phone[] - contains the associated phones
+     * $this->invoices - Invoice[] - contains the associated invoices
+     */
     protected $fillable = ['name', 'address', 'manager_name'];
 
-    // Getters y Setters
+    // Getters and Setters
 
     // Id
 
@@ -39,7 +42,7 @@ class Office extends Model
         $this->attributes['name'] = $name;
     }
 
-    // Address 
+    // Address
 
     public function getAddress(): string
     {
@@ -51,16 +54,16 @@ class Office extends Model
         $this->attributes['address'] = $address;
     }
 
-    // Manager Name 
+    // Manager Name
 
     public function getManagerName(): string
     {
         return $this->attributes['manager_name'];
     }
 
-    public function setManagerName(string $manager_name): void
+    public function setManagerName(string $managerName): void
     {
-        $this->attributes['manager_name'] = $manager_name;
+        $this->attributes['manager_name'] = $managerName;
     }
 
     // CreatedAt
@@ -77,4 +80,37 @@ class Office extends Model
         return $this->attributes['updated_at'];
     }
 
+    // Relations setters and getters
+
+    public function getPhones(): Collection
+    {
+        return $this->phones;
+    }
+
+    public function setPhones(Collection $phones): void
+    {
+        $this->phones = $phones;
+    }
+
+    public function getInvoices(): Collection
+    {
+        return $this->invoices;
+    }
+
+    public function setInvoces(Collection $invoices): void
+    {
+        $this->invoices = $invoices;
+    }
+
+    // Relations
+
+    public function phones(): HasMany
+    {
+        return $this->hasMany(Phone::class);
+    }
+
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

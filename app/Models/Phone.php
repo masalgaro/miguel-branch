@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Phone extends Model
 {
@@ -15,13 +15,15 @@ class Phone extends Model
      * $this->attributes['ram'] - string - contains the phone ram. It also includes the unit of measure. For example kb, mb, gb, etc.
      * $this->attributes['battery'] - string - contains the phone battery. It also includes the unit of measure. For example mAh, etc.
      * $this->attributes['brand'] - string - contains the phone brand. For example Samsumg, Apple, Xiaomi, etc.
+     * $this->attributes['price'] - int - contains the phone price.
      * $this->attributes['image'] - string - contains the path for a image stored locally.
-     * $this->attributes['quantity'] - integer - contains the number of phones in that store.
+     * $this->attributes['quantity'] - int - contains the number of phones in that store.
+     * $this->attributes['office_id'] - int - contains the associated office id
      * $this->attributes['created_at'] - string - timestamp of creation
      * $this->attributes['updated_at'] - string - timestamp of last update
-    */
-    
-    protected $fillable = ['name', 'memory', 'ram', 'battery', 'brand', 'quantity', 'image'];
+     * $this->office - Office - contains the associated Office
+     */
+    protected $fillable = ['name', 'memory', 'ram', 'battery', 'brand', 'price', 'quantity', 'image', 'office_id'];
 
     // Getters y Setters
 
@@ -92,6 +94,18 @@ class Phone extends Model
         $this->attributes['brand'] = $brand;
     }
 
+    // Price
+
+    public function getPrice(): int
+    {
+        return $this->attributes['price'];
+    }
+
+    public function setPrice(int $price): void
+    {
+        $this->attributes['price'] = $price;
+    }
+
     // Image
 
     public function getImage(): ?string
@@ -130,10 +144,34 @@ class Phone extends Model
         return $this->attributes['updated_at'];
     }
 
-    // Relations 
+    // Office id
 
-    public function comments(): HasMany
+    public function getOfficeId(): int
     {
-        return $this->hasMany(Comment::class);
+        return $this->attributes['office_id'];
+    }
+
+    public function setOfficeId(int $officeId): void
+    {
+        $this->attributes['office_id'] = $officeId;
+    }
+
+    // Relations getters and setters
+
+    public function getOffice(): Office
+    {
+        return $this->office;
+    }
+
+    public function setOffice(Office $office): void
+    {
+        $this->office = $office;
+    }
+
+    // Relations
+
+    public function office(): BelongsTo
+    {
+        return $this->belongsTo(Office::class);
     }
 }

@@ -1,39 +1,106 @@
 <?php
 
+use App\Http\Middleware\AdminAuthMiddleware;
 use Illuminate\Support\Facades\Route;
 
-// Routes for class Phone
+// Unregistered user Routes
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
 
 Route::get('/phone', 'App\Http\Controllers\PhoneController@index')->name('phone.index');
-Route::get('/phone/create', 'App\Http\Controllers\PhoneController@create')->name('phone.create');
-Route::post('/phone/save', 'App\Http\Controllers\PhoneController@save')->name('phone.save');
 Route::get('/phone/{id}', 'App\Http\Controllers\PhoneController@show')->name('phone.show');
-Route::delete('/phone/{id}', 'App\Http\Controllers\PhoneController@destroy')->name('phone.destroy');
-Route::get('/phone/{id}/edit', 'App\Http\Controllers\PhoneController@edit')->name('phone.edit');
-Route::put('/phone/{id}', 'App\Http\Controllers\PhoneController@update')->name('phone.update');
-
-// Routes for class Office
 
 Route::get('/office', 'App\Http\Controllers\OfficeController@index')->name('office.index');
-Route::get('/office/create', 'App\Http\Controllers\OfficeController@create')->name('office.create');
-Route::post('/office/save', 'App\Http\Controllers\OfficeController@save')->name('office.save');
 Route::get('/office/{id}', 'App\Http\Controllers\OfficeController@show')->name('office.show');
-Route::delete('/office/{id}', 'App\Http\Controllers\OfficeController@destroy')->name('office.destroy');
-Route::get('/office/{id}/edit', 'App\Http\Controllers\OfficeController@edit')->name('office.edit');
-Route::put('/office/{id}', 'App\Http\Controllers\OfficeController@update')->name('office.update');
 
-// Routes for savingsAccount class
+Route::get('/invoice', 'App\Http\Controllers\InvoiceController@index')->name('invoice.index');
+Route::get('/invoice/{id}', 'App\Http\Controllers\InvoiceController@show')->name('invoice.show');
 
-Route::get('savingsAccounts', 'App\Http\Controllers\SavingsAccountController@index')->name('savingsAccounts.index');
-Route::get('savingsAccounts/create', 'App\Http\Controllers\SavingsAccountController@create')->name('savingsAccounts.create');
-Route::post('savingsAccounts', 'App\Http\Controllers\SavingsAccountController@save')->name('savingsAccounts.save');
-Route::get('savingsAccounts/{id}', 'App\Http\Controllers\SavingsAccountController@show')->name('savingsAccounts.show');
-Route::delete('savingsAccounts/{id}', 'App\Http\Controllers\SavingsAccountController@destroy')->name('savingsAccounts.destroy');
+Route::middleware('auth')->group(function () {
+    // Cart rutes
+    Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
+    Route::get('/cart/add/{id}', 'App\Http\Controllers\CartController@add')->name('cart.add');
+    Route::post('/cart/update/{id}', 'App\Http\Controllers\CartController@update')->name('cart.update');
+    Route::get('/cart/remove/{id}', 'App\Http\Controllers\CartController@remove')->name('cart.remove');
+    Route::get('/cart/removeAll/', 'App\Http\Controllers\CartController@removeAll')->name('cart.removeAll');
+    Route::get('/cart/show/', 'App\Http\Controllers\CartController@show')->name('cart.show');
+    Route::post('cart/purchase', 'App\Http\Controllers\PurchaseController@purchase')->name('purchase.purchase');
 
-// Routes for user Class
+    // Saving account routes
+    Route::get('/savingsAccount', 'App\Http\Controllers\SavingsAccountController@index')->name('savingsAccount.index');
+    Route::get('/savingsAccount/create', 'App\Http\Controllers\SavingsAccountController@create')->name('savingsAccount.create');
+    Route::post('/savingsAccount', 'App\Http\Controllers\SavingsAccountController@save')->name('savingsAccount.save');
+    Route::get('/savingsAccount/{id}', 'App\Http\Controllers\SavingsAccountController@show')->name('savingsAccount.show');
+    Route::delete('/savingsAccount/{id}', 'App\Http\Controllers\SavingsAccountController@destroy')->name('savingsAccount.destroy');
+    Route::get('/savingsAccount/{id}/edit', 'App\Http\Controllers\SavingsAccountController@edit')->name('savingsAccount.edit');
+    Route::put('/savingsAccount/{id}', 'App\Http\Controllers\SavingsAccountController@update')->name('savingsAccount.update');
 
-Route::get('users', 'App\Http\Controllers\UserController@index')->name('users.index');
-Route::get('users/create', 'App\Http\Controllers\UserController@create')->name('users.create');
-Route::post('users', 'App\Http\Controllers\UserController@save')->name('users.save');
-Route::get('users/{id}', 'App\Http\Controllers\UserController@show')->name('users.show');
-Route::delete('users/{id}', 'App\Http\Controllers\UserController@destroy')->name('users.destroy');
+    // user rutes
+    Route::get('/user/{id}', 'App\Http\Controllers\UserController@show')->name('user.show');
+    Route::get('/user/{id}/edit', 'App\Http\Controllers\UserController@edit')->name('user.edit');
+    Route::put('/user/{id}', 'App\Http\Controllers\UserController@update')->name('user.update');
+
+});
+
+// Admin Routes using Middleware
+
+Route::middleware([AdminAuthMiddleware::class])->group(function () { // Check this, it should be admin
+
+    Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
+
+    // Phone
+    Route::get('admin/phone', 'App\Http\Controllers\Admin\AdminPhoneController@index')->name('admin.phone.index');
+    Route::get('admin/phone/create', 'App\Http\Controllers\Admin\AdminPhoneController@create')->name('admin.phone.create');
+    Route::post('admin/phone/save', 'App\Http\Controllers\Admin\AdminPhoneController@save')->name('admin.phone.save');
+    Route::get('admin/phone/{id}', 'App\Http\Controllers\Admin\AdminPhoneController@show')->name('admin.phone.show');
+    Route::delete('admin/phone/{id}', 'App\Http\Controllers\Admin\AdminPhoneController@destroy')->name('admin.phone.destroy');
+    Route::get('admin/phone/{id}/edit', 'App\Http\Controllers\Admin\AdminPhoneController@edit')->name('admin.phone.edit');
+    Route::put('admin/phone/{id}', 'App\Http\Controllers\Admin\AdminPhoneController@update')->name('admin.phone.update');
+
+    // Office
+    Route::get('admin/office', 'App\Http\Controllers\Admin\AdminOfficeController@index')->name('admin.office.index');
+    Route::get('admin/office/create', 'App\Http\Controllers\Admin\AdminOfficeController@create')->name('admin.office.create');
+    Route::post('admin/office/save', 'App\Http\Controllers\Admin\AdminOfficeController@save')->name('admin.office.save');
+    Route::get('admin/office/{id}', 'App\Http\Controllers\Admin\AdminOfficeController@show')->name('admin.office.show');
+    Route::delete('admin/office/{id}', 'App\Http\Controllers\Admin\AdminOfficeController@destroy')->name('admin.office.destroy');
+    Route::get('admin/office/{id}/edit', 'App\Http\Controllers\Admin\AdminOfficeController@edit')->name('admin.office.edit');
+    Route::put('admin/office/{id}', 'App\Http\Controllers\Admin\AdminOfficeController@update')->name('admin.office.update');
+
+    // Invoice
+    Route::get('admin/invoice', 'App\Http\Controllers\Admin\AdminInvoiceController@index')->name('admin.invoice.index');
+    Route::get('admin/invoice/create', 'App\Http\Controllers\Admin\AdminInvoiceController@create')->name('admin.invoice.create');
+    Route::post('admin/invoice/save', 'App\Http\Controllers\Admin\AdminInvoiceController@save')->name('admin.invoice.save');
+    Route::get('admin/invoice/{id}', 'App\Http\Controllers\Admin\AdminInvoiceController@show')->name('admin.invoice.show');
+    Route::get('admin/invoice/{id}/edit', 'App\Http\Controllers\Admin\AdminInvoiceController@edit')->name('admin.invoice.edit');
+    Route::put('admin/invoice/{id}', 'App\Http\Controllers\Admin\AdminInvoiceController@update')->name('admin.invoice.update');
+    Route::delete('admin/invoice/{id}', 'App\Http\Controllers\Admin\AdminInvoiceController@destroy')->name('admin.invoice.destroy');
+
+    // InvoiceLine
+    Route::get('admin/invoiceLine', 'App\Http\Controllers\Admin\AdminInvoiceLineController@index')->name('admin.invoiceLine.index');
+    Route::get('admin/invoiceLine/create', 'App\Http\Controllers\Admin\AdminInvoiceLineController@create')->name('admin.invoiceLine.create');
+    Route::post('admin/invoiceLine/save', 'App\Http\Controllers\Admin\AdminInvoiceLineController@save')->name('admin.invoiceLine.save');
+    Route::get('admin/invoiceLine/{id}', 'App\Http\Controllers\Admin\AdminInvoiceLineController@show')->name('admin.invoiceLine.show');
+    Route::delete('admin/invoiceLine/{id}', 'App\Http\Controllers\Admin\AdminInvoiceLineController@destroy')->name('admin.invoiceLine.destroy');
+    Route::get('admin/invoiceLine/{id}/edit', 'App\Http\Controllers\Admin\AdminInvoiceLineController@edit')->name('admin.invoiceLine.edit');
+    Route::put('admin/invoiceLine/{id}', 'App\Http\Controllers\Admin\AdminInvoiceLineController@update')->name('admin.invoiceLine.update');
+
+    // SavingsAccount
+    Route::get('admin/savingsAccount', 'App\Http\Controllers\Admin\AdminSavingsAccountController@index')->name('admin.savingsAccount.index');
+    Route::get('admin/savingsAccount/create', 'App\Http\Controllers\Admin\AdminSavingsAccountController@create')->name('admin.savingsAccount.create');
+    Route::post('admin/savingsAccount', 'App\Http\Controllers\Admin\AdminSavingsAccountController@save')->name('admin.savingsAccount.save');
+    Route::get('admin/savingsAccount/{id}', 'App\Http\Controllers\Admin\AdminSavingsAccountController@show')->name('admin.savingsAccount.show');
+    Route::delete('admin/savingsAccount/{id}', 'App\Http\Controllers\Admin\AdminSavingsAccountController@destroy')->name('admin.savingsAccount.destroy');
+    Route::get('admin/savingsAccount/{id}/edit', 'App\Http\Controllers\Admin\AdminSavingsAccountController@edit')->name('admin.savingsAccount.edit');
+    Route::put('admin/savingsAccount/{id}', 'App\Http\Controllers\Admin\AdminSavingsAccountController@update')->name('admin.savingsAccount.update');
+
+    // User
+    Route::get('admin/user', 'App\Http\Controllers\Admin\AdminUserController@index')->name('admin.user.index');
+    Route::get('admin/user/create', 'App\Http\Controllers\Admin\AdminUserController@create')->name('admin.user.create');
+    Route::post('admin/user', 'App\Http\Controllers\Admin\AdminUserController@save')->name('admin.user.save');
+    Route::get('admin/user/{id}', 'App\Http\Controllers\Admin\AdminUserController@show')->name('admin.user.show');
+    Route::delete('admin/user/{id}', 'App\Http\Controllers\Admin\AdminUserController@destroy')->name('admin.user.destroy');
+    Route::get('admin/user/{id}/edit', 'App\Http\Controllers\Admin\AdminUserController@edit')->name('admin.user.edit');
+    Route::put('admin/user/{id}', 'App\Http\Controllers\Admin\AdminUserController@update')->name('admin.user.update');
+
+});
+
+Auth::routes();

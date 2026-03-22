@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('ram');
             $table->string('battery');
             $table->string('brand');
+            $table->integer('price');
             $table->integer('quantity');
+            $table->foreignId('office_id')->constrained('offices')->cascadeOnDelete();
             $table->timestamps();
         });
     }
