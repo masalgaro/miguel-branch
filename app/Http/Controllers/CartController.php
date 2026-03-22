@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Utils\ConstructCartProdcutData;
+use App\Utils\ConstructCartProductData;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -11,7 +11,7 @@ class CartController extends Controller
 {
     public function index(Request $request): View
     {
-        $cartUtil = new ConstructCartProdcutData;
+        $cartUtil = new ConstructCartProductData;
         $viewData = $cartUtil->constructCartProductData($request);
 
         return view('cart.index')->with('viewData', $viewData);
@@ -19,7 +19,7 @@ class CartController extends Controller
 
     public function show(Request $request): View
     {
-        $cartUtil = new ConstructCartProdcutData;
+        $cartUtil = new ConstructCartProductData;
         $viewData = $cartUtil->constructCartProductData($request);
 
         return view('cart.show')->with('viewData', $viewData);

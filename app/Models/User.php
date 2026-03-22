@@ -29,7 +29,7 @@ class User extends Authenticatable
      * $this->attributes['created_at'] - string - contains the creation timestamp
      * $this->attributes['updated_at'] - string - contains the update timestamp
      * $this->invoices - Invoice[] - contains the associated invoices
-     * $this->savingsAccounts - SavingsAccount[] - contains the associated saving accounts
+     * $this->savingsAccounts - SavingsAccount[] - contains the associated savings accounts
      */
     protected $fillable = ['name', 'email', 'password', 'national_id', 'first_name', 'last_name', 'role', 'phone_number', 'birthday', 'address'];
 
@@ -77,9 +77,9 @@ class User extends Authenticatable
         return $this->attributes['email_verified_at'];
     }
 
-    public function setEmailVerifiedAt(?string $email_verified_at): void
+    public function setEmailVerifiedAt(?string $emailVerifiedAt): void
     {
-        $this->attributes['email_verified_at'] = $email_verified_at;
+        $this->attributes['email_verified_at'] = $emailVerifiedAt;
     }
 
     // Password
@@ -108,9 +108,9 @@ class User extends Authenticatable
         return $this->attributes['national_id'];
     }
 
-    public function setNationalId(string $national_id): void
+    public function setNationalId(string $nationalId): void
     {
-        $this->attributes['national_id'] = $national_id;
+        $this->attributes['national_id'] = $nationalId;
     }
 
     // First name
@@ -120,9 +120,9 @@ class User extends Authenticatable
         return $this->attributes['first_name'];
     }
 
-    public function setFirstName(string $first_name): void
+    public function setFirstName(string $firstName): void
     {
-        $this->attributes['first_name'] = $first_name;
+        $this->attributes['first_name'] = $firstName;
     }
 
     // Last name
@@ -132,9 +132,9 @@ class User extends Authenticatable
         return $this->attributes['last_name'];
     }
 
-    public function setLastName(string $last_name): void
+    public function setLastName(string $lastName): void
     {
-        $this->attributes['last_name'] = $last_name;
+        $this->attributes['last_name'] = $lastName;
     }
 
     // Role
@@ -156,9 +156,9 @@ class User extends Authenticatable
         return $this->attributes['phone_number'];
     }
 
-    public function setPhoneNumber(string $phone_number): void
+    public function setPhoneNumber(string $phoneNumber): void
     {
-        $this->attributes['phone_number'] = $phone_number;
+        $this->attributes['phone_number'] = $phoneNumber;
     }
 
     // Birthday
@@ -199,6 +199,28 @@ class User extends Authenticatable
         return $this->attributes['updated_at'];
     }
 
+    // Relations setters and getters
+
+    public function getSavingsAccounts(): Collection
+    {
+        return $this->savingsAccounts;
+    }
+
+    public function setSavingsAccounts(Collection $savingsAccounts): void
+    {
+        $this->savingsAccounts = $savingsAccounts;
+    }
+
+    public function getInvoices(): Collection
+    {
+        return $this->invoices;
+    }
+
+    public function setInvoices(Collection $invoices): void
+    {
+        $this->invoices = $invoices;
+    }
+
     // Relations
 
     public function savingsAccounts(): HasMany
@@ -209,17 +231,5 @@ class User extends Authenticatable
     public function invoices(): HasMany
     {
         return $this->hasMany(Invoice::class);
-    }
-
-    // Relations Getters
-
-    public function getSavingsAccounts(): Collection
-    {
-        return $this->savingsAccounts;
-    }
-
-    public function getInvoices(): Collection
-    {
-        return $this->invoices;
     }
 }

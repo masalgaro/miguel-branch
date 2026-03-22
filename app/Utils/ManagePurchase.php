@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ManagePurchase
 {
-    private function createInoiceLineData(array $cartProductData, array $phoneIds, Collection $phones): array
+    private function createInvoiceLineData(array $cartProductData, array $phoneIds, Collection $phones): array
     {
         // Create every invoice line to be stored in a variable
         $invoiceLinesData = [];
@@ -69,7 +69,7 @@ class ManagePurchase
                 ]);
             }
 
-            // Create the resoective invoice line
+            // Create the respective invoice line
             InvoiceLine::create([
                 'invoice_id' => $invoicesByOffice[$officeId]->getId(),
                 'phone_id' => $lineData['phone_id'],
@@ -83,23 +83,23 @@ class ManagePurchase
 
     private function decreaseBalance(array $invoiceLinesData, int $savingsAccountId): void
     {
-        $totalAmout = 0;
+        $totalAmount = 0;
         foreach ($invoiceLinesData as $lineData) {
             if ($lineData['discount'] > 0) {
-                $totalAmout += $lineData['unit_price'] * $lineData['quantity'] / $lineData['discount'];
+                $totalAmount += $lineData['unit_price'] * $lineData['quantity'] / $lineData['discount'];
             }
 
-            $totalAmout += $lineData['unit_price'] * $lineData['quantity'];
+            $totalAmount += $lineData['unit_price'] * $lineData['quantity'];
         }
 
         $savingsAccount = SavingsAccount::findOrFail($savingsAccountId);
 
         // Get the user and validate if the balance is enough
-        if (($savingsAccount->getBalance() - $totalAmout) < 0) {
+        if (($savingsAccount->getBalance() - $totalAmount) < 0) {
             throw new Exception('The user does not have enough balance.');
         }
 
-        $savingsAccount->setBalance($savingsAccount->getBalance() - $totalAmout);
+        $savingsAccount->setBalance($savingsAccount->getBalance() - $totalAmount);
         $savingsAccount->save();
     }
 
@@ -132,7 +132,7 @@ class ManagePurchase
         $phones = Phone::whereIn('id', $phoneIds)->get()->keyBy('id');
 
         // Get the structure of an invoice line from session
-        $invoiceLinesData = $this->createInoiceLineData($cartProductData, $phoneIds, $phones);
+        $invoiceLinesData = $this->createInvoiceLineData($cartProductData, $phoneIds, $phones);
 
         // Validate each invoice line
         $validator = $this->validate($invoiceLinesData);
@@ -143,10 +143,10 @@ class ManagePurchase
             return back();
         }
 
-        // Validate and drecrease balance
+        // Validate and decrease balance
         $this->decreaseBalance($invoiceLinesData, $request->input('savingsAccount'));
 
-        // Validate and Decrease inventory
+        // Validate and decrease inventory
         $this->decreaseInventory($invoiceLinesData, $phones);
 
         // Create invoices on DB for each office related to the purchase, then relate the invoiceLines with the created invoice

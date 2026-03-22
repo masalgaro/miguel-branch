@@ -5,9 +5,9 @@ namespace App\Utils;
 use App\Models\Phone;
 use Illuminate\Http\Request;
 
-class ConstructCartProdcutData
+class ConstructCartProductData
 {
-    public function constructCartProductData(Request $request): array
+    public function ConstructCartProductData(Request $request): array
     {
         $cartProductData = $request->session()->get('cart_product_data', []);
         $cartIds = array_keys($cartProductData);

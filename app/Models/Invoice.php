@@ -25,10 +25,14 @@ class Invoice extends Model
 
     // Getters and Setters
 
+    // Id
+
     public function getId(): int
     {
         return $this->attributes['id'];
     }
+
+    // Date
 
     public function getDate(): string
     {
@@ -40,14 +44,42 @@ class Invoice extends Model
         $this->attributes['date'] = $date;
     }
 
+    // UserID
+
     public function getUserId(): int
     {
         return $this->attributes['user_id'];
     }
 
+    public function setUserId(int $userId): void
+    {
+        $this->attributes['user_id'] = $userId;
+    }
+
+    // OfficeId
+
     public function getOfficeId(): int
     {
         return $this->attributes['office_id'];
+    }
+
+    public function setOfficeId(int $office_id): void
+    {
+        $this->attributes['office_id'] = $office_id;
+    }
+
+    // CreatedAt
+
+    public function getCreatedAt(): string
+    {
+        return $this->attributes['created_at'];
+    }
+
+    // UpdatedAt
+
+    public function getUpdatedAt(): string
+    {
+        return $this->attributes['updated_at'];
     }
 
     // Relations Getters and setters

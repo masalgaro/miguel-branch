@@ -56,9 +56,9 @@ class SavingsAccount extends Model
 
     // User id
 
-    public function setUserId(int $user_id): void
+    public function setUserId(int $userId): void
     {
-        $this->attributes['user_id'] = $user_id;
+        $this->attributes['user_id'] = $userId;
     }
 
     // CreatedAt

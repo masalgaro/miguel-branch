@@ -13,12 +13,13 @@ class InvoiceLine extends Model
      * $this->attributes['unit_price'] - float - contains the unit price of the phone
      * $this->attributes['discount'] - float - contains the discount applied
      * $this->attributes['quantity'] - int - contains the quantity of phones
-     * $this->attributes['reason'] - string - contains the reason for discount
+     * $this->attributes['reason'] - string|null - contains the reason for discount
      * $this->attributes['invoice_id'] - int - contains the associated invoice id
      * $this->attributes['phone_id'] - int - contains the associated phone id
      * $this->attributes['created_at'] - string - timestamp of creation
      * $this->attributes['updated_at'] - string - timestamp of last update
      * $this->phone - Phone - contains the associated Phone
+     * $this->invoice - Invoice - contains the associated invoice
      */
     protected $fillable = ['unit_price', 'discount', 'quantity', 'reason', 'phone_id', 'invoice_id'];
 
@@ -38,9 +39,9 @@ class InvoiceLine extends Model
         return (float) $this->attributes['unit_price'];
     }
 
-    public function setUnitPrice(float $unitPrice): void
+    public function setUnitPrice(float $unit_price): void
     {
-        $this->attributes['unit_price'] = $unitPrice;
+        $this->attributes['unit_price'] = $unit_price;
     }
 
     // Discount
@@ -115,6 +116,28 @@ class InvoiceLine extends Model
     public function getUpdatedAt(): string
     {
         return $this->attributes['updated_at'];
+    }
+
+    // Relatiosn setters and getters
+
+    public function getPhone(): Phone
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(Phone $phone): void
+    {
+        $this->phone = $phone;
+    }
+
+    public function getInvoice(): Invoice
+    {
+        return $this->invoice;
+    }
+
+    public function setInvoice(Invoice $invoice): void
+    {
+        $this->invoice = $invoice;
     }
 
     // Relations

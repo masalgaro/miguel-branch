@@ -17,7 +17,7 @@ class Phone extends Model
      * $this->attributes['brand'] - string - contains the phone brand. For example Samsumg, Apple, Xiaomi, etc.
      * $this->attributes['price'] - int - contains the phone price.
      * $this->attributes['image'] - string - contains the path for a image stored locally.
-     * $this->attributes['quantity'] - integer - contains the number of phones in that store.
+     * $this->attributes['quantity'] - int - contains the number of phones in that store.
      * $this->attributes['office_id'] - int - contains the associated office id
      * $this->attributes['created_at'] - string - timestamp of creation
      * $this->attributes['updated_at'] - string - timestamp of last update
@@ -156,13 +156,6 @@ class Phone extends Model
         $this->attributes['office_id'] = $officeId;
     }
 
-    // Relations
-
-    public function office(): BelongsTo
-    {
-        return $this->belongsTo(Office::class);
-    }
-
     // Relations getters and setters
 
     public function getOffice(): Office
@@ -173,5 +166,12 @@ class Phone extends Model
     public function setOffice(Office $office): void
     {
         $this->office = $office;
+    }
+
+    // Relations
+
+    public function office(): BelongsTo
+    {
+        return $this->belongsTo(Office::class);
     }
 }
