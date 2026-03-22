@@ -1,11 +1,9 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminAuthMiddleware;
 use Illuminate\Support\Facades\Route;
 
-// User Routes
-
+// Unregistered user Routes
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
 
 Route::get('/phone', 'App\Http\Controllers\PhoneController@index')->name('phone.index');
@@ -106,5 +104,3 @@ Route::middleware([AdminAuthMiddleware::class])->group(function () { // Check th
 });
 
 Auth::routes();
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
