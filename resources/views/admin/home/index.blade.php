@@ -51,9 +51,6 @@
                     <a href="{{ route('admin.invoice.index') }}" class="btn btn-warning btn-sm w-100 mb-2">
                         View
                     </a>
-                    <a href="{{ route('admin.invoice.create') }}" class="btn btn-outline-warning btn-sm w-100">
-                        Create
-                    </a>
                 </div>
             </div>
         </div>

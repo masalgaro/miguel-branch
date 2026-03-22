@@ -71,6 +71,6 @@ class UserController extends Controller
 
         session()->flash('success', __('messages.userUpdatedSuccessfully'));
 
-        return redirect()->route('user.index');
+        return redirect()->route('user.show', ['id' => $id]);
     }
 }

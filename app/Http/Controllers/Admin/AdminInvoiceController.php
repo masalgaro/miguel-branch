@@ -28,25 +28,6 @@ class AdminInvoiceController extends Controller
         return view('admin.invoice.show')->with('viewData', $viewData);
     }
 
-    public function create(): View
-    {
-        $viewData = [];
-
-        $viewData['users'] = User::all();
-        $viewData['offices'] = Office::all();
-
-        return view('admin.invoice.create')->with('viewData', $viewData);
-    }
-
-    public function save(StoreInvoiceRequest $request): RedirectResponse
-    {
-        $validatedInvoiceData = $request->validated();
-
-        Invoice::create($validatedInvoiceData);
-
-        return redirect()->route('admin.invoice.index');
-    }
-
     public function edit(int $id): View
     {
         $viewData = [];

@@ -84,11 +84,11 @@
                         <label class="form-label text-secondary">{{ __('messages.userRole') }}</label>
 
                         <select name="role" class="form-select bg-dark text-light border-secondary">
-                            <option value="admin" {{ $viewData['user']->getRole() == 'admin' ? 'selected' : '' }}>
+                            <option value="Admin" {{ $viewData['user']->getRole() == 'Admin' ? 'selected' : '' }}>
                                 Admin
                             </option>
 
-                            <option value="client" {{ $viewData['user']->getRole() == 'client' ? 'selected' : '' }}>
+                            <option value="Client" {{ $viewData['user']->getRole() == 'Client' ? 'selected' : '' }}>
                                 Client
                             </option>
                         </select>
