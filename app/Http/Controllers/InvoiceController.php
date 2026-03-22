@@ -28,23 +28,4 @@ class InvoiceController extends Controller
 
         return view('invoice.show')->with('viewData', $viewData);
     }
-
-    public function create(): View
-    {
-        $viewData = [];
-
-        $viewData['users'] = User::all();
-        $viewData['offices'] = Office::all();
-
-        return view('invoice.create')->with('viewData', $viewData);
-    }
-
-    public function save(StoreInvoiceRequest $request): RedirectResponse
-    {
-        $validatedInvoiceData = $request->validated();
-
-        Invoice::create($validatedInvoiceData);
-
-        return redirect()->route('invoice.index');
-    }
 }

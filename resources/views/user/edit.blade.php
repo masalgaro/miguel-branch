@@ -18,11 +18,6 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">{{ __('messages.userPassword') }}</label>
-            <input type="text" name="password" value="{{ $viewData['user']->getPassword() }}" class="form-control">
-        </div>
-
-        <div class="mb-3">
             <label class="form-label">{{ __('messages.userNationalId') }}</label>
             <input type="text" name="national_id" value="{{ $viewData['user']->getNationalId() }}" class="form-control">
         </div>

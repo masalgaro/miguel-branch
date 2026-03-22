@@ -29,23 +29,4 @@ class InvoiceLineController extends Controller
 
         return view('invoiceLine.show')->with('viewData', $viewData);
     }
-
-    public function create(): View
-    {
-        $viewData = [];
-
-        $viewData['phones'] = Phone::all();
-        $viewData['invoices'] = Invoice::all();
-
-        return view('admin.invoiceLine.create')->with('viewData', $viewData);
-    }
-
-    public function save(StoreInvoiceLineRequest $request): RedirectResponse
-    {
-        $validatedData = $request->validated();
-
-        InvoiceLine::create($validatedData);
-
-        return redirect()->route('invoiceLine.index');
-    }
 }

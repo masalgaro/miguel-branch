@@ -61,6 +61,12 @@
             <span class="text-secondary">
                 {{ auth()->user()->name ?? 'Admin' }}
             </span>
+
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+            </form>
+            
         </div>
 
         <!-- Content -->

@@ -22,9 +22,9 @@ class UserController extends Controller
     public function show(int $id): View
     {
         $viewData = [];
-        $user = User::with(['invoices', 'savingsAccounts'])->findOrFail($id);
-
+        $user = User::findOrFail($id);
         $viewData['user'] = $user;
+        $viewData['savingsAccounts'] = $user->getSavingsAccounts();
 
         return view('user.show')->with('viewData', $viewData);
     }

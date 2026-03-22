@@ -85,8 +85,8 @@ class ManagePurchase
     {
         $totalAmout = 0;
         foreach ($invoiceLinesData as $lineData) {
-            if ($lineData['descount'] > 0) {
-                $totalAmout += $lineData['unit_price'] * $lineData['quantity'] / $lineData['descount'];
+            if ($lineData['discount'] > 0) {
+                $totalAmout += $lineData['unit_price'] * $lineData['quantity'] / $lineData['discount'];
             }
 
             $totalAmout += $lineData['unit_price'] * $lineData['quantity'];

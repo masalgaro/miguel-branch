@@ -18,7 +18,7 @@
         </li>
 
     </ul>
-    <a href="{{ route('savingsAccount.index') }}" class="btn btn-secondary mt-3">
+    <a href="{{ route('user.show' , ['id' => auth()->user()->getId()]) }}" class="btn btn-secondary mt-3">
         {{ __('messages.backButton') }}
     </a>
 </div>

@@ -57,6 +57,7 @@ return [
     'savingsAccountUserId' => 'User ID',
     'savingsAccountCreatedSuccessfully' => 'Savings account created successfully.',
     'savingsAccountDeletedSuccessfully' => 'Savings account deleted successfully.',
+    'noSavingsAccountsFound'=> 'No savings account found',
 
     // User class related
     'userList' => 'User List',
@@ -64,6 +65,7 @@ return [
     'createUser' => 'Create User',
     'userName' => 'User name',
     'userEmail' => 'User email',
+    'emailTitle' => 'Email',
     'userPassword' => 'User password',
     'userNationalId' => 'National ID',
     'userFirstName' => 'First Name',
@@ -77,4 +79,19 @@ return [
 
     'purchaseHistory' => 'Purchase History',
     'noPurchaseHistory' => 'No purchase history available.',
+
+    // User login
+    'loginTitle' => 'Login',
+    'loginSubtitle' => 'Access your account to continue shopping',
+    'emailAddressTitle' => 'Email Address',
+    'passwordTitle' => 'Password',
+    'rememberMeTitle' => 'Remember Me',
+    'loginButton' => 'Login',
+    'registerButton' => 'Create account',
+    'forgotPasswordTitle' => 'Forgot your password?',
+
+
+    // User logout message
+    'logoutSuccess'=> 'Logged out successfully',
+
 ];

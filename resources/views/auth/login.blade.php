@@ -1,74 +1,98 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-5">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                <div class="card-body p-4 p-lg-5">
+                    <div class="text-center mb-4">
+                        <h1 class="fw-bold mb-2">{{ __('messages.loginTitle') }}</h1>
+                        <p class="text-muted mb-0">{{ __('messages.loginSubtitle') }}</p>
+                    </div>
 
-<h1>{{ __('Login') }}</h1>
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
 
-<form method="POST" action="{{ route('login') }}">
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-semibold">
+                                {{ __('messages.emailAddressTitle') }}
+                            </label>
 
-    @csrf
+                            <input
+                                id="email"
+                                type="email"
+                                name="email"
+                                value="{{ old('email') }}"
+                                class="form-control rounded-3 @error('email') is-invalid @enderror"
+                                required
+                                autocomplete="email"
+                                autofocus
+                            >
 
-    <div>
-        <label for="email">{{ __('Email Address') }}</label>
+                            @error('email')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
 
-        <input 
-            id="email" 
-            type="email" 
-            name="email" 
-            value="{{ old('email') }}" 
-            required 
-            autocomplete="email" 
-            autofocus
-        >
+                        <div class="mb-3">
+                            <label for="password" class="form-label fw-semibold">
+                                {{ __('messages.passwordTitle') }}
+                            </label>
 
-        @error('email')
-            <p>{{ $message }}</p>
-        @enderror
+                            <input
+                                id="password"
+                                type="password"
+                                name="password"
+                                class="form-control rounded-3 @error('password') is-invalid @enderror"
+                                required
+                                autocomplete="current-password"
+                            >
+
+                            @error('password')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-check mb-4">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="remember"
+                                id="remember"
+                                {{ old('remember') ? 'checked' : '' }}
+                            >
+
+                            <label class="form-check-label text-muted" for="remember">
+                                {{ __('messages.rememberMeTitle') }}
+                            </label>
+                        </div>
+
+                        <div class="d-grid gap-2 mb-3">
+                            <button type="submit" class="btn btn-dark rounded-pill py-2">
+                                {{ __('messages.loginButton') }}
+                            </button>
+
+                            <a href="{{ route('register') }}" class="btn btn-outline-dark rounded-pill py-2">
+                                {{ __('messages.registerButton') }}
+                            </a>
+                        </div>
+                    </form>
+
+                    @if (Route::has('password.request'))
+                        <div class="text-center">
+                            <a href="{{ route('password.request') }}" class="text-decoration-none">
+                                {{ __('messages.forgotPasswordTitle') }}
+                            </a>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
     </div>
-
-
-    <div>
-        <label for="password">{{ __('Password') }}</label>
-
-        <input 
-            id="password" 
-            type="password" 
-            name="password" 
-            required 
-            autocomplete="current-password"
-        >
-
-        @error('password')
-            <p>{{ $message }}</p>
-        @enderror
-    </div>
-
-
-    <div>
-        <input 
-            type="checkbox" 
-            name="remember" 
-            id="remember" 
-            {{ old('remember') ? 'checked' : '' }}
-        >
-
-        <label for="remember">
-            {{ __('Remember Me') }}
-        </label>
-    </div>
-
-
-    <button type="submit">
-        {{ __('Login') }}
-    </button>
-
-</form>
-
-
-@if (Route::has('password.request'))
-    <a href="{{ route('password.request') }}">
-        {{ __('Forgot Your Password?') }}
-    </a>
-@endif
-
+</div>
 @endsection

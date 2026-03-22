@@ -10,14 +10,6 @@ use Illuminate\View\View;
 
 class SavingsAccountController extends Controller
 {
-    public function index(): View
-    {
-        $viewData = [];
-        $viewData['savingsAccounts'] = SavingsAccount::all();
-
-        return view('savingsAccount.index')->with('viewData', $viewData);
-    }
-
     public function show(int $id): View
     {
         $viewData = [];
@@ -42,7 +34,7 @@ class SavingsAccountController extends Controller
         SavingsAccount::create($validatedData);
         session()->flash('success', __('messages.savingsAccountCreatedSuccessfully'));
 
-        return redirect()->route('savingsAccount.index');
+        return redirect()->route('user.show' , ['id' => auth()->user()->getId()]);
     }
 
     public function destroy(int $id): RedirectResponse
@@ -50,7 +42,7 @@ class SavingsAccountController extends Controller
         SavingsAccount::destroy($id);
         session()->flash('success', __('messages.savingsAccountDeletedSuccessfully'));
 
-        return redirect()->route('savingsAccount.index');
+        return redirect()->route('user.show' , ['id' => auth()->user()->getId()]);
     }
 
     public function edit(int $id): View
@@ -70,6 +62,6 @@ class SavingsAccountController extends Controller
         $savingsAccount = SavingsAccount::findOrFail($id);
         $savingsAccount->update($request->validated());
 
-        return redirect()->route('savingsAccount.index');
+        return redirect()->route('user.show' , ['id' => auth()->user()->getId()]);
     }
 }
