@@ -1,13 +1,27 @@
 @extends('layouts.app')
 @section('content')
 <div class="container py-4">
+    <!-- Search Phone -->
+    <form method="GET" action="{{ route('phone.index') }}" class="mb-4">
+        <div>
+            <input
+                type="text"
+                name="search"
+                class="form-control rounded-pill-start"
+                placeholder="{{ __('messages.searchPlaceholder') }}"
+                value="{{ $viewData['search'] ?? '' }}"
+            >
+            <button class="btn btn-dark" type="submit">{{ __('messages.searchButton') }}</button>
+        </div>
+    </form>
+    <!-- Display Phones -->
     <div class="row g-4">
         @foreach ($viewData['phones'] as $phone)
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
                 <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
                     <div class="bg-light d-flex align-items-center justify-content-center p-4" style="height: 260px;">
-                        <img 
-                            src="{{ asset('storage/'.$phone->getImage()) }}" 
+                        <img
+                            src="{{ asset('storage/'.$phone->getImage()) }}"
                             alt="{{ $phone->getName() }}"
                             class="img-fluid"
                             style="max-height: 220px; object-fit: contain;"
@@ -29,14 +43,14 @@
                             <h4 class="fw-bold text-dark mb-3">${{ $phone->getPrice() }}</h4>
 
                             <div class="d-flex align-items-center gap-2">
-                                <a 
+                                <a
                                     href="{{ route('phone.show', ['id' => $phone->getId()]) }}"
                                     class="btn btn-dark rounded-pill flex-grow-1"
                                 >
                                     {{ __('messages.detailsTitle') }}
                                 </a>
 
-                                <a 
+                                <a
                                     href="{{ route('cart.add', ['id' => $phone->getId()]) }}"
                                     class="btn btn-outline-dark rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
                                     style="width: 42px; height: 42px;"

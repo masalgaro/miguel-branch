@@ -8,15 +8,18 @@ use App\Interfaces\ImageStorage;
 use App\Models\Office;
 use App\Models\Phone;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class AdminPhoneController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
+        $search = $request->query('search');
         $viewData = [];
 
         $viewData['phones'] = Phone::with(['office'])->get();
+        $viewData['search'] = $search;
 
         return view('admin.phone.index')->with('viewData', $viewData);
     }

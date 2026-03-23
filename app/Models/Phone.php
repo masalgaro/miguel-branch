@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Phone extends Model
@@ -173,5 +174,19 @@ class Phone extends Model
     public function office(): BelongsTo
     {
         return $this->belongsTo(Office::class);
+    }
+
+    // Search
+
+    public function scopeSearch(Builder $query, string $search): Builder
+    {
+        if ($search)
+        {
+            $query->where(function (Builder $q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")->orWhere('brand', 'like', "%{$search}%");
+            });
+        }
+
+        return $query;
     }
 }

@@ -9,6 +9,19 @@
     </a>
 </div>
 
+<form method="GET" action="{{ route('admin.phone.index') }}" class="mb-3">
+    <div class="input-group" style="max-width: 400px;">
+        <input
+            type="text"
+            name="search"
+            class="form-control bg-dark text-light border-secondary"
+            placeholder="Search by name or brand"
+            value="{{ $viewData['search'] }}"
+        >
+        <button class="btn btn-warning" type="submit">Search</button>
+    </div>
+</form>
+
 <div class="table-responsive">
     <table class="table table-dark table-hover align-middle">
 
@@ -31,8 +44,8 @@
 
                 <!-- Image -->
                 <td>
-                    <img 
-                        src="{{ asset('storage/'.$phone->getImage()) }}" 
+                    <img
+                        src="{{ asset('storage/'.$phone->getImage()) }}"
                         width="60"
                         class="rounded"
                     >
@@ -46,20 +59,20 @@
                 <td class="text-end">
 
                     <!-- View -->
-                    <a href="{{ route('admin.phone.show', ['id'=> $phone->getId()]) }}" 
+                    <a href="{{ route('admin.phone.show', ['id'=> $phone->getId()]) }}"
                        class="btn btn-sm btn-outline-warning">
                         View
                     </a>
 
                     <!-- Edit -->
-                    <a href="{{ route('admin.phone.edit', ['id'=> $phone->getId()]) }}" 
+                    <a href="{{ route('admin.phone.edit', ['id'=> $phone->getId()]) }}"
                        class="btn btn-sm btn-outline-light">
                         Edit
                     </a>
 
                     <!-- Delete -->
-                    <form action="{{ route('admin.phone.destroy', ['id'=> $phone->getId()]) }}" 
-                          method="POST" 
+                    <form action="{{ route('admin.phone.destroy', ['id'=> $phone->getId()]) }}"
+                          method="POST"
                           class="d-inline">
                         @csrf
                         @method('DELETE')

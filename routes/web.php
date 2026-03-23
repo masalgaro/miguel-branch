@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/{id}', 'App\Http\Controllers\UserController@show')->name('user.show');
     Route::get('/user/{id}/edit', 'App\Http\Controllers\UserController@edit')->name('user.edit');
     Route::put('/user/{id}', 'App\Http\Controllers\UserController@update')->name('user.update');
-
+    Route::get('/user/purchaseHistory', 'App\Http\Controllers\UserController@purchaseHistory')->name('user.purchaseHistory');
 });
 
 // Admin Routes using Middleware

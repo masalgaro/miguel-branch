@@ -73,4 +73,15 @@ class UserController extends Controller
 
         return redirect()->route('user.show', ['id' => $id]);
     }
+
+    public function purchaseHistory(int $id): View
+    {
+        $viewData = [];
+
+        $user = User::with(['invoices.invoiceLines.phone'])->get();
+        $viewData['user'] = $user;
+        $viewData['history'] = $user->getInvoices();
+
+        return view('user.purchaseHistory')->with('viewData', $viewData);
+    }
 }

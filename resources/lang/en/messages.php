@@ -13,6 +13,7 @@ return [
     'removeAllButton' => 'Remove all',
     'backButton' => 'Back',
     'editButton' => 'Edit',
+    'cancelButton' => 'Cancel',
     'userLabel' => 'User',
     'selectAnOptionTitle' => 'Select an option',
 
@@ -93,4 +94,13 @@ return [
     // User logout message
     'logoutSuccess' => 'Logged out successfully',
 
+    // Home page related
+    'recommendationsTitle' => 'Daily recommendations!',
+    'recommendationsSubtitle' => 'Products that are sure to amaze you.',
+
+    'detailsTitle' => 'Learn more.',
+
+    // Search products related
+    'searchPlaceholder' => 'Search products...',
+    'searchButton' => 'Search'
 ];

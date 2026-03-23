@@ -70,41 +70,33 @@
     <hr class="my-5">
 
     <div class="text-center">
-        <h2 class="fw-bold">Productos destacados</h2>
-        <p class="text-secondary mb-4">Explora algunos de nuestros dispositivos más llamativos.</p>
+        <h2 class="fw-bold">{{ __('messages.recommendationsTitle') }}</h2>
+        <p class="text-secondary mb-4">{{ __('messages.recommendationsSubtitle') }}</p>
 
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">iPhone</h5>
-                        <p class="card-text">Diseño premium y potencia excepcional.</p>
-                        <a href="{{ route('phone.index') }}" class="btn btn-dark">Ver más</a>
+        <div class="row g-4 justify-content-center">
+            @foreach ($viewData['recommendations'] as $recommendedPhone)
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="bg-light d-flex align-items-center justify-content-center p-3" style="max-height: 200px;">
+                            <img
+                                src="{{ asset('storage/'.$recommendedPhone->getImage()) }}"
+                                alt="{{ $recommendedPhone->getName() }}"
+                                class="img-fluid"
+                                style="max-height: 180px; object-fit: contain;"
+                            >
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">{{ $recommendedPhone->getName() }}</h5>
+                            <p class="text-muted mb-1">{{ $recommendedPhone->getBrand() }}</p>
+                            <p class="fw-bold">{{ $recommendedPhone->getPrice() }}</p>
+                            <a href="{{ route('phone.show', ['id'=>$recommendedPhone->getId()]) }}">
+                                {{ __('messages.detailsTitle') }}
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Samsung Galaxy</h5>
-                        <p class="card-text">Pantalla increíble y gran rendimiento.</p>
-                        <a href="{{ route('phone.index') }}" class="btn btn-dark">Ver más</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Accesorios</h5>
-                        <p class="card-text">Complementos ideales para tu dispositivo.</p>
-                        <a href="{{ route('phone.index') }}" class="btn btn-dark">Ver más</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
-
 </div>
 @endsection
